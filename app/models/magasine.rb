@@ -1,0 +1,2 @@
+class Magasine < ApplicationRecord
+end
