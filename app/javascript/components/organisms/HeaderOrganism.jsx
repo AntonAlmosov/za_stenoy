@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "images/logo-large.svg";
 
-export default function Header() {
+export default function HeaderTemplate() {
   return (
     <div className="header-wrapper">
       <div className="header">
