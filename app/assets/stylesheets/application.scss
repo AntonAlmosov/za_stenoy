@@ -12,10 +12,8 @@
  *
  *= require_self
  */
-@import "reset";
-
-$base: calc(100vw / 74);
-$baseWidth: calc(#{$base} * 70);
+@import "base/reset";
+@import "**/*";
 
 body {
   font-size: $base;
@@ -25,34 +23,6 @@ body {
 .app-wrapper {
   width: 70em;
   margin: 0 auto;
-}
-
-.header-wrapper {
-  width: 100vw;
-  position: fixed;
-  top: 0;
-  background-color: #fff;
-  z-index: 999;
-  .header {
-    width: 70em;
-    margin: 0 auto;
-    height: 4em;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    a {
-      font-size: 1.5em;
-      line-height: 2rem;
-      color: black;
-      &:hover {
-        text-decoration: none;
-      }
-    }
-    .logo {
-      width: 10em;
-      height: 4em;
-    }
-  }
 }
 
 .starter {
