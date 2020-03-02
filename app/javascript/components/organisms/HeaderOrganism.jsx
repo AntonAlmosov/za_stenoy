@@ -1,5 +1,6 @@
 import React from "react";
-import logo from "images/logo-large.svg";
+import logoImage from "images/logo-large.svg";
+import flgasImage from "images/flags.svg";
 
 export default function HeaderTemplate({ logo, inverse }) {
   const [searchOpened, setSearchOpened] = React.useState(false);
@@ -30,9 +31,9 @@ function HeaderRow({ logo, inverse, search, menu }) {
         >
           {search.status ? "Закрыть" : "Поиск"}
         </a>
-        {logo && (!menu.status || !search.status) && (
+        {logo && !menu.status && !search.status && (
           <a href="/" className="logo">
-            <img src={logo} />
+            <img src={logoImage} />
           </a>
         )}
         <a
@@ -94,7 +95,24 @@ function SearchOrganism() {
 function MenuOrganism() {
   return (
     <div className="header-menu-wrapper">
-      <p style={{ color: "#fff" }}>penis</p>
+      <div className="menu-flags">
+        <img src={flgasImage} />
+        <div className="menu-info-wrapper">
+          <div className="menu-links-wrapper">
+            <a href="/">Новости</a>
+            <a href="/">Авторские проекты</a>
+            <a href="/">Журнал «За стеной»</a>
+            <a href="/">Журнал «Флаги»</a>
+            <a href="/">Магазин</a>
+            <a href="/">О нас</a>
+          </div>
+          <div className="menu-adress">
+            <a href="tel: 8-(966)-046-89-30">8-(966)-046-89-30</a>
+            <a href="email: flagi@gmail.com">flagi@gmail.com</a>
+            <a href="https://vk.com/flagi">vk.com/flagi</a>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
