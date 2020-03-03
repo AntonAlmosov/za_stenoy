@@ -1,0 +1,10 @@
+.index-content {
+  margin: 5.875em auto 0;
+  .index-cards-wrapper {
+    display: flex;
+    width: 70em;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0 auto;
+  }
+}

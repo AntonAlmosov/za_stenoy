@@ -1,0 +1,31 @@
+.footer-wrapper {
+  margin-top: 2em;
+  width: 74em;
+  height: 30em;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .footer-info {
+    width: 46em;
+    img {
+      width: 46em;
+      height: 16em;
+    }
+    .flags-links {
+      width: 46em;
+      margin-top: 2em;
+      display: flex;
+      justify-content: space-between;
+      a {
+        font-size: 1.5em;
+        line-height: 1.33;
+        color: white;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

@@ -6,8 +6,7 @@ export default function IndexStarter() {
     <div className="starter-wrapper index-starter">
       <img src={flagsImage} />
       <p>
-        Сайт литературного издательства
-        <a href="/">«Флаги»</a>
+        Сайт литературного издательства <a href="/">«Флаги»</a>
         <br />
         2020
       </p>

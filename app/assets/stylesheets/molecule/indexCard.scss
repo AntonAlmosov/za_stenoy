@@ -1,0 +1,15 @@
+.index-card {
+  width: 34.5em;
+  margin-top: 2em;
+  a {
+    color: black;
+    font-size: 1em;
+    line-height: 1.5;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  .compilation-card-wrapper {
+    margin-top: 1.5em;
+  }
+}
