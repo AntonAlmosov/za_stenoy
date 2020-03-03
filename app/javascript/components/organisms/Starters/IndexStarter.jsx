@@ -1,5 +1,5 @@
 import React from "react";
-import flagsImage from "images/flags-black.svg";
+import flagsImage from "./node_modules/images/flags-black.svg";
 
 export default function IndexStarter() {
   return (

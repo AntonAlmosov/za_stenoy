@@ -1,0 +1,23 @@
+.compilation-starter {
+  width: 70em;
+  margin: 7.375em auto 0;
+  h1 {
+    line-height: 1.02;
+    font-size: 10em;
+    text-align: center;
+    letter-spacing: -0.055em;
+  }
+  p {
+    margin-top: 1.75em;
+    font-size: 1.5em;
+    line-height: 1.0552;
+    text-align: center;
+    text-transform: uppercase;
+    a {
+      color: black;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
