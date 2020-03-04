@@ -1,5 +1,6 @@
 import React from "react";
 import logoImage from "images/logo-large.svg";
+import logoInversed from "images/logo-inverse.svg";
 import flgasImage from "images/flags.svg";
 
 export default function HeaderTemplate({ logo, inverse }) {
@@ -33,7 +34,7 @@ function HeaderRow({ logo, inverse, search, menu }) {
         </a>
         {logo && !menu.status && !search.status && (
           <a href="/" className="logo">
-            <img src={logoImage} />
+            <img src={inverse ? logoInversed : logoImage} />
           </a>
         )}
         <a

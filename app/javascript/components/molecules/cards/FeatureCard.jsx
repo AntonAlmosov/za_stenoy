@@ -3,7 +3,7 @@ import img from "images/exImage.png";
 
 export default function FeatureCard() {
   return (
-    <div className="feature-card-wide-wrapper">
+    <div className="feature-card-wrapper">
       <div className="card-info">
         <span>22.01.19</span>
         <span className="property">онлайн выпуск</span>

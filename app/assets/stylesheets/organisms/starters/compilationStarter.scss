@@ -22,3 +22,38 @@
     }
   }
 }
+
+.bg-black {
+  .compilation-starter {
+    h1 {
+      color: #fff;
+    }
+  }
+  .content-filter-wrapper {
+    span {
+      color: #7d7d7d;
+      &.active {
+        font-weight: 600;
+        font-style: italic;
+        color: #fff;
+      }
+    }
+    .content-filter-toggler {
+      span {
+        color: #fff;
+      }
+    }
+  }
+  .compilation-content-cards-wrapper {
+    .compilation-card-wrapper {
+      box-sizing: border-box;
+      border: #595959 solid 0.0625em;
+      margin-bottom: 1em;
+    }
+  }
+  .feature-card-wrapper {
+    box-sizing: border-box;
+    border: #595959 solid 0.0625em;
+    margin-bottom: 1em;
+  }
+}

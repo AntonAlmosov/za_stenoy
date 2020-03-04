@@ -1,9 +1,9 @@
 import React from "react";
-import flagsImage from "./node_modules/images/flags-black.svg";
+import flagsImage from "images/flags-black.svg";
 
 export default function IndexStarter() {
   return (
-    <div className="starter-wrapper index-starter">
+    <div className="index-starter">
       <img src={flagsImage} />
       <p>
         Сайт литературного издательства <a href="/">«Флаги»</a>
