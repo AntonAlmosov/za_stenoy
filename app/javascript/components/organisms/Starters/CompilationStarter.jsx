@@ -5,7 +5,7 @@ export default function IndexStarter() {
     <div className="starter-wrapper compilation-starter">
       <h1>«ЗА СТЕНОЙ»</h1>
       <p>
-        литературный журнал <a href="/">«за стеной» »</a>
+        литературный журнал <a href="/">«за стеной»</a>
         <br />
         2018
       </p>

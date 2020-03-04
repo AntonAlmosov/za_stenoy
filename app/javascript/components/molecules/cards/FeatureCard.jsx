@@ -1,7 +1,7 @@
 import React from "react";
 import img from "images/exImage.png";
 
-export default function FeatureCardWide() {
+export default function FeatureCard() {
   return (
     <div className="feature-card-wide-wrapper">
       <div className="card-info">
