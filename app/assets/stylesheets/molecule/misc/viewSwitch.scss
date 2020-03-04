@@ -1,0 +1,21 @@
+.view-switch-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  a {
+    text-decoration: underline;
+    color: #7d7d7d;
+    font-size: 1em;
+    line-height: 1.25;
+    margin: 0 1em;
+    cursor: pointer;
+    &.active {
+      font-weight: 600;
+      font-style: italic;
+      color: #fff;
+    }
+    &:hover {
+      text-align: none;
+    }
+  }
+}
