@@ -1,2 +1,0 @@
-class Magasine < ApplicationRecord
-end
