@@ -1,0 +1,32 @@
+.table-wrapper {
+  width: 58em;
+  margin: 0 auto;
+}
+
+.table-header-wrapper {
+  width: 58em;
+  margin-bottom: 2em;
+  display: flex;
+  justify-content: space-between;
+  h2 {
+    line-height: 1em;
+    font-size: 1em;
+    font-weight: 500;
+  }
+}
+
+.table-row-wrapper {
+  width: 58em;
+  margin-bottom: 1.5em;
+  display: flex;
+  justify-content: space-between;
+  a {
+    line-height: 1em;
+    font-size: 1em;
+    margin-right: 1em;
+    color: #000;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
