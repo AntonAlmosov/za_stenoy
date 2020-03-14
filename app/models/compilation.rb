@@ -1,5 +1,10 @@
 class Compilation < ApplicationRecord
-  belongs_to :page, class_name: "page", foreign_key: "page_id"
-
   has_many :pieces
+
+  belongs_to :page
+
+  has_one_attached :cover
+
+  extend FriendlyId
+  friendly_id :title, use: :slugged
 end

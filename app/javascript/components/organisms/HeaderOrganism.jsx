@@ -100,9 +100,9 @@ function MenuOrganism() {
         <img src={flgasImage} />
         <div className="menu-info-wrapper">
           <div className="menu-links-wrapper">
-            <a href="/">Новости</a>
-            <a href="/">Авторские проекты</a>
-            <a href="/">Журнал «За стеной»</a>
+            {/* <a href="/">Новости</a> */}
+            <a href="/page/authors-projects">Авторские проекты</a>
+            <a href="/page/za-stenoy">Журнал «За стеной»</a>
             <a href="/">Журнал «Флаги»</a>
             <a href="/">Магазин</a>
             <a href="/">О нас</a>

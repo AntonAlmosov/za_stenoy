@@ -5,7 +5,6 @@ class CreatePages < ActiveRecord::Migration[6.0]
       t.string :page_type
       t.text :caption
       t.text :description
-      t.string :slug
 
       t.timestamps
     end

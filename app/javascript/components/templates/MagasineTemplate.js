@@ -2,7 +2,7 @@ import React from "react";
 
 import HeaderTemplate from "../organisms/HeaderOrganism";
 import FooterOrganism from "../organisms/FooterOrganism";
-import CompilationStarter from "../organisms/starters/CompilationStarter";
+import MagasineStarter from "../organisms/starters/MagasineStarter";
 import CompilationContent from "../organisms/Content/CompilationContent";
 
 export default function CompilationTemplate(props) {
@@ -12,7 +12,7 @@ export default function CompilationTemplate(props) {
   return (
     <>
       <HeaderTemplate inverse={props.inversed} logo={true} />
-      <CompilationStarter title={props.page.title} />
+      <MagasineStarter title={props.page.title} caption={props.page.caption} />
       <CompilationContent />
       <FooterOrganism />
     </>

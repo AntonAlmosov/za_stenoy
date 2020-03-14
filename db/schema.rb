@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_13_151854) do
+ActiveRecord::Schema.define(version: 2020_03_14_135614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,14 +42,29 @@ ActiveRecord::Schema.define(version: 2020_03_13_151854) do
     t.string "piece_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_authors_on_slug", unique: true
   end
 
-  create_table "compilation", force: :cascade do |t|
+  create_table "compilations", force: :cascade do |t|
     t.string "title"
     t.text "caption"
     t.integer "page_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_compilations_on_slug", unique: true
+  end
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
   create_table "issue_pages", force: :cascade do |t|
@@ -79,6 +94,8 @@ ActiveRecord::Schema.define(version: 2020_03_13_151854) do
     t.string "purchase_link"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_offline_issues_on_slug", unique: true
   end
 
   create_table "online_issues", force: :cascade do |t|
@@ -88,6 +105,8 @@ ActiveRecord::Schema.define(version: 2020_03_13_151854) do
     t.integer "page_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_online_issues_on_slug", unique: true
   end
 
   create_table "pages", force: :cascade do |t|
@@ -95,9 +114,10 @@ ActiveRecord::Schema.define(version: 2020_03_13_151854) do
     t.string "page_type"
     t.text "caption"
     t.text "description"
-    t.string "slug"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_pages_on_slug", unique: true
   end
 
   create_table "pieces", force: :cascade do |t|
@@ -108,6 +128,8 @@ ActiveRecord::Schema.define(version: 2020_03_13_151854) do
     t.integer "compilation_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_pieces_on_slug", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

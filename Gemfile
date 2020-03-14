@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 # Authentification with Device
 gem 'devise', '~> 4.7.1'
+gem 'friendly_id', '~> 5.2.4', require: "friendly_id"
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

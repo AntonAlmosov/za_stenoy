@@ -1,0 +1,6 @@
+<% if @page.page_type == 'personal_projects' %>
+  <%= react_component("templates/CompilationTemplate", {page: @page}, {prerender: true}) %>
+<% end %>
+<% if @page.page_type == 'magasine' %>
+  <%= react_component("templates/MagasineTemplate", {page: @page}, {prerender: true}) %>
+<% end %>
