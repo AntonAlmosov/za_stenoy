@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :page do
   end
 
+  resources :menu, only: [:index]
+
   resources :admin do
   end
 end

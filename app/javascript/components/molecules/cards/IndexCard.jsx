@@ -1,11 +1,13 @@
 import React from "react";
 import CompilationCard from "./CompilationCard";
 
-export default function IndexCard() {
+export default function IndexCard({ name, uri }) {
   return (
     <div className="index-card">
-      <a href="/">«Магазин»</a>
-      <CompilationCard />
+      <a href={uri}>
+        {name}
+        <CompilationCard />
+      </a>
     </div>
   );
 }

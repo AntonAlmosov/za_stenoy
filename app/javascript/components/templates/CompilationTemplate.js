@@ -7,7 +7,7 @@ import CompilationContent from "../organisms/Content/CompilationContent";
 
 export default function CompilationTemplate(props) {
   React.useEffect(() => {
-    // if (props.inversed) document.body.classList.add("bg-black");
+    document.title = props.page.title;
   }, []);
   return (
     <>

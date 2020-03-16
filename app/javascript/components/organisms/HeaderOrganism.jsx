@@ -2,10 +2,17 @@ import React from "react";
 import logoImage from "images/logo-large.svg";
 import logoInversed from "images/logo-inverse.svg";
 import flgasImage from "images/flags.svg";
+import axios from "axios";
 
 export default function HeaderTemplate({ logo, inverse }) {
   const [searchOpened, setSearchOpened] = React.useState(false);
   const [menuOpened, setMenuOpened] = React.useState(false);
+  const [pages, setPages] = React.useState([]);
+
+  React.useEffect(() => {
+    axios.get("/menu").then(data => setPages(data.data));
+  }, []);
+
   return (
     <>
       <HeaderRow
@@ -15,7 +22,7 @@ export default function HeaderTemplate({ logo, inverse }) {
         menu={{ status: menuOpened, setMenuOpened }}
       />
       {searchOpened && <SearchOrganism />}
-      {menuOpened && <MenuOrganism />}
+      {menuOpened && <MenuOrganism pages={pages} />}
     </>
   );
 }
@@ -93,19 +100,27 @@ function SearchOrganism() {
   );
 }
 
-function MenuOrganism() {
+function MenuOrganism({ pages }) {
   return (
     <div className="header-menu-wrapper">
       <div className="menu-flags">
         <img src={flgasImage} />
         <div className="menu-info-wrapper">
           <div className="menu-links-wrapper">
-            {/* <a href="/">Новости</a> */}
-            <a href="/page/authors-projects">Авторские проекты</a>
-            <a href="/page/za-stenoy">Журнал «За стеной»</a>
-            <a href="/">Журнал «Флаги»</a>
-            <a href="/">Магазин</a>
-            <a href="/">О нас</a>
+            {pages.map(page => {
+              return (
+                <a
+                  href={"/page/" + page.slug}
+                  key={page.slug}
+                  style={{ textTransform: "capitalize" }}
+                >
+                  {page.page_type == "magasine" ||
+                  page.page_type == "magasine_inversed"
+                    ? "Журнал " + page.title
+                    : page.title}
+                </a>
+              );
+            })}
           </div>
           <div className="menu-adress">
             <a href="tel: 8-(966)-046-89-30">8-(966)-046-89-30</a>

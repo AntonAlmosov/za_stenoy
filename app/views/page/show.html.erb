@@ -4,3 +4,6 @@
 <% if @page.page_type == 'magasine' %>
   <%= react_component("templates/MagasineTemplate", {page: @page}, {prerender: true}) %>
 <% end %>
+<% if @page.page_type == 'magasine_inversed' %>
+  <%= react_component("templates/MagasineTemplate", {page: @page, inversed: true}, {prerender: true}) %>
+<% end %>

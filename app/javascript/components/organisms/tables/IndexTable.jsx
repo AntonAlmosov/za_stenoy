@@ -1,10 +1,49 @@
 import React from "react";
 
-export default function IndexTable() {
+export default function IndexTable(props) {
   return (
     <div className="table-wrapper">
       <TableHeader />
-      <TableRow
+      {props.pages &&
+        props.pages.map(page => {
+          let title = "";
+          let actions = [];
+          //Авторский проект
+          if (page.page_type === "personal_projects") {
+            title = page.title;
+            actions = [
+              { name: "Новый проект >", uri: "/" },
+              { name: "Новый материал >", uri: "/" },
+            ];
+          }
+          //Журналы
+          if (
+            page.page_type === "magasine" ||
+            page.page_type === "magasine_inversed"
+          ) {
+            title = "Журнал " + page.title;
+            actions = [
+              { name: "Новый бумажный выпуск >", uri: "/" },
+              { name: "Новый онлайн выпуск >", uri: "/" },
+            ];
+          }
+          //Магазин
+          if (page.page_type === "shop") {
+            title = page.title;
+            actions = [{ name: "Новый товар >", uri: "/" }];
+          }
+          if (page.page_type === "about_us") {
+            title = page.title;
+          }
+          return (
+            <TableRow
+              key={page.slug}
+              title={{ name: title, uri: "/admin/" + page.slug }}
+              actions={actions}
+            />
+          );
+        })}
+      {/* <TableRow
         title={{ name: "Авторские проекты", uri: "/" }}
         actions={[
           { name: "Новый проект >", uri: "/" },
@@ -29,7 +68,7 @@ export default function IndexTable() {
         title={{ name: "Магазин", uri: "/" }}
         actions={[{ name: "Новый товар >", uri: "/" }]}
       />
-      <TableRow title={{ name: "О нас", uri: "/" }} actions={[]} />
+      <TableRow title={{ name: "О нас", uri: "/" }} actions={[]} /> */}
     </div>
   );
 }
