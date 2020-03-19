@@ -1,5 +1,6 @@
 class Compilation < ApplicationRecord
-  has_many :pieces
+  has_many :piece_compilations
+  has_many :pieces, through: :piece_compilations
 
   belongs_to :page
 

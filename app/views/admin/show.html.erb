@@ -1,1 +1,3 @@
-<div><%= @page.title %></div>
+<% if @page.page_type === 'personal_projects'%>
+  <%= react_component("templates/admin/PersonalProjectsTempalte", {page: @page}, {prerender: true}) %>
+<% end %>

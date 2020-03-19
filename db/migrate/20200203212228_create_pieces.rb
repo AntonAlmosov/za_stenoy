@@ -4,8 +4,6 @@ class CreatePieces < ActiveRecord::Migration[6.0]
       t.string :title
       t.text :text
       t.string :publish_date
-      t.integer :online_issue_id
-      t.integer :compilation_id
 
       t.timestamps
     end

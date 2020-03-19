@@ -1,0 +1,26 @@
+.textarea {
+  outline: none;
+  border: 0;
+  width: 100%;
+  white-space: pre-wrap;
+  resize: none;
+  &::placeholder {
+    color: #b3b3b3;
+  }
+  &.title-textarea {
+    line-height: 1.33;
+    font-size: 1.5em;
+  }
+  &.regular-textarea {
+    line-height: 1.5;
+    font-size: 1em;
+  }
+}
+.input {
+  width: 100%;
+  outline: none;
+  border: 0;
+  &::placeholder {
+    color: #b3b3b3;
+  }
+}

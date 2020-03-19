@@ -19,6 +19,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
     a {
       font-size: 1.25em;
       color: #000;
@@ -39,6 +40,9 @@
     }
     .close {
       color: #ff0000;
+      position: absolute;
+      left: 50%;
+      // margin-left: -50%;
     }
   }
 }

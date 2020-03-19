@@ -7,6 +7,13 @@ Rails.application.routes.draw do
 
   resources :menu, only: [:index]
 
+  resources :author, only: [:index, :create] do
+    collection do
+      get :get_author
+    end
+  end
+
   resources :admin do
+    resources :piece, only: [:index, :new, :edit, :create, :update, :destroy]
   end
 end

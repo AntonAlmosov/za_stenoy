@@ -1,0 +1,18 @@
+.default-button {
+  width: 16em;
+  height: 4em;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: #000;
+  font-size: 1em;
+  line-height: 1;
+  margin: 0 1em;
+  border: 0.09375em solid black;
+  &.inversed {
+    background-color: #000;
+    color: #fff;
+  }
+}

@@ -43,32 +43,6 @@ export default function IndexTable(props) {
             />
           );
         })}
-      {/* <TableRow
-        title={{ name: "Авторские проекты", uri: "/" }}
-        actions={[
-          { name: "Новый проект >", uri: "/" },
-          { name: "Новый материал >", uri: "/" },
-        ]}
-      />
-      <TableRow
-        title={{ name: "Журнал «За стеной»", uri: "/" }}
-        actions={[
-          { name: "Новый бумажный выпуск >", uri: "/" },
-          { name: "Новый онлайн выпуск >", uri: "/" },
-        ]}
-      />
-      <TableRow
-        title={{ name: "Журнал «Флаги»", uri: "/" }}
-        actions={[
-          { name: "Новый бумажный выпуск >", uri: "/" },
-          { name: "Новый онлайн выпуск >", uri: "/" },
-        ]}
-      />
-      <TableRow
-        title={{ name: "Магазин", uri: "/" }}
-        actions={[{ name: "Новый товар >", uri: "/" }]}
-      />
-      <TableRow title={{ name: "О нас", uri: "/" }} actions={[]} /> */}
     </div>
   );
 }
