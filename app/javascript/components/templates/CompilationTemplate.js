@@ -2,7 +2,7 @@ import React from "react";
 
 import HeaderTemplate from "../organisms/HeaderOrganism.jsx";
 import FooterOrganism from "../organisms/FooterOrganism.jsx";
-import CompilationStarter from "../organisms/starters/CompilationStarter.jsx";
+import CompilationStarter from "../organisms/Starters/CompilationStarter.jsx";
 import CompilationContent from "../organisms/Content/CompilationContent.jsx";
 
 export default function CompilationTemplate(props) {

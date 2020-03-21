@@ -1,6 +1,6 @@
 import React from "react";
 import HeaderOrganism from "../organisms/HeaderOrganism.jsx";
-import IndexStarter from "../organisms/starters/IndexStarter.jsx";
+import IndexStarter from "../organisms/Starters/IndexStarter.jsx";
 import FooterOrganism from "../organisms/FooterOrganism.jsx";
 import IndexContent from "../organisms/Content/IndexContent.jsx";
 

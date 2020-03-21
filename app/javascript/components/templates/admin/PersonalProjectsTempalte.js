@@ -1,6 +1,6 @@
 import React from "react";
 import HeaderAdminOrganism from "../../organisms/HeaderAdminOrganism.jsx";
-import AdminStarter from "../../organisms/starters/AdminStarter.jsx";
+import AdminStarter from "../../organisms/Starters/AdminStarter.jsx";
 import PersonalProjectsActions from "../../organisms/actions/PersonalProjectsActions.jsx";
 import PersonalProjectsTable from "../../organisms/tables/PersonalProjectsTable.jsx";
 

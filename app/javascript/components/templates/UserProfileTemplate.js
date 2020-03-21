@@ -1,7 +1,7 @@
 import React from "react";
 
 import HeaderTemplate from "../organisms/HeaderOrganism.jsx";
-import UserProfileStarter from "../organisms/starters/UserProfileStarter.jsx";
+import UserProfileStarter from "../organisms/Starters/UserProfileStarter.jsx";
 import UserProfileContent from "../organisms/Content/UserProfileContent.jsx";
 
 export default function UserProfileTemplate() {
