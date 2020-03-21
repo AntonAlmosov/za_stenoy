@@ -3,11 +3,14 @@ import axios from "axios";
 import TextareaAutosize from "react-textarea-autosize";
 import { v4 } from "uuid";
 
-import HeaderAdminOrganism from "../../organisms/HeaderAdminOrganism";
-import ImagePicker from "../../molecules/misc/ImagePicker";
-import DefaultButton from "../../molecules/buttons/DefaultButton";
-import { AuthorPicker, Author } from "../../molecules/misc/AuthorsInterface";
-import { DeleteButton } from "../../molecules/buttons/TableButtons";
+import HeaderAdminOrganism from "../../organisms/HeaderAdminOrganism.jsx";
+import ImagePicker from "../../molecules/misc/ImagePicker.jsx";
+import DefaultButton from "../../molecules/buttons/DefaultButton.jsx";
+import {
+  AuthorPicker,
+  Author,
+} from "../../molecules/misc/AuthorsInterface.jsx";
+import { DeleteButton } from "../../molecules/buttons/TableButtons.jsx";
 
 export default ({
   issue,

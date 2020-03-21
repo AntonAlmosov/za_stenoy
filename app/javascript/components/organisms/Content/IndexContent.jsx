@@ -1,7 +1,7 @@
 import React from "react";
 
-import FeatureCardWide from "../../molecules/cards/FeatureCardWide";
-import IndexCard from "../../molecules/cards/IndexCard";
+import FeatureCardWide from "../../molecules/cards/FeatureCardWide.jsx";
+import IndexCard from "../../molecules/cards/IndexCard.jsx";
 
 export default function IndexContent(props) {
   return (

@@ -1,5 +1,4 @@
 import React from "react";
-import DefaultLinkButton from "../../../../assets/stylesheets/molecule/buttons/DefaultLinkButton";
 
 export default function PersonalProjectsStarter() {
   return (

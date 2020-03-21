@@ -2,9 +2,12 @@ import React from "react";
 import axios from "axios";
 import TextareaAutosize from "react-textarea-autosize";
 
-import HeaderAdminOrganism from "../../organisms/HeaderAdminOrganism";
-import ImagePicker from "../../molecules/misc/ImagePicker";
-import { AuthorPicker, Author } from "../../molecules/misc/AuthorsInterface";
+import HeaderAdminOrganism from "../../organisms/HeaderAdminOrganism.jsx";
+import ImagePicker from "../../molecules/misc/ImagePicker.jsx";
+import {
+  AuthorPicker,
+  Author,
+} from "../../molecules/misc/AuthorsInterface.jsx";
 
 export default function PieceEditorTemplate({
   piece,

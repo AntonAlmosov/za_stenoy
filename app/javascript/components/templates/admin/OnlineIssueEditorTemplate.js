@@ -2,9 +2,9 @@ import React from "react";
 import axios from "axios";
 import TextareaAutosize from "react-textarea-autosize";
 
-import HeaderAdminOrganism from "../../organisms/HeaderAdminOrganism";
-import ImagePicker from "../../molecules/misc/ImagePicker";
-import DefaultButton from "../../molecules/buttons/DefaultButton";
+import HeaderAdminOrganism from "../../organisms/HeaderAdminOrganism.jsx";
+import ImagePicker from "../../molecules/misc/ImagePicker.jsx";
+import DefaultButton from "../../molecules/buttons/DefaultButton.jsx";
 
 export default ({ issue, coverUrl, postPath, origin, initialPieces }) => {
   const [saveText, setSaveText] = React.useState("Сохранить");

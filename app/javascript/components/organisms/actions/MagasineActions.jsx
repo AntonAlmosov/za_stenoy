@@ -1,5 +1,5 @@
 import React from "react";
-import DefaultLinkButton from "../../molecules/buttons/DefaultLinkButton";
+import DefaultLinkButton from "../../molecules/buttons/DefaultLinkButton.jsx";
 
 export default function MagasineActions(props) {
   return (

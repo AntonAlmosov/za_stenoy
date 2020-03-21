@@ -1,5 +1,5 @@
 import React from "react";
-import CompilationCard from "./CompilationCard";
+import CompilationCard from "./CompilationCard.jsx";
 
 export default function IndexCard({ name, uri }) {
   return (

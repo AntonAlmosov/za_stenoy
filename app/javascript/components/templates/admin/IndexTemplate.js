@@ -1,7 +1,7 @@
 import React from "react";
-import HeaderAdminOrganism from "../../organisms/HeaderAdminOrganism";
-import IndexAdminStarter from "../../organisms/starters/IndexAdminStarter";
-import IndexTable from "../../organisms/tables/IndexTable";
+import HeaderAdminOrganism from "../../organisms/HeaderAdminOrganism.jsx";
+import IndexAdminStarter from "../../organisms/starters/IndexAdminStarter.jsx";
+import IndexTable from "../../organisms/tables/IndexTable.jsx";
 
 export default function IndexTemplate(props) {
   return (

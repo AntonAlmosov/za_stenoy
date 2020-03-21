@@ -1,7 +1,7 @@
 import React from "react";
-import ContentFilter from "../../molecules/misc/ContentFilter";
-import CompilationCard from "../../molecules/cards/CompilationCard";
-import FeatureCard from "../../molecules/cards/FeatureCard";
+import ContentFilter from "../../molecules/misc/ContentFilter.jsx";
+import CompilationCard from "../../molecules/cards/CompilationCard.jsx";
+import FeatureCard from "../../molecules/cards/FeatureCard.jsx";
 
 export default function CompilationContent() {
   return (

@@ -1,9 +1,9 @@
 import React from "react";
 
-import HeaderTemplate from "../organisms/HeaderOrganism";
-import FooterOrganism from "../organisms/FooterOrganism";
+import HeaderTemplate from "../organisms/HeaderOrganism.jsx";
+import FooterOrganism from "../organisms/FooterOrganism.jsx";
 import CompilationStarter from "../organisms/starters/CompilationStarter.jsx";
-import CompilationContent from "../organisms/Content/CompilationContent";
+import CompilationContent from "../organisms/Content/CompilationContent.jsx";
 
 export default function CompilationTemplate(props) {
   React.useEffect(() => {

@@ -1,8 +1,8 @@
 import React from "react";
-import HeaderOrganism from "../organisms/HeaderOrganism";
-import IndexStarter from "../organisms/starters/IndexStarter";
-import FooterOrganism from "../organisms/FooterOrganism";
-import IndexContent from "../organisms/Content/IndexContent";
+import HeaderOrganism from "../organisms/HeaderOrganism.jsx";
+import IndexStarter from "../organisms/starters/IndexStarter.jsx";
+import FooterOrganism from "../organisms/FooterOrganism.jsx";
+import IndexContent from "../organisms/Content/IndexContent.jsx";
 
 export default function IndexTemplate(props) {
   React.useEffect(() => {

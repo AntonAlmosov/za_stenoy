@@ -1,7 +1,7 @@
 import React from "react";
 
-import ViewSwitch from "../../molecules/misc/ViewSwitch";
-import CompilationCard from "../../molecules/cards/CompilationCard";
+import ViewSwitch from "../../molecules/misc/ViewSwitch.jsx";
+import CompilationCard from "../../molecules/cards/CompilationCard.jsx";
 
 export default function UserProfileContent() {
   const [currentView, setCurrentView] = React.useState(0);

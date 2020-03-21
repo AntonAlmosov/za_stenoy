@@ -1,11 +1,11 @@
 import React from "react";
 import axios from "axios";
 
-import TabSwitch from "../../molecules/misc/TabSwitch";
+import TabSwitch from "../../molecules/misc/TabSwitch.jsx";
 import {
   ToggleButton,
   DeleteButton,
-} from "../../molecules/buttons/TableButtons";
+} from "../../molecules/buttons/TableButtons.jsx";
 
 export default function MagasineTable(props) {
   const [activeTab, setActiveTab] = React.useState("online-issues");

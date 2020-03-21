@@ -1,8 +1,8 @@
 import React from "react";
-import HeaderAdminOrganism from "../../organisms/HeaderAdminOrganism";
-import AdminStarter from "../../organisms/starters/AdminStarter";
-import MagasineActions from "../../organisms/actions/MagasineActions";
-import MagasineTable from "../../organisms/tables/MagasineTable";
+import HeaderAdminOrganism from "../../organisms/HeaderAdminOrganism.jsx";
+import AdminStarter from "../../organisms/starters/AdminStarter.jsx";
+import MagasineActions from "../../organisms/actions/MagasineActions.jsx";
+import MagasineTable from "../../organisms/tables/MagasineTable.jsx";
 
 export default function MagasineTemplate(props) {
   return (

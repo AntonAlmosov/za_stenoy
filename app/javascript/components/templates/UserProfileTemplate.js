@@ -1,8 +1,8 @@
 import React from "react";
 
-import HeaderTemplate from "../organisms/HeaderOrganism";
-import UserProfileStarter from "../organisms/starters/UserProfileStarter";
-import UserProfileContent from "../organisms/Content/UserProfileContent";
+import HeaderTemplate from "../organisms/HeaderOrganism.jsx";
+import UserProfileStarter from "../organisms/starters/UserProfileStarter.jsx";
+import UserProfileContent from "../organisms/Content/UserProfileContent.jsx";
 
 export default function UserProfileTemplate() {
   React.useEffect(() => {
