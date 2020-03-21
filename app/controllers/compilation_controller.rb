@@ -23,7 +23,7 @@ class CompilationController < ApplicationController
       end
     end
 
-    if @compilation.save 
+    if @compilation.save!
       get_compilations
     end
   end

@@ -6,24 +6,28 @@ class OnlineIssueController < ApplicationController
     @issues = OnlineIssue.all.sort_by(&:created_at)
     issues = []
     @issues.each do |c|
-      issues.push({title: c.title, id: c.id, published: c.published, featured: c.featured, description: c.description, description_heading: c.description_heading})
+      issues.push({title: c.title, id: c.id, published: c.published, featured: c.featured})
     end
     render :json => {issues: issues}
   end
 
-  def toggle_online_issue
+  def toggle_issue
     @issue = OnlineIssue.find(params[:id])
     hash = params[:hash]
     @issue[hash] = params[:value]
 
     if hash == 'featured' and params[:value] == true
       featuredComp = OnlineIssue.find_by(featured: true)
+      featuredOffComp = OfflineIssue.find_by(featured: true)
       if featuredComp
         featuredComp.update(featured: false)
       end
+      if featuredOffComp
+        featuredOffComp.update(featured: false)
+      end
     end
 
-    if @issue.save 
+    if @issue.save!
       get_online_issues
     end
   end
@@ -56,8 +60,12 @@ class OnlineIssueController < ApplicationController
 
     if issue.featured
       featuredComp = OnlineIssue.find_by(featured: true)
+      featuredOffComp = OfflineIssue.find_by(featured: true)
       if featuredComp
         featuredComp.update(featured: false)
+      end
+      if featuredOffComp
+        featuredOffComp.update(featured: false)
       end
     end
 
@@ -75,7 +83,6 @@ class OnlineIssueController < ApplicationController
     @issue = OnlineIssue.find(params[:id])
     @post_path = admin_online_issue_path(params[:admin_id], params[:id])
 
-    pieceissues = PieceOnlineIssue.find_by(online_issue_id: @issue.id)
     @initialPieces = []
 
     @issue.pieces.each do |piece|
@@ -115,9 +122,13 @@ class OnlineIssueController < ApplicationController
     end
 
     if issue.featured
-      featuredIssue = OnlineIssue.find_by(featured: true)
-      if featuredIssue
-        featuredIssue.update(featured: false)
+      featuredComp = OnlineIssue.find_by(featured: true)
+      featuredOffComp = OfflineIssue.find_by(featured: true)
+      if featuredComp
+        featuredComp.update(featured: false)
+      end
+      if featuredOffComp
+        featuredOffComp.update(featured: false)
       end
     end
 

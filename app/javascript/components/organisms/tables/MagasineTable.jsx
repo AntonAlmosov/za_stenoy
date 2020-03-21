@@ -10,11 +10,34 @@ import {
 export default function MagasineTable(props) {
   const [activeTab, setActiveTab] = React.useState("online-issues");
   const [pieces, setPieces] = React.useState([]);
+  const [onlineIssues, setOnlineIssues] = React.useState([]);
+  const [offlineIssues, setOfflineIssues] = React.useState([]);
   const tabs = [
     { name: "Офллайн выпуски", value: "offline-issues" },
     { name: "Онлайн выпуски", value: "online-issues" },
     { name: "Материалы", value: "materials" },
   ];
+
+  React.useEffect(() => {
+    refetchIssues();
+  }, []);
+
+  const refetchIssues = () => {
+    fetchOfflineIssues();
+    fetchOnlineIssues();
+  };
+
+  const fetchOnlineIssues = () => {
+    axios.get("/online_issue/get_online_issues").then(res => {
+      setOnlineIssues(res.data.issues);
+    });
+  };
+
+  const fetchOfflineIssues = () => {
+    axios.get("/offline_issue/get_offline_issues").then(res => {
+      setOfflineIssues(res.data.issues);
+    });
+  };
 
   React.useEffect(() => {
     fetchPieces();
@@ -38,7 +61,22 @@ export default function MagasineTable(props) {
       }}
     >
       <TabSwitch onClick={setActiveTab} activeTab={activeTab} tabs={tabs} />
-      {activeTab === "online-issues" && <OnlineIssueTable slug={props.slug} />}
+      {activeTab === "offline-issues" && (
+        <IssueTable
+          slug={props.slug}
+          issues={offlineIssues}
+          refetch={refetchIssues}
+          route="offline-issue"
+        />
+      )}
+      {activeTab === "online-issues" && (
+        <IssueTable
+          slug={props.slug}
+          issues={onlineIssues}
+          refetch={refetchIssues}
+          route="online-issue"
+        />
+      )}
       {activeTab === "materials" && (
         <MaterialsTable pieces={pieces} destroyPiece={id => destroyPiece(id)} />
       )}
@@ -46,49 +84,44 @@ export default function MagasineTable(props) {
   );
 }
 
-function OnlineIssueTable(props) {
-  const [issues, setIssues] = React.useState([]);
-
-  React.useEffect(() => {
-    fetchIssue();
-  }, []);
-
-  const fetchIssue = () => {
-    axios.get("/online_issue/get_online_issues").then(res => {
-      setIssues(res.data.issues);
-    });
-  };
-
+function IssueTable(props) {
   const destroyIssue = id => {
-    axios.delete("/admin/" + props.slug + "/online_issue/" + id).then(res => {
-      setIssues(res.data.issues);
-    });
+    axios
+      .delete("/admin/" + props.slug + "/" + props.route + "/" + id)
+      .then(res => {
+        props.refetch();
+      });
   };
 
   const toggleHash = (id, hash, published) => {
     axios
-      .post("/online_issue/toggle_online_issue", {
+      .post("/" + props.route + "/toggle_issue", {
         id: id,
         hash: hash,
         value: published,
       })
       .then(res => {
-        // setCompilations(res.data.compilations);
-        window.location.reload();
+        props.refetch();
       });
   };
 
   return (
     <div className="table-wrapper" style={{ marginTop: "3em" }}>
       <IssueTableHeader />
-      {issues.map(issue => {
+      {props.issues.map(issue => {
         return (
           <IssueTableRow
             key={issue.id}
             title={{
               name: issue.title,
               uri:
-                "/admin/" + props.slug + "/online_issue/" + issue.id + "/edit",
+                "/admin/" +
+                props.slug +
+                "/" +
+                props.route +
+                "/" +
+                issue.id +
+                "/edit",
             }}
             actions={[
               {

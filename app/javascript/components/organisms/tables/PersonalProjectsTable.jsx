@@ -72,8 +72,7 @@ function ProjectsTable() {
         value: published,
       })
       .then(res => {
-        // setCompilations(res.data.compilations);
-        window.location.reload();
+        setCompilations(res.data.compilations);
       });
   };
 

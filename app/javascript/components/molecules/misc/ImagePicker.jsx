@@ -1,8 +1,23 @@
 import React from "react";
 
-export default ({ width, height, cover, setCover, style, imageStyle }) => {
+export default ({
+  width,
+  height,
+  cover,
+  setCover,
+  style,
+  imageStyle,
+  id,
+  className,
+}) => {
   const containerStyle = style ? style : {};
   const imgStyle = imageStyle ? imageStyle : {};
+  const [uri, setUri] = React.useState("");
+  const [file, setFile] = React.useState({});
+
+  React.useEffect(() => {
+    if (uri) setCover(uri, file);
+  }, [uri]);
 
   return (
     <div
@@ -35,17 +50,21 @@ export default ({ width, height, cover, setCover, style, imageStyle }) => {
         }}
       >
         <input
-          className="cover_image_input"
+          className={
+            className ? className + " cover_image_input" : "cover_image_input"
+          }
           type="file"
-          id={"cover"}
+          id={id ? id : "cover"}
           accept="image/*"
           onChange={e => {
             if (e.target.files && e.target.files[0]) {
-              var reader = new FileReader();
+              setFile(e.target.files[0]);
+              let reader = new FileReader();
 
               reader.onload = function(el) {
-                setCover(el.target.result);
+                setUri(el.target.result);
               };
+
               reader.readAsDataURL(e.target.files[0]);
             }
           }}
@@ -53,7 +72,7 @@ export default ({ width, height, cover, setCover, style, imageStyle }) => {
         />
         {!cover && (
           <label
-            htmlFor={"cover"}
+            htmlFor={id ? id : "cover"}
             style={{
               width: "100%",
               height: "100%",
@@ -71,7 +90,7 @@ export default ({ width, height, cover, setCover, style, imageStyle }) => {
         )}
         {cover && (
           <label
-            htmlFor={"cover"}
+            htmlFor={id ? id : "cover"}
             style={{
               width: "100%",
               height: "100%",

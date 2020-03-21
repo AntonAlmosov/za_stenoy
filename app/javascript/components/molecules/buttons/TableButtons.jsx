@@ -6,7 +6,6 @@ export function ToggleButton({
   activeText,
   disabledText,
 }) {
-  const [state, setState] = React.useState(defaultState);
   const style = {
     fontSize: "1em",
     lineHeight: 1,
@@ -16,26 +15,9 @@ export function ToggleButton({
   };
   return (
     <>
-      {state && (
-        <span
-          onClick={() => {
-            onClick();
-          }}
-          style={style}
-        >
-          {activeText}
-        </span>
-      )}
-      {!state && (
-        <span
-          onClick={() => {
-            onClick();
-          }}
-          style={style}
-        >
-          {disabledText}
-        </span>
-      )}
+      <span onClick={onClick} style={style}>
+        {defaultState ? activeText : disabledText}
+      </span>
     </>
   );
 }

@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 2020_03_20_231551) do
   create_table "pages", force: :cascade do |t|
     t.string "title"
     t.string "page_type"
-    t.text "caption"
+    t.text "established"
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

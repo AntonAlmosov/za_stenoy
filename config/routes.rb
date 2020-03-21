@@ -23,16 +23,26 @@ Rails.application.routes.draw do
   resources :online_issue, only: [] do
     collection do
       get :get_online_issues
-      post :toggle_online_issue
+      post :toggle_issue
     end
   end
 
-
   resources :piece do 
+  end
+
+
+  resources :offline_issue, only: [] do 
+    collection do
+      get :get_offline_issues
+      post :toggle_issue
+      post :handle_pages
+      post :delete_page
+    end
   end
 
   resources :admin do
     resources :compilation, only: [:new, :edit, :create, :update, :destroy]
     resources :online_issue, only: [:new, :edit, :create, :update, :destroy]
+    resources :offline_issue, only: [:new, :edit, :create, :update, :destroy]
   end
 end

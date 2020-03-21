@@ -7,8 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-Page.create(title: "Авторские проекты", page_type: "personal_projects", caption: "", description: "", slug: "authors-projects")
-Page.create(title: "«За Стеной»", page_type: "magasine", caption: "литературный журнал «за стеной»\n2018", description: "", slug: "behind-the-wall")
-Page.create(title: "«Флаги»", page_type: "magasine_inversed", caption: "СЕТЕВОЙ литературный журнал «Флаги»\n2019", description: "", slug: "flags")
-Page.create(title: "«Магазин»", page_type: "shop", caption: "", description: "", slug: "shop")
-Page.create(title: "«О нас»", page_type: "about_us", caption: "", description: "", slug: "about-us")
+Page.create(title: "Авторские проекты", page_type: "personal_projects", description: "", slug: "authors-projects")
+Page.create(title: "«За Стеной»", page_type: "magasine", established: "2018", description: "", slug: "behind-the-wall")
+Page.create(title: "«Флаги»", page_type: "magasine_inversed", established: "2020", description: "", slug: "flags")
+Page.create(title: "«Магазин»", page_type: "shop", description: "", slug: "shop")
+Page.create(title: "«О нас»", page_type: "about_us", description: "", slug: "about-us")
