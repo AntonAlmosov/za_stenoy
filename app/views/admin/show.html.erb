@@ -1,3 +1,6 @@
 <% if @page.page_type === 'personal_projects'%>
   <%= react_component("templates/admin/PersonalProjectsTempalte", {page: @page}, {prerender: true}) %>
 <% end %>
+<% if @page.page_type === "magasine" || @page.page_type === "magasine_inversed"%>
+  <%= react_component("templates/admin/MagasineTempalte", {page: @page}, {prerender: true}) %>
+<% end %>

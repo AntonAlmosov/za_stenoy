@@ -3,7 +3,7 @@ class PieceController < ApplicationController
   require 'json'
 
   def index
-    @pieces = Piece.all
+    @pieces = Piece.all.sort_by(&:created_at)
     pieces = []
     @pieces.each do |piece|
       pieces.push({id: piece.id, title: piece.title, authors: piece.authors || []})
@@ -13,7 +13,7 @@ class PieceController < ApplicationController
 
   def new
     @piece = Piece.new
-    @post_path = admin_piece_index_path(params[:admin_id])
+    @post_path = piece_index_path
   end
 
   def create
@@ -24,14 +24,19 @@ class PieceController < ApplicationController
     if params.has_key?(:cover)
       piece.cover = params[:cover]
     end
+    authors = JSON.parse(params[:authors])
+
     if piece.save!
-      render :json => {redirectPath: edit_admin_piece_path(params[:admin_id], piece.id), id: piece.id}
+      authors.each do |author|
+        PieceAuthor.create(author_id: author['id'], piece_id: piece.id)
+      end
+      render :json => {redirectPath: edit_piece_path(piece.id), id: piece.id}
     end
   end
   
   def edit
     @piece = Piece.find(params[:id])
-    @post_path = admin_piece_path(params[:admin_id], params[:id])
+    @post_path = piece_path(params[:id])
     @authors = @piece.authors
     @cover = ''
     if @piece.cover.attached?
@@ -55,7 +60,6 @@ class PieceController < ApplicationController
 
     ##Removing old authors
     @piece.authors.each do |author|
-      
       present = authors.any? do |a|
         author['id'] == a['id']
       end
@@ -77,8 +81,20 @@ class PieceController < ApplicationController
 
   def destroy
     @piece = Piece.find(params[:id])
+    connections = PieceAuthor.where(piece_id: @piece.id)
+
+    connections.each do |c|
+      c.destroy
+    end
+
+
     if @piece.destroy
-      render :json => {pieces: Piece.all}
+      @pieces = Piece.all
+      pieces = []
+      @pieces.each do |piece|
+        pieces.push({id: piece.id, title: piece.title, authors: piece.authors || []})
+      end
+      render :json => {pieces: pieces}
     end
   end
 

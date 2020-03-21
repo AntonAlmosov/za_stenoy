@@ -7,11 +7,12 @@ import {
   DeleteButton,
 } from "../../molecules/buttons/TableButtons";
 
-export default function PersonalProjectsTable(props) {
-  const [activeTab, setActiveTab] = React.useState("projects");
+export default function MagasineTable(props) {
+  const [activeTab, setActiveTab] = React.useState("online-issues");
   const [pieces, setPieces] = React.useState([]);
   const tabs = [
-    { name: "Проекты", value: "projects" },
+    { name: "Офллайн выпуски", value: "offline-issues" },
+    { name: "Онлайн выпуски", value: "online-issues" },
     { name: "Материалы", value: "materials" },
   ];
 
@@ -26,7 +27,7 @@ export default function PersonalProjectsTable(props) {
   }
 
   function destroyPiece(id) {
-    axios.delete("/piece" + id).then(res => {
+    axios.delete("/piece/" + id).then(res => {
       setPieces(res.data.pieces);
     });
   }
@@ -37,7 +38,7 @@ export default function PersonalProjectsTable(props) {
       }}
     >
       <TabSwitch onClick={setActiveTab} activeTab={activeTab} tabs={tabs} />
-      {activeTab === "projects" && <ProjectsTable />}
+      {activeTab === "online-issues" && <OnlineIssueTable slug={props.slug} />}
       {activeTab === "materials" && (
         <MaterialsTable pieces={pieces} destroyPiece={id => destroyPiece(id)} />
       )}
@@ -45,28 +46,28 @@ export default function PersonalProjectsTable(props) {
   );
 }
 
-function ProjectsTable() {
-  const [compilations, setCompilations] = React.useState([]);
+function OnlineIssueTable(props) {
+  const [issues, setIssues] = React.useState([]);
 
   React.useEffect(() => {
-    fetchCompilations();
+    fetchIssue();
   }, []);
 
-  const fetchCompilations = () => {
-    axios.get("/compilation/get_compilations").then(res => {
-      setCompilations(res.data.compilations);
+  const fetchIssue = () => {
+    axios.get("/online_issue/get_online_issues").then(res => {
+      setIssues(res.data.issues);
     });
   };
 
-  const destroyCompilation = id => {
-    axios.delete("/admin/authors-projects/compilation/" + id).then(res => {
-      setCompilations(res.data.compilations);
+  const destroyIssue = id => {
+    axios.delete("/admin/" + props.slug + "/online_issue/" + id).then(res => {
+      setIssues(res.data.issues);
     });
   };
 
   const toggleHash = (id, hash, published) => {
     axios
-      .post("/compilation/toggle_compilation", {
+      .post("/online_issue/toggle_online_issue", {
         id: id,
         hash: hash,
         value: published,
@@ -79,27 +80,28 @@ function ProjectsTable() {
 
   return (
     <div className="table-wrapper" style={{ marginTop: "3em" }}>
-      <ProjectsTableHeader />
-      {compilations.map(comp => {
+      <IssueTableHeader />
+      {issues.map(issue => {
         return (
-          <ProjectsTableRow
-            key={comp.id}
+          <IssueTableRow
+            key={issue.id}
             title={{
-              name: comp.title,
-              uri: "/admin/authors-projects/compilation/" + comp.id + "/edit",
+              name: issue.title,
+              uri:
+                "/admin/" + props.slug + "/online_issue/" + issue.id + "/edit",
             }}
             actions={[
               {
                 name: ["Убрать фичер >", "Сделать фичером >"],
-                uri: () => toggleHash(comp.id, "featured", !comp.featured),
-                state: comp.featured,
+                uri: () => toggleHash(issue.id, "featured", !issue.featured),
+                state: issue.featured,
               },
               {
                 name: ["Открыть для просмотра >", "Закрыть для просмотра >"],
-                uri: () => toggleHash(comp.id, "published", !comp.published),
-                state: comp.published,
+                uri: () => toggleHash(issue.id, "published", !issue.published),
+                state: issue.published,
               },
-              { name: "Удалить", uri: () => destroyCompilation(comp.id) },
+              { name: "Удалить", uri: () => destroyIssue(issue.id) },
             ]}
           />
         );
@@ -108,16 +110,16 @@ function ProjectsTable() {
   );
 }
 
-function ProjectsTableHeader() {
+function IssueTableHeader() {
   return (
     <div className="table-header-wrapper">
-      <h2 style={{ width: "22em" }}>Разделы</h2>
+      <h2 style={{ width: "22em" }}>Выпуски</h2>
       <h2 style={{ width: "38em" }}>Быстрые действия</h2>
     </div>
   );
 }
 
-function ProjectsTableRow(props) {
+function IssueTableRow(props) {
   return (
     <div className="table-row-wrapper">
       <div className="column" style={{ width: "22em" }}>

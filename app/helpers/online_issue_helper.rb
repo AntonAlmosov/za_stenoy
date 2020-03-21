@@ -1,0 +1,2 @@
+module OnlineIssueHelper
+end

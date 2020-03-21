@@ -12,8 +12,14 @@ export default function IndexTable(props) {
           if (page.page_type === "personal_projects") {
             title = page.title;
             actions = [
-              { name: "Новый проект >", uri: "/" },
-              { name: "Новый материал >", uri: "/" },
+              {
+                name: "Новый проект >",
+                uri: "/admin/" + page.slug + "/compilation/new",
+              },
+              {
+                name: "Новый материал >",
+                uri: "/piece/new",
+              },
             ];
           }
           //Журналы
@@ -23,8 +29,14 @@ export default function IndexTable(props) {
           ) {
             title = "Журнал " + page.title;
             actions = [
-              { name: "Новый бумажный выпуск >", uri: "/" },
-              { name: "Новый онлайн выпуск >", uri: "/" },
+              {
+                name: "Новый бумажный выпуск >",
+                uri: "/admin/" + page.slug + "/offline_issue/new",
+              },
+              {
+                name: "Новый онлайн выпуск >",
+                uri: "/admin/" + page.slug + "/online_issue/new",
+              },
             ];
           }
           //Магазин

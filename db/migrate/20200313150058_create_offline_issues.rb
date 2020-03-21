@@ -6,6 +6,8 @@ class CreateOfflineIssues < ActiveRecord::Migration[6.0]
       t.string :description
       t.integer :page_id
       t.string :purchase_link
+      t.boolean :featured
+      t.boolean :published
 
       t.timestamps
     end

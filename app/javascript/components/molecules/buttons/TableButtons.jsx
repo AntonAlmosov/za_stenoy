@@ -20,7 +20,6 @@ export function ToggleButton({
         <span
           onClick={() => {
             onClick();
-            setState(!state);
           }}
           style={style}
         >
@@ -31,7 +30,6 @@ export function ToggleButton({
         <span
           onClick={() => {
             onClick();
-            setState(!state);
           }}
           style={style}
         >

@@ -1,7 +1,9 @@
 import React from "react";
-import HeaderAdminOrganism from "../../organisms/HeaderAdminOrganism";
 import axios from "axios";
 import TextareaAutosize from "react-textarea-autosize";
+
+import HeaderAdminOrganism from "../../organisms/HeaderAdminOrganism";
+import ImagePicker from "../../molecules/misc/ImagePicker";
 
 export default function PieceEditorTemplate({
   piece,
@@ -9,6 +11,7 @@ export default function PieceEditorTemplate({
   coverUrl,
   postPath,
   origin,
+  backUri,
 }) {
   const [title, setTitle] = React.useState(piece.title);
   const [text, setText] = React.useState(piece.text);
@@ -67,7 +70,7 @@ export default function PieceEditorTemplate({
       <HeaderAdminOrganism
         backShown
         onDoneClick={handleSubmit}
-        doneActive={title && text && date}
+        doneActive={title && text && date && authors.length}
         doneText={saveText}
       />
       <div
@@ -143,83 +146,12 @@ export default function PieceEditorTemplate({
             className={"input"}
           />
         </div>
-        <div style={{ width: "28em", height: "34em", position: "relative" }}>
-          {cover && (
-            <img
-              src={cover}
-              style={{
-                width: "28em",
-                height: "34em",
-                objectFit: "contain",
-                objectPosition: "center center",
-              }}
-            />
-          )}
-          <div
-            style={{
-              width: "28em",
-              height: "34em",
-              position: "absolute",
-              top: 0,
-              left: 0,
-            }}
-          >
-            <input
-              className="cover_image_input"
-              type="file"
-              id={"cover"}
-              accept="image/*"
-              onChange={e => {
-                if (e.target.files && e.target.files[0]) {
-                  var reader = new FileReader();
-
-                  reader.onload = function(el) {
-                    setCover(el.target.result);
-                  };
-                  reader.readAsDataURL(e.target.files[0]);
-                  console.log(e.target.files[0].size);
-                }
-              }}
-              style={{ display: "none" }}
-            />
-            {!cover && (
-              <label
-                htmlFor={"cover"}
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  boxSizing: "border-box",
-                  border: "2px solid #b3b3b3",
-                  backgroundColor: "rgba(0,0,0,0)",
-                  cursor: "pointer",
-                }}
-              >
-                <div style={{ color: "#b3b3b3" }}>Добавить обложку ></div>
-              </label>
-            )}
-            {cover && (
-              <label
-                htmlFor={"cover"}
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  boxSizing: "border-box",
-                  backgroundColor: "rgba(0,0,0,0)",
-                  cursor: "pointer",
-                }}
-                className="show-on-hover"
-              >
-                <div style={{ color: "#b3b3b3" }}>Изменить обложку ></div>
-              </label>
-            )}
-          </div>
-        </div>
+        <ImagePicker
+          width="28em"
+          height="34em"
+          cover={cover}
+          setCover={setCover}
+        />
       </div>
     </>
   );

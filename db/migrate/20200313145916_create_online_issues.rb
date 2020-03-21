@@ -5,6 +5,8 @@ class CreateOnlineIssues < ActiveRecord::Migration[6.0]
       t.string :description_heading
       t.text :description 
       t.integer :page_id
+      t.boolean :featured
+      t.boolean :published
 
       t.timestamps
     end

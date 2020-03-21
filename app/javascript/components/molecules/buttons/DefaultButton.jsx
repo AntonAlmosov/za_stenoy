@@ -1,12 +1,13 @@
 import React from "react";
 
-export default function DefaultButton({ onClick, inversed, text }) {
+export default function DefaultButton({ onClick, state, text, style }) {
   return (
     <div
-      className={"deafult-button" + (inversed && " inversed")}
+      className={"default-button" + (state ? " inversed" : "")}
       onClick={onClick}
+      style={style}
     >
-      {text}
+      {state ? text[0] : text[1]}
     </div>
   );
 }

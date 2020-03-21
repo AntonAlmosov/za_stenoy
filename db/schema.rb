@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_18_102801) do
+ActiveRecord::Schema.define(version: 2020_03_20_231551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,8 +38,6 @@ ActiveRecord::Schema.define(version: 2020_03_18_102801) do
 
   create_table "authors", force: :cascade do |t|
     t.string "name"
-    t.string "offline_issue_id"
-    t.string "piece_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
@@ -50,6 +48,8 @@ ActiveRecord::Schema.define(version: 2020_03_18_102801) do
     t.string "title"
     t.text "caption"
     t.integer "page_id"
+    t.boolean "published"
+    t.boolean "featured"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 2020_03_18_102801) do
   end
 
   create_table "issue_pages", force: :cascade do |t|
-    t.string "page_number"
+    t.integer "page_number"
     t.integer "offline_issue_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -99,6 +99,8 @@ ActiveRecord::Schema.define(version: 2020_03_18_102801) do
     t.string "description"
     t.integer "page_id"
     t.string "purchase_link"
+    t.boolean "featured"
+    t.boolean "published"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
@@ -110,6 +112,8 @@ ActiveRecord::Schema.define(version: 2020_03_18_102801) do
     t.string "description_heading"
     t.text "description"
     t.integer "page_id"
+    t.boolean "featured"
+    t.boolean "published"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
@@ -137,6 +141,13 @@ ActiveRecord::Schema.define(version: 2020_03_18_102801) do
   create_table "piece_compilations", force: :cascade do |t|
     t.integer "piece_id"
     t.integer "compilation_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "piece_online_issues", force: :cascade do |t|
+    t.integer "piece_id"
+    t.integer "online_issue_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
