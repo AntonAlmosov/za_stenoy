@@ -22,7 +22,7 @@ body {
   overflow-x: hidden;
 }
 .codex-editor__redactor {
-  padding: 0;
+  padding: 0 !important;
 }
 
 .ce-toolbar {
@@ -37,13 +37,13 @@ body {
   font-size: 1em;
   line-height: 1.5;
   &::before {
-    color: #b3b3b3;
+    color: #b3b3b3 !important;
   }
 }
 .cdx-block {
   padding: 0;
   &::before {
-    color: #b3b3b3;
+    color: #b3b3b3 !important;
   }
 }
 
