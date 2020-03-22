@@ -22,6 +22,28 @@ body {
   overflow-x: hidden;
 }
 
+.ce-toolbar {
+  display: none;
+}
+.ce-block__content {
+  margin: 0;
+  width: 100%;
+}
+.ce-paragraph {
+  width: 100%;
+  font-size: 1em;
+  line-height: 1.5;
+  &::before {
+    color: #b3b3b3;
+  }
+}
+.cdx-block {
+  padding: 0;
+  &::before {
+    color: #b3b3b3;
+  }
+}
+
 .bg-black {
   background-color: #000;
 }

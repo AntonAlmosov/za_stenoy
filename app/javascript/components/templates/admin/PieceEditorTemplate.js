@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 import TextareaAutosize from "react-textarea-autosize";
+import EditorJS from "@editorjs/editorjs";
+import Paragraph from "@editorjs/paragraph";
 
 import HeaderAdminOrganism from "../../organisms/HeaderAdminOrganism.jsx";
 import ImagePicker from "../../molecules/misc/ImagePicker.jsx";
@@ -15,15 +17,32 @@ export default function PieceEditorTemplate({
   coverUrl,
   postPath,
   origin,
-  backUri,
 }) {
   const [title, setTitle] = React.useState(piece.title);
-  const [text, setText] = React.useState(piece.text);
+  const [text, setText] = React.useState(JSON.parse(piece.text));
   const [date, setDate] = React.useState(piece.publish_date);
   const [cover, setCover] = React.useState(coverUrl);
   const [authors, setAuthors] = React.useState(initialAuthors);
-
   const [saveText, setSaveText] = React.useState("Сохранить");
+
+  React.useEffect(() => {
+    const editor = new EditorJS({
+      holderId: "piece",
+      placeholder: "Пишите! Например:\n Килограмм салата рыбного",
+      tools: {
+        paragraph: {
+          class: Paragraph,
+          inlineToolbar: true,
+        },
+      },
+      data: text,
+      onChange: api => {
+        api.saver.save().then(res => {
+          setText(res);
+        });
+      },
+    });
+  }, []);
 
   function handleSubmit() {
     setSaveText("Обработка");
@@ -32,7 +51,7 @@ export default function PieceEditorTemplate({
     const coverData = document.querySelector(".cover_image_input");
     if (cover !== coverUrl) formData.append("cover", coverData.files[0]);
     formData.append("title", title);
-    formData.append("text", text);
+    formData.append("text", JSON.stringify(text));
     formData.append("publish_date", date);
     formData.append("authors", JSON.stringify(authors));
 
@@ -91,6 +110,7 @@ export default function PieceEditorTemplate({
               {authors.map(author => {
                 return (
                   <Author
+                    key={author.name}
                     currentAuthors={authors}
                     setAuthors={authors}
                     author={author}
@@ -110,13 +130,7 @@ export default function PieceEditorTemplate({
             maxRows={2}
             placeholder={"Название материала"}
           />
-          <TextareaAutosize
-            style={{ marginTop: "2em" }}
-            className="textarea regular-textarea"
-            value={text || ""}
-            onChange={e => setText(e.target.value)}
-            placeholder={"Пишите! Например: О сколько нам открытий чудных"}
-          />
+          <div style={{ marginTop: "2em" }} id="piece"></div>
           <input
             defaultValue={date}
             onChange={e => setDate(e.target.value)}
