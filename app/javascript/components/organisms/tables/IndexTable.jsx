@@ -42,7 +42,12 @@ export default function IndexTable(props) {
           //Магазин
           if (page.page_type === "shop") {
             title = page.title;
-            actions = [{ name: "Новый товар >", uri: "/" }];
+            actions = [
+              {
+                name: "Новый товар >",
+                uri: "/admin/" + page.slug + "/product/new",
+              },
+            ];
           }
           if (page.page_type === "about_us") {
             title = page.title;

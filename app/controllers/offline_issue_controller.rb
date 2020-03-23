@@ -3,7 +3,7 @@ class OfflineIssueController < ApplicationController
   require 'json'
 
   def get_offline_issues
-    @issues = OfflineIssue.all.sort_by(&:created_at)
+    @issues = OfflineIssue.where(page_id: params[:id]).sort_by(&:created_at)
     issues = []
     @issues.each do |c|
       issues.push({title: c.title, id: c.id, published: c.published, featured: c.featured})
@@ -174,6 +174,10 @@ class OfflineIssueController < ApplicationController
 
   def destroy
     issue = OfflineIssue.find(params[:id])
+
+    if issue.cover.attached?
+      issue.cover.destroy
+    end
 
     connections = OfflineIssueAuthor.where(issue_id: issue.id)
     connections.each do |e|

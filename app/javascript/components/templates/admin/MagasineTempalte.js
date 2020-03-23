@@ -10,7 +10,7 @@ export default function MagasineTemplate(props) {
       <HeaderAdminOrganism closeShown backShown />
       <AdminStarter title={props.page.title} />
       <MagasineActions slug={props.page.slug} />
-      <MagasineTable slug={props.page.slug} />
+      <MagasineTable slug={props.page.slug} id={props.page.id} />
     </>
   );
 }

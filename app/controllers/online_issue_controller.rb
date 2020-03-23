@@ -3,7 +3,7 @@ class OnlineIssueController < ApplicationController
   require 'json'
 
   def get_online_issues
-    @issues = OnlineIssue.all.sort_by(&:created_at)
+    @issues = OnlineIssue.where(page_id: params[:id]).sort_by(&:created_at)
     issues = []
     @issues.each do |c|
       issues.push({title: c.title, id: c.id, published: c.published, featured: c.featured})
@@ -147,6 +147,10 @@ class OnlineIssueController < ApplicationController
   def destroy
     issue = OnlineIssue.find(params[:id])
 
+    if issue.cover.attached?
+      issue.cover.destroy
+    end
+    
     connections = PieceOnlineIssue.where(issue_id: issue.id)
     connections.each do |e|
       e.destroy

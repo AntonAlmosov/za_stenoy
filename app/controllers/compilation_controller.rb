@@ -135,6 +135,10 @@ class CompilationController < ApplicationController
   def destroy
     compilation = Compilation.find(params[:id])
 
+    if compilation.cover.attached?
+      compilation.cover.destroy
+    end
+
     connections = PieceCompilation.where(compilation_id: compilation.id)
     connections.each do |e|
       e.destroy

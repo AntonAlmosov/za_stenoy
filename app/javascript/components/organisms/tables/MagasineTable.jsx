@@ -28,15 +28,19 @@ export default function MagasineTable(props) {
   };
 
   const fetchOnlineIssues = () => {
-    axios.get("/online_issue/get_online_issues").then(res => {
-      setOnlineIssues(res.data.issues);
-    });
+    axios
+      .post("/online_issue/get_online_issues", { id: props.id })
+      .then(res => {
+        setOnlineIssues(res.data.issues);
+      });
   };
 
   const fetchOfflineIssues = () => {
-    axios.get("/offline_issue/get_offline_issues").then(res => {
-      setOfflineIssues(res.data.issues);
-    });
+    axios
+      .post("/offline_issue/get_offline_issues", { id: props.id })
+      .then(res => {
+        setOfflineIssues(res.data.issues);
+      });
   };
 
   React.useEffect(() => {
@@ -66,7 +70,7 @@ export default function MagasineTable(props) {
           slug={props.slug}
           issues={offlineIssues}
           refetch={refetchIssues}
-          route="offline-issue"
+          route="offline_issue"
         />
       )}
       {activeTab === "online-issues" && (
@@ -74,7 +78,7 @@ export default function MagasineTable(props) {
           slug={props.slug}
           issues={onlineIssues}
           refetch={refetchIssues}
-          route="online-issue"
+          route="online_issue"
         />
       )}
       {activeTab === "materials" && (

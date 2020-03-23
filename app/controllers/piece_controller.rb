@@ -87,6 +87,10 @@ class PieceController < ApplicationController
       c.destroy
     end
 
+    if @piece.cover.attached?
+      @piece.cover.destroy
+    end
+
 
     if @piece.destroy
       @pieces = Piece.all
