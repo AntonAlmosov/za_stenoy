@@ -1,15 +1,14 @@
 import React from "react";
-import img from "images/exImage.png";
 
-export default function CompilationCard() {
+export default function CompilationCard({ card }) {
   return (
     <div className="compilation-card-wrapper">
       <div className="card-info">
-        <span>22.01.19</span>
-        <span className="property">онлайн выпуск</span>
+        <span>{card ? card.date : ""}</span>
+        <span className="property">{card ? card.caption || "" : ""}</span>
       </div>
-      <img src={img} />
-      <h2>Название выпуска</h2>
+      {card && <img src={card ? card.cover : ""} />}
+      <h2>{card ? card.title : ""}</h2>
     </div>
   );
 }

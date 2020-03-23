@@ -98,13 +98,19 @@ export default function PieceEditorTemplate({
       />
       <div
         style={{
-          width: "70em",
+          width: "60em",
           margin: "7em auto 7em",
-          display: "flex",
-          justifyContent: "space-between",
         }}
       >
-        <div style={{ width: "36em" }}>
+        <div style={{ margin: "0 auto 2em", width: "60em" }}>
+          <ImagePicker
+            width="60em"
+            height="25.5em"
+            cover={cover}
+            setCover={setCover}
+          />
+        </div>
+        <div style={{ width: "60em", margin: "0 auto" }}>
           <div style={{ marginBottom: "3.5em" }}>
             <div style={{ marginBottom: "0.5em" }}>
               {authors.map(author => {
@@ -130,7 +136,6 @@ export default function PieceEditorTemplate({
             maxRows={2}
             placeholder={"Название материала"}
           />
-          <div style={{ marginTop: "2em" }} id="piece"></div>
           <input
             defaultValue={date}
             onChange={e => setDate(e.target.value)}
@@ -143,12 +148,7 @@ export default function PieceEditorTemplate({
             className={"input"}
           />
         </div>
-        <ImagePicker
-          width="28em"
-          height="34em"
-          cover={cover}
-          setCover={setCover}
-        />
+        <div style={{ marginTop: "2em" }} id="piece"></div>
       </div>
     </>
   );

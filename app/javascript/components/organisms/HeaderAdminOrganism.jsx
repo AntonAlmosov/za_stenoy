@@ -7,6 +7,7 @@ export default function HeaderAdminOrganism(props) {
         <a
           onClick={() => {
             window.history.back();
+            // window.location.reload();
           }}
         >
           {props.backShown ? "Назад" : ""}

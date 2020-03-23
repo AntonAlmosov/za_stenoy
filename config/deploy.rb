@@ -13,6 +13,21 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bund
 # Only keep the last 5 releases to save disk space
 set :keep_releases, 2
 
+namespace :deploy do
+  desc 'Runs rake db:seed for SeedMigrations data'
+
+  task :seed do
+    puts "\n=== Seeding Database ===\n"
+    on primary :db do
+     within current_path do
+       with rails_env: fetch(:stage) do
+         execute :rake, 'db:seed'
+       end
+     end
+    end
+   end
+end
+
 # Optionally, you can symlink your database.yml and/or secrets.yml file from the shared directory during deploy
 # This is useful if you don't want to use ENV variables
 # append :linked_files, 'config/database.yml', 'config/secrets.yml'

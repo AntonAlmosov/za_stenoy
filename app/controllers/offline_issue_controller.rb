@@ -15,10 +15,11 @@ class OfflineIssueController < ApplicationController
     @issue = OfflineIssue.find(params[:id])
     hash = params[:hash]
     @issue[hash] = params[:value]
+    page = Page.friendly.find(params[:admin_id])
 
     if hash == 'featured' and params[:value] == true
-      featuredComp = OnlineIssue.find_by(featured: true)
-      featuredOffComp = OfflineIssue.find_by(featured: true)
+      featuredComp = OnlineIssue.where(page_id: page.id).find_by(featured: true)
+      featuredOffComp = OfflineIssue.where(page_id: page.id).find_by(featured: true)
       if featuredComp
         featuredComp.update(featured: false)
       end
@@ -82,8 +83,8 @@ class OfflineIssueController < ApplicationController
     authors = JSON.parse(params[:authors])
 
     if issue.featured
-      featuredComp = OnlineIssue.find_by(featured: true)
-      featuredOffComp = OfflineIssue.find_by(featured: true)
+      featuredComp = OnlineIssue.where(page_id: page.id).find_by(featured: true)
+      featuredOffComp = OfflineIssue.where(page_id: page.id).find_by(featured: true)
       if featuredComp
         featuredComp.update(featured: false)
       end
@@ -128,6 +129,7 @@ class OfflineIssueController < ApplicationController
     issue = OfflineIssue.find(params[:id])
     authors = JSON.parse(params[:authors])
     issue.featured = params[:featured]
+    currentPage = Page.friendly.find(params[:admin_id])
 
     #Adding new authors
     authors.each do |author|
@@ -150,8 +152,8 @@ class OfflineIssueController < ApplicationController
     end
 
     if issue.featured
-      featuredComp = OnlineIssue.find_by(featured: true)
-      featuredOffComp = OfflineIssue.find_by(featured: true)
+      featuredComp = OnlineIssue.where(page_id: currentPage.id).find_by(featured: true)
+      featuredOffComp = OfflineIssue.where(page_id: currentPage.id).find_by(featured: true)
       if featuredComp
         featuredComp.update(featured: false)
       end

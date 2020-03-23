@@ -29,7 +29,9 @@ export default function MagasineTable(props) {
 
   const fetchOnlineIssues = () => {
     axios
-      .post("/online_issue/get_online_issues", { id: props.id })
+      .post("/online_issue/get_online_issues", {
+        id: props.id,
+      })
       .then(res => {
         setOnlineIssues(res.data.issues);
       });
@@ -37,7 +39,9 @@ export default function MagasineTable(props) {
 
   const fetchOfflineIssues = () => {
     axios
-      .post("/offline_issue/get_offline_issues", { id: props.id })
+      .post("/offline_issue/get_offline_issues", {
+        id: props.id,
+      })
       .then(res => {
         setOfflineIssues(res.data.issues);
       });
@@ -103,6 +107,7 @@ function IssueTable(props) {
         id: id,
         hash: hash,
         value: published,
+        admin_id: props.slug,
       })
       .then(res => {
         props.refetch();

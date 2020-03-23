@@ -15,10 +15,11 @@ class OnlineIssueController < ApplicationController
     @issue = OnlineIssue.find(params[:id])
     hash = params[:hash]
     @issue[hash] = params[:value]
+    page = Page.friendly.find(params[:admin_id])
 
     if hash == 'featured' and params[:value] == true
-      featuredComp = OnlineIssue.find_by(featured: true)
-      featuredOffComp = OfflineIssue.find_by(featured: true)
+      featuredComp = OnlineIssue.where(page_id: page.id).find_by(featured: true)
+      featuredOffComp = OfflineIssue.where(page_id: page.id).find_by(featured: true)
       if featuredComp
         featuredComp.update(featured: false)
       end
@@ -59,8 +60,8 @@ class OnlineIssueController < ApplicationController
     pieces = JSON.parse(params[:pieces])
 
     if issue.featured
-      featuredComp = OnlineIssue.find_by(featured: true)
-      featuredOffComp = OfflineIssue.find_by(featured: true)
+      featuredComp = OnlineIssue.where(page_id: page.id).find_by(featured: true)
+      featuredOffComp = OfflineIssue.where(page_id: page.id).find_by(featured: true)
       if featuredComp
         featuredComp.update(featured: false)
       end
@@ -100,6 +101,7 @@ class OnlineIssueController < ApplicationController
     issue = OnlineIssue.find(params[:id])
     pieces = JSON.parse(params[:pieces])
     issue.featured = params[:featured]
+    page = Page.friendly.find(params[:admin_id])
 
     #Adding new pieces
     pieces.each do |piece|
@@ -122,8 +124,8 @@ class OnlineIssueController < ApplicationController
     end
 
     if issue.featured
-      featuredComp = OnlineIssue.find_by(featured: true)
-      featuredOffComp = OfflineIssue.find_by(featured: true)
+      featuredComp = OnlineIssue.where(page_id: page.id).find_by(featured: true)
+      featuredOffComp = OfflineIssue.where(page_id: page.id).find_by(featured: true)
       if featuredComp
         featuredComp.update(featured: false)
       end

@@ -15,6 +15,7 @@ export default function IndexContent(props) {
                 name={page.title}
                 uri={"/page/" + page.slug}
                 key={page.slug}
+                card={page.feature}
               />
             );
         })}
