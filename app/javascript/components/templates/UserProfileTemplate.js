@@ -2,9 +2,9 @@ import React from "react";
 
 import HeaderTemplate from "../organisms/HeaderOrganism.jsx";
 import UserProfileStarter from "../organisms/Starters/UserProfileStarter.jsx";
-import UserProfileContent from "../organisms/Content/UserProfileContent.jsx";
+import ListCardContent from "../organisms/Content/ListCardContent.jsx";
 
-export default function UserProfileTemplate() {
+export default function UserProfileTemplate({ pieces, author }) {
   React.useEffect(() => {
     document.body.classList.add("bg-black");
   }, []);
@@ -12,8 +12,8 @@ export default function UserProfileTemplate() {
   return (
     <>
       <HeaderTemplate logo={true} inverse={true} />
-      <UserProfileStarter />
-      <UserProfileContent />
+      <UserProfileStarter title={author.name} />
+      <ListCardContent pieces={pieces} />
     </>
   );
 }

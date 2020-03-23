@@ -118,7 +118,7 @@ export default function PieceEditorTemplate({
                   <Author
                     key={author.name}
                     currentAuthors={authors}
-                    setAuthors={authors}
+                    setAuthors={setAuthors}
                     author={author}
                   />
                 );

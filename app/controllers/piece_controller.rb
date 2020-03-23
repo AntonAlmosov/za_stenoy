@@ -11,6 +11,21 @@ class PieceController < ApplicationController
     render :json => {pieces: pieces}
   end
 
+  def show
+    @piece = Piece.find(params[:id])
+
+    @authors = []
+    @piece.authors.each do |author|
+      @authors.push({url: author_path(author.id), name: author.name})
+    end
+    
+    @cover = ''
+
+    if @piece.cover.attached?
+      @cover = polymorphic_url(@piece.cover)
+    end
+  end
+
   def new
     @piece = Piece.new
     @post_path = piece_index_path

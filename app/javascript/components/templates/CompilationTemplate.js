@@ -3,7 +3,7 @@ import React from "react";
 import HeaderTemplate from "../organisms/HeaderOrganism.jsx";
 import FooterOrganism from "../organisms/FooterOrganism.jsx";
 import CompilationStarter from "../organisms/Starters/CompilationStarter.jsx";
-import CompilationContent from "../organisms/Content/CompilationContent.jsx";
+import CompilationContent from "../organisms/Content/CardsContent.jsx";
 
 export default function CompilationTemplate(props) {
   React.useEffect(() => {
@@ -13,7 +13,7 @@ export default function CompilationTemplate(props) {
     <>
       <HeaderTemplate inverse={props.inversed} logo={true} />
       <CompilationStarter title={props.page.title} />
-      <CompilationContent />
+      <CompilationContent cards={props.content} feature={props.feature} />
       <FooterOrganism />
     </>
   );

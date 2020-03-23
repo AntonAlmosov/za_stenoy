@@ -18,6 +18,7 @@ class OfflineIssueController < ApplicationController
     page = Page.friendly.find(params[:admin_id])
 
     if hash == 'featured' and params[:value] == true
+      @issue.published = true
       featuredComp = OnlineIssue.where(page_id: page.id).find_by(featured: true)
       featuredOffComp = OfflineIssue.where(page_id: page.id).find_by(featured: true)
       if featuredComp
@@ -85,10 +86,11 @@ class OfflineIssueController < ApplicationController
     if issue.featured
       featuredComp = OnlineIssue.where(page_id: page.id).find_by(featured: true)
       featuredOffComp = OfflineIssue.where(page_id: page.id).find_by(featured: true)
-      if featuredComp
+      
+      if featuredComp && featuredComp.id != issue.id
         featuredComp.update(featured: false)
       end
-      if featuredOffComp
+      if featuredOffComp && featuredOffComp.id != issue.id
         featuredOffComp.update(featured: false)
       end
     end

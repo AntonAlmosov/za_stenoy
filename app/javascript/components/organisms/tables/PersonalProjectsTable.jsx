@@ -94,7 +94,7 @@ function ProjectsTable() {
                 state: comp.featured,
               },
               {
-                name: ["Открыть для просмотра >", "Закрыть для просмотра >"],
+                name: ["Закрыть для просмотра >", "Открыть для просмотра >"],
                 uri: () => toggleHash(comp.id, "published", !comp.published),
                 state: comp.published,
               },

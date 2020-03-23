@@ -1,0 +1,38 @@
+.contents-wrapper {
+  width: 56em;
+  margin: 0 auto;
+  h3 {
+    font-size: 1.25em;
+    line-height: 1.2;
+    text-align: center;
+    color: #fff;
+  }
+  .contents {
+    width: 56em;
+    margin-top: 3.5em;
+    .authors-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 3em;
+      .name {
+        width: 20em;
+        font-size: 1em;
+        line-height: 1.25;
+        color: #fff;
+      }
+      .pieces {
+        width: 20em;
+        a {
+          display: block;
+          color: white;
+          font-size: 1em;
+          line-height: 1.25;
+          margin-bottom: 1em;
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+}

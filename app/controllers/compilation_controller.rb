@@ -17,6 +17,7 @@ class CompilationController < ApplicationController
     @compilation[hash] = params[:value]
 
     if hash == 'featured' and params[:value] == true
+      @compilation.published = true
       featuredComp = Compilation.find_by(featured: true)
       if featuredComp
         featuredComp.update(featured: false)
@@ -25,6 +26,19 @@ class CompilationController < ApplicationController
 
     if @compilation.save!
       get_compilations
+    end
+  end
+
+  def show
+    @compilation = Compilation.find(params[:id])
+    @cover = polymorphic_url(@compilation.cover)
+    @pieces = []
+    @compilation.pieces.each do |piece|
+      if piece.cover.attached?
+        @pieces.push({url: piece_path(piece.id), title: piece.title, date: piece.publish_date, cover: polymorphic_url(piece.cover), text: piece.text})
+      else
+        @pieces.push({url: piece_path(piece.id), title: piece.title, date: piece.publish_date, text: piece.text})
+      end
     end
   end
 
@@ -115,7 +129,7 @@ class CompilationController < ApplicationController
 
     if compilation.featured
       featuredComp = Compilation.find_by(featured: true)
-      if featuredComp
+      if featuredComp && featuredComp.id != compilation.id
         featuredComp.update(featured: false)
       end
     end

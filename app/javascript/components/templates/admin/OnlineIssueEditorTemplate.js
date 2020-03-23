@@ -128,7 +128,6 @@ export default ({ issue, coverUrl, postPath, origin, initialPieces }) => {
             className="textarea"
             value={description || ""}
             onChange={e => setDescription(e.target.value)}
-            maxRows={2}
             placeholder={
               "Опиши выпуск. Что это за выпуск, чему он посвящен и так далее. На самом деле не важно что ты напишешь. Да и вообще ничего не важно."
             }
@@ -148,13 +147,13 @@ export default ({ issue, coverUrl, postPath, origin, initialPieces }) => {
           }}
         >
           <DefaultButton
-            text={["Убрать фичер", "Сделать фичером"]}
+            text={["Убрать фичер >", "Сделать фичером >"]}
             state={featured}
             onClick={() => setFeatured(!featured)}
             style={{ margin: "0 1em" }}
           />
           <DefaultButton
-            text={["Закрыть для просмотра", "Открыть для просмотра"]}
+            text={["Закрыть для просмотра >", "Открыть для просмотра >"]}
             state={published}
             onClick={() => setPublished(!published)}
             style={{ margin: "0 1em" }}

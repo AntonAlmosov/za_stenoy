@@ -3,17 +3,21 @@ Rails.application.routes.draw do
   devise_for :models
 
   resources :page, only: [:index, :show] do
+    resources :compilation, only: [:show]
+    resources :online_issue, only: [:show]
+    resources :offline_issue, only: [:show]
   end
 
   resources :menu, only: [:index]
 
-  resources :author, only: [:index, :create] do
+  resources :author, only: [:index, :create, :show] do
     collection do
       get :get_author
     end
   end
 
   resources :compilation, only: [] do
+  
     collection do
       get :get_compilations
       post :toggle_compilation

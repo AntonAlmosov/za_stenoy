@@ -4,13 +4,9 @@ import HeaderTemplate from "../organisms/HeaderOrganism.jsx";
 import FooterOrganism from "../organisms/FooterOrganism";
 import MagasineStarter from "../organisms/Starters/MagasineStarter.jsx";
 import CardsContent from "../organisms/Content/CardsContent.jsx";
+import CompilationStarter from "../organisms/Starters/CompilationStarter.jsx";
 
-export default function CompilationTemplate({
-  page,
-  inversed,
-  content,
-  feature,
-}) {
+export default function CompilationTemplate({ page, inversed, content }) {
   React.useEffect(() => {
     if (inversed) document.body.classList.add("bg-black");
     document.title = page.title;
@@ -18,8 +14,8 @@ export default function CompilationTemplate({
   return (
     <>
       <HeaderTemplate inverse={inversed} logo />
-      <MagasineStarter page={page} />
-      <CardsContent cards={content || []} feature={feature} />
+      <CompilationStarter title={page.title} />
+      <CardsContent cards={content} feature={false} target="_blank" />
       <FooterOrganism />
     </>
   );

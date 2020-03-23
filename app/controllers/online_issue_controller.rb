@@ -18,6 +18,7 @@ class OnlineIssueController < ApplicationController
     page = Page.friendly.find(params[:admin_id])
 
     if hash == 'featured' and params[:value] == true
+      @issue.published = true
       featuredComp = OnlineIssue.where(page_id: page.id).find_by(featured: true)
       featuredOffComp = OfflineIssue.where(page_id: page.id).find_by(featured: true)
       if featuredComp
@@ -30,6 +31,25 @@ class OnlineIssueController < ApplicationController
 
     if @issue.save!
       get_online_issues
+    end
+  end
+
+  def show
+    @issue = OnlineIssue.find(params[:id])
+
+    @cover = ''
+    if @issue.cover.attached?
+      @cover = polymorphic_url(@issue.cover)
+    end
+      
+    @pieces = []
+
+    @issue.pieces.each do |piece|
+      authors = []
+      piece.authors.each do |author|
+        authors.push({name: author.name, url: author_path(author.id)})
+      end
+      @pieces.push({authors: authors, title: piece.title, text: piece.text, publish_date: piece.publish_date, id: piece.id})
     end
   end
 
@@ -123,13 +143,14 @@ class OnlineIssueController < ApplicationController
       end
     end
 
-    if issue.featured
+    if issue.featured == true
       featuredComp = OnlineIssue.where(page_id: page.id).find_by(featured: true)
       featuredOffComp = OfflineIssue.where(page_id: page.id).find_by(featured: true)
-      if featuredComp
+
+      if featuredComp && featuredComp.id != issue.id
         featuredComp.update(featured: false)
       end
-      if featuredOffComp
+      if featuredOffComp && featuredOffComp.id != issue.id
         featuredOffComp.update(featured: false)
       end
     end

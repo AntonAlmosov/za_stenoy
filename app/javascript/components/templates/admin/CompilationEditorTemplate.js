@@ -105,6 +105,7 @@ export default ({
           onChange={e => setTitle(e.target.value)}
           maxRows={2}
           placeholder={"Название материала"}
+          style={{ textTransform: "uppercase" }}
         />
         <ImagePicker
           width="28em"
@@ -121,6 +122,7 @@ export default ({
             fontSize: "1.25em",
             lineHeight: 1.6,
             textAlign: "center",
+            textTransform: "uppercase",
           }}
           defaultValue={caption}
           onChange={e => setCaption(e.target.value)}

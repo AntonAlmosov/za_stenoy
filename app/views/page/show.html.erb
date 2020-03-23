@@ -1,9 +1,12 @@
 <% if @page.page_type == 'personal_projects' %>
-  <%= react_component("templates/CompilationTemplate", {page: @page}, {prerender: true}) %>
+  <%= react_component("templates/CompilationTemplate", {page: @page, content: @content, feature: @feature}, {prerender: true}) %>
 <% end %>
 <% if @page.page_type == 'magasine' %>
-  <%= react_component("templates/MagasineTemplate", {page: @page}, {prerender: true}) %>
+  <%= react_component("templates/MagasineTemplate", {page: @page, content: @content, feature: @feature}, {prerender: true}) %>
 <% end %>
 <% if @page.page_type == 'magasine_inversed' %>
   <%= react_component("templates/MagasineTemplate", {page: @page, inversed: true}, {prerender: true}) %>
+<% end %>
+<% if @page.page_type == 'shop' %>
+  <%= react_component("templates/ShopTemplate", {page: @page, content: @content}, {prerender: true}) %>
 <% end %>

@@ -2,24 +2,25 @@ import React from "react";
 
 import HeaderTemplate from "../organisms/HeaderOrganism.jsx";
 import FooterOrganism from "../organisms/FooterOrganism";
-import MagasineStarter from "../organisms/Starters/MagasineStarter.jsx";
-import CardsContent from "../organisms/Content/CardsContent.jsx";
+import OnlineIssueStarter from "../organisms/Starters/OnlineIssueStarter.jsx";
+import OnlineIssueContent from "../organisms/Content/OnlineIssueContent.jsx";
 
 export default function CompilationTemplate({
-  page,
+  issue,
+  cover,
+  pieces,
   inversed,
-  content,
-  feature,
 }) {
   React.useEffect(() => {
     if (inversed) document.body.classList.add("bg-black");
-    document.title = page.title;
+    document.title = issue.title;
   }, []);
+
   return (
     <>
       <HeaderTemplate inverse={inversed} logo />
-      <MagasineStarter page={page} />
-      <CardsContent cards={content || []} feature={feature} />
+      <OnlineIssueStarter title={issue.title} cover={cover} />
+      <OnlineIssueContent pieces={pieces} issue={issue} />
       <FooterOrganism />
     </>
   );

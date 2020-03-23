@@ -270,13 +270,13 @@ export default ({
           }}
         >
           <DefaultButton
-            text={["Убрать фичер", "Сделать фичером"]}
+            text={["Убрать фичер >", "Сделать фичером >"]}
             state={featured}
             onClick={() => setFeatured(!featured)}
             style={{ margin: "0 1em" }}
           />
           <DefaultButton
-            text={["Закрыть для просмотра", "Открыть для просмотра"]}
+            text={["Закрыть для просмотра >", "Открыть для просмотра >"]}
             state={published}
             onClick={() => setPublished(!published)}
             style={{ margin: "0 1em" }}

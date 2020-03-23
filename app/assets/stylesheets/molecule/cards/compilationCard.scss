@@ -33,4 +33,21 @@
     font-size: 1em;
     color: #fff;
   }
+  .text-preview {
+    width: 20.25em;
+    height: 7em;
+    overflow: hidden;
+    margin: 0 auto;
+    p {
+      font-size: 0.75em;
+      line-height: 1.2;
+      color: #fff;
+    }
+  }
+  b {
+    font-weight: 700;
+  }
+  i {
+    font-style: italic;
+  }
 }
