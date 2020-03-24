@@ -56,6 +56,20 @@ class OfflineIssueController < ApplicationController
     IssuePage.find(params[:id]).destroy
   end
 
+  def show
+    @issue = OfflineIssue.find(params[:id])
+    @pages = [polymorphic_url(@issue.cover)]
+    @authors = []
+
+    @issue.issue_pages.sort_by(&:page_number).each do |page|
+      @pages.push(polymorphic_url(page.page))
+    end
+
+    @issue.authors.each do |author|
+      @authors.push({url: author_path(author.id), name: author.name})
+    end 
+  end
+
   def new
     @issue = OfflineIssue.new()
     @issue.published = false

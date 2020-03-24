@@ -8,7 +8,11 @@ Rails.application.routes.draw do
     resources :offline_issue, only: [:show]
   end
 
-  resources :menu, only: [:index]
+  resources :menu, only: [:index] do
+    collection do 
+      get :get_data
+    end
+  end
 
   resources :author, only: [:index, :create, :show] do
     collection do

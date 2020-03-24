@@ -1,0 +1,116 @@
+.offline-issue-wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .description-wrapper {
+    width: 34em;
+    height: 33.5em;
+    position: relative;
+    .description-inner {
+      overflow-y: scroll;
+      width: 34em;
+      height: 33.5em;
+      background: white;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      padding: 0 2em;
+      box-sizing: border-box;
+      h1 {
+        margin: 1em 0 1em;
+        font-size: 1.25em;
+        font-weight: 700;
+        color: black;
+      }
+      span {
+        font-size: 1em;
+        line-height: 1.2;
+        color: black;
+      }
+      .authors-block {
+        margin-top: 1.5em;
+        font-size: 1em;
+        color: black;
+        line-height: 1.2;
+        a {
+          line-height: 1.2;
+          color: black;
+        }
+      }
+      p {
+        white-space: pre-wrap;
+        margin-top: 2em;
+        font-size: 1em;
+        line-height: 1.2;
+        color: black;
+        margin-bottom: 4em;
+      }
+    }
+    .description-menu {
+      position: absolute;
+      background-color: #fff;
+      bottom: 0;
+      left: 0;
+      padding: 1em 2em;
+      box-sizing: border-box;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      a {
+        color: black;
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+  }
+  .issue-page {
+    width: 41.5em;
+    height: 28em;
+    position: relative;
+    &.margin {
+      margin-right: 39em;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+    .issue-page-switches-wrapper {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: space-between;
+      .page-switch {
+        width: 33%;
+        &.left {
+          cursor: w-resize;
+        }
+        &.right {
+          cursor: e-resize;
+        }
+      }
+    }
+  }
+}
+.bottom-menu {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  padding: 1em 2em;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  a {
+    font-size: 1.25em;
+    color: white;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}

@@ -2,7 +2,9 @@ import React from "react";
 import ReactHtmlParser from "react-html-parser";
 
 export default function PieceCard({ card }) {
-  const [text] = React.useState(JSON.parse(card.text).blocks.slice(0, 10));
+  const [text] = React.useState(
+    card.text ? JSON.parse(card.text).blocks.slice(0, 10) : '{"blocks": []}'
+  );
 
   return (
     <div className="compilation-card-wrapper">

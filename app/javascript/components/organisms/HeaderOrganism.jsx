@@ -8,9 +8,18 @@ export default function HeaderTemplate({ logo, inverse }) {
   const [searchOpened, setSearchOpened] = React.useState(false);
   const [menuOpened, setMenuOpened] = React.useState(false);
   const [pages, setPages] = React.useState([]);
+  const [data, setData] = React.useState({
+    pieces: [],
+    projects: [],
+    authors: [],
+  });
 
   React.useEffect(() => {
     axios.get("/menu").then(data => setPages(data.data));
+
+    axios.get("/menu/get_data").then(res => {
+      setData(res.data);
+    });
   }, []);
 
   return (
@@ -21,7 +30,7 @@ export default function HeaderTemplate({ logo, inverse }) {
         search={{ status: searchOpened, setSearchOpened }}
         menu={{ status: menuOpened, setMenuOpened }}
       />
-      {searchOpened && <SearchOrganism />}
+      {searchOpened && <SearchOrganism data={data} />}
       {menuOpened && <MenuOrganism pages={pages} />}
     </>
   );
@@ -57,25 +66,49 @@ function HeaderRow({ logo, inverse, search, menu }) {
   );
 }
 
-function SearchOrganism() {
-  const AdditionalSearch = () => {
-    return (
-      <div className="additional-search">
-        <div className="additional-search-input">
-          <input type="text" autoComplete="false" placeholder={"Авторы"} />
-          <div className="divider"></div>
-        </div>
-        <div className="additional-results">
-          <a href="/">{"Василий Молоствов"}</a>
-          <a href="/">{"Василий Молоствов"}</a>
-          <a href="/">{"Василий Молоствов"}</a>
-          <a href="/">{"Василий Молоствов"}</a>
-          <a href="/">{"Василий Молоствов"}</a>
-          <a href="/">{"Василий Молоствов"}</a>
-        </div>
+const AdditionalSearch = ({ data, title }) => {
+  return (
+    <div className="additional-search">
+      <div className="additional-search-input">
+        <h4>{title}</h4>
+        <div className="divider"></div>
       </div>
+      <div className="additional-results">
+        {data.map(el => {
+          return (
+            <a href={el.url} key={el.url}>
+              {el.title}
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+function SearchOrganism({ data }) {
+  const [authors, setAuthors] = React.useState(data.authors || []);
+  const [pieces, setPieces] = React.useState(data.pieces || []);
+  const [projects, setProjects] = React.useState(data.projects || []);
+  const [search, setSearch] = React.useState("");
+
+  React.useEffect(() => {
+    setAuthors(
+      data.authors.filter(el => {
+        return RegExp(search, "i").test(el.title);
+      })
     );
-  };
+    setPieces(
+      data.pieces.filter(el => {
+        return RegExp(search, "i").test(el.title);
+      })
+    );
+    setProjects(
+      data.projects.filter(el => {
+        return RegExp(search, "i").test(el.title);
+      })
+    );
+  }, [search]);
 
   return (
     <div className="header-menu-wrapper">
@@ -84,6 +117,7 @@ function SearchOrganism() {
           <input
             type="text"
             autoComplete="false"
+            onChange={e => setSearch(e.target.value)}
             placeholder={
               "Введите имя автора, название проекта или произведения"
             }
@@ -91,9 +125,9 @@ function SearchOrganism() {
           <div className="divider"></div>
         </div>
         <div className="additional-search-wrapper">
-          <AdditionalSearch />
-          <AdditionalSearch />
-          <AdditionalSearch />
+          <AdditionalSearch data={authors} title={"Авторы"} />
+          <AdditionalSearch data={projects} title={"Проекты"} />
+          <AdditionalSearch data={pieces} title={"Название произведения"} />
         </div>
       </div>
     </div>

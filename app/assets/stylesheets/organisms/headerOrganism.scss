@@ -53,6 +53,7 @@
   width: 100vw;
   height: calc(100vh - 4em);
   background-color: #000;
+  z-index: 999;
 }
 
 .search-wrapper {
@@ -93,19 +94,13 @@
       width: 16em;
       .additional-search-input {
         width: 16em;
-        input {
+        h4 {
           width: 16em;
           color: #fff;
-          outline: none;
-          border: 0;
           font-size: 1em;
           line-height: 1.25;
-          background-color: #000;
           padding: 0 0.5em;
           box-sizing: border-box;
-          &::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-          }
         }
         .divider {
           width: 100%;
@@ -116,7 +111,7 @@
       }
       .additional-results {
         width: 15em;
-        height: calc(100vh - 27.25em);
+        height: calc(100vh - 32.25em);
         overflow-y: scroll;
         &::-webkit-scrollbar {
           display: none;

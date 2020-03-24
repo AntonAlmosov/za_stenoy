@@ -28,7 +28,9 @@ export default ({
   const [description, setDescription] = React.useState(issue.description || "");
   const [publishDate, setPublishDate] = React.useState(issue.publish_date);
   const [purchaseLink, setPurchaseLink] = React.useState(issue.purchase_link);
-  const [authors, setAuthors] = React.useState(initialAuthors);
+  const [authors, setAuthors] = React.useState(
+    initialAuthors.map(a => JSON.parse(a))
+  );
   const [pages, setPages] = React.useState(initialPages);
 
   function handleSubmit() {
@@ -174,7 +176,9 @@ export default ({
       <HeaderAdminOrganism
         backShown
         onDoneClick={handleSubmit}
-        doneActive={true}
+        doneActive={
+          title && cover && authors.length && description && publishDate
+        }
         doneText={saveText}
       />
       <div
@@ -233,9 +237,9 @@ export default ({
                 {authors.map(author => {
                   return (
                     <Author
-                      key={author.name}
+                      key={author.name + author.id}
                       currentAuthors={authors}
-                      setAuthor={setAuthors}
+                      setAuthors={setAuthors}
                       author={author}
                     />
                   );
@@ -251,7 +255,6 @@ export default ({
             className="textarea"
             value={description || ""}
             onChange={e => setDescription(e.target.value)}
-            maxRows={2}
             placeholder={
               "Опиши выпуск. Что это за выпуск, чему он посвящен и так далее. На самом деле не важно что ты напишешь. Да и вообще ничего не важно."
             }
