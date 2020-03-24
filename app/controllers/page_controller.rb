@@ -137,8 +137,6 @@ class PageController < ApplicationController
       else
         @feature = false
       end
-      puts 'feature :'
-      puts @feature
     end
 
     if @page.page_type == 'shop'
@@ -151,8 +149,5 @@ class PageController < ApplicationController
       end
     end
   end
-
-  puts 'feature :'
-  puts @feature
 
 end
