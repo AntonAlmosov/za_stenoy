@@ -5,7 +5,7 @@
   <%= react_component("templates/MagasineTemplate", {page: @page, content: @content, feature: @feature}, {prerender: true}) %>
 <% end %>
 <% if @page.page_type == 'magasine_inversed' %>
-  <%= react_component("templates/MagasineTemplate", {page: @page, inversed: true}, {prerender: true}) %>
+  <%= react_component("templates/MagasineTemplate", {page: @page, content: @content, feature: @feature, inversed: true}, {prerender: true}) %>
 <% end %>
 <% if @page.page_type == 'shop' %>
   <%= react_component("templates/ShopTemplate", {page: @page, content: @content}, {prerender: true}) %>

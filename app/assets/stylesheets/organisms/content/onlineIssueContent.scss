@@ -1,4 +1,41 @@
 .online-issue-content-wrapper {
-  width: 70em;
+  width: 56em;
   margin: 10em auto 0;
+  .description {
+    margin-top: 10em;
+    color: white;
+    h2 {
+      font-size: 1.25em;
+      line-height: 1.2;
+      font-weight: 500;
+      width: 40em;
+    }
+    p {
+      font-size: 1em;
+      line-height: 1.2;
+      margin-top: 3em;
+      width: 40em;
+      white-space: pre-wrap;
+    }
+  }
+  .piece-content {
+    margin-top: 10em;
+    position: relative;
+    .piece-anchor {
+      top: -7em;
+      left: 0em;
+      position: absolute;
+    }
+    h1 {
+      color: white;
+    }
+    .piece-authors {
+      a {
+        color: white !important;
+      }
+    }
+    p {
+      color: white;
+    }
+  }
 }

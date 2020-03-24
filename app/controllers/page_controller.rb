@@ -50,14 +50,18 @@ class PageController < ApplicationController
         end
       end
       f = @page.compilations.find_by(featured: true)
-      if f.cover.attached?
-        @feature = {url: page_compilation_path(@page.id, f.id), title: f.title, cover: polymorphic_url(f.cover), date: f.created_at.to_s(:custom_datetime)}
+      if f
+        if f.cover.attached?
+          @feature = {url: page_compilation_path(@page.id, f.id), title: f.title, cover: polymorphic_url(f.cover), date: f.created_at.to_s(:custom_datetime)}
+        else
+          @feature = {url: page_compilation_path(@page.id, f.id), title: f.title, date: f.created_at.to_s(:custom_datetime)}
+        end
       else
-        @feature = {url: page_compilation_path(@page.id, f.id), title: f.title, date: f.created_at.to_s(:custom_datetime)}
+        @feature = false
       end
     end
 
-    if @page.page_type == 'magasine' || @page.page_type == 'magasine_inversed'
+    if @page.page_type == 'magasine'
       issues = (@page.online_issues.where(published: true, featured: false) + @page.offline_issues.where(published: true, featured: false)).sort_by(&:created_at)
       issues.each do |issue|
         if issue.has_attribute?("publish_date")
@@ -95,6 +99,48 @@ class PageController < ApplicationController
       end
     end
 
+    if @page.page_type == 'magasine_inversed'
+      issues = (@page.online_issues.where(published: true, featured: false) + @page.offline_issues.where(published: true, featured: false)).sort_by(&:created_at)
+      issues.each do |issue|
+        if issue.has_attribute?("publish_date")
+          if issue.cover.attached?
+            @content.push({url: page_offline_issue_path(@page.id, issue.id), cover: polymorphic_url(issue.cover), title: issue.title, date: issue.publish_date})
+          else
+            @content.push({url: page_offline_issue_path(@page.id, issue.id), title: issue.title, date: issue.publish_date})
+          end
+        else
+          if issue.cover.attached?
+            @content.push({url: page_online_issue_path(@page.id, issue.id), cover: polymorphic_url(issue.cover), title: issue.title, date: issue.created_at.to_s(:custom_datetime)})
+          else
+            @content.push({url: page_online_issue_path(@page.id, issue.id), title: issue.title, date: issue.created_at.to_s(:custom_datetime)})
+          end
+        end
+      end
+
+      f = @page.online_issues.find_by(featured: true) || @page.offline_issues.find_by(featured: true)
+      if f
+        puts 'Title :'
+        puts f.title
+        if f.has_attribute?("publish_date")
+          if f.cover.attached?
+            @feature = {url: page_offline_issue_path(@page.id, f.id), title: f.title, cover: polymorphic_url(f.cover), date: f.created_at.to_s(:custom_datetime)}
+          else
+            @feature = {url: page_offline_issue_path(@page.id, f.id), title: f.title, date: f.created_at.to_s(:custom_datetime)}
+          end
+        else
+          if f.cover.attached?
+            @feature = {url: page_online_issue_path(@page.id, f.id), title: f.title, cover: polymorphic_url(f.cover), date: f.created_at.to_s(:custom_datetime)}
+          else
+            @feature = {url: page_online_issue_path(@page.id, f.id), title: f.title, date: f.created_at.to_s(:custom_datetime)}
+          end
+        end
+      else
+        @feature = false
+      end
+      puts 'feature :'
+      puts @feature
+    end
+
     if @page.page_type == 'shop'
       @page.products.each do |prod|
         if prod.cover.attached?
@@ -105,5 +151,8 @@ class PageController < ApplicationController
       end
     end
   end
+
+  puts 'feature :'
+  puts @feature
 
 end
