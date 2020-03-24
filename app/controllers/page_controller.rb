@@ -44,7 +44,7 @@ class PageController < ApplicationController
     if @page.page_type == 'personal_projects'
       @page.compilations.where(published: true, featured: false).each do |comp|
         if comp.cover.attached?
-          @content.push({url: page_compilation_path(@page.id, comp.id), title: comp.title, cover: polymorphic_url(comp.cover), date: comp.created_at.to_s(:custom_datetime)})
+          @content.push({url: page_compilation_path(@page.id, comp.id), title: comp.title, cover: polymorphic_url(comp.cover.variant(resize_to_limit: [1000, 1000])), date: comp.created_at.to_s(:custom_datetime)})
         else
           @content.push({url: page_compilation_path(@page.id, comp.id), title: comp.title, date: comp.created_at.to_s(:custom_datetime)})
         end
@@ -52,7 +52,7 @@ class PageController < ApplicationController
       f = @page.compilations.find_by(featured: true)
       if f
         if f.cover.attached?
-          @feature = {url: page_compilation_path(@page.id, f.id), title: f.title, cover: polymorphic_url(f.cover), date: f.created_at.to_s(:custom_datetime)}
+          @feature = {url: page_compilation_path(@page.id, f.id), title: f.title, cover: polymorphic_url(f.cover.variant(resize_to_limit: [1000, 1000])), date: f.created_at.to_s(:custom_datetime)}
         else
           @feature = {url: page_compilation_path(@page.id, f.id), title: f.title, date: f.created_at.to_s(:custom_datetime)}
         end
@@ -66,13 +66,13 @@ class PageController < ApplicationController
       issues.each do |issue|
         if issue.has_attribute?("publish_date")
           if issue.cover.attached?
-            @content.push({url: page_offline_issue_path(@page.id, issue.id), cover: polymorphic_url(issue.cover), title: issue.title, date: issue.publish_date})
+            @content.push({url: page_offline_issue_path(@page.id, issue.id), cover: polymorphic_url(issue.cover.variant(resize_to_limit: [1000, 1000])), title: issue.title, date: issue.publish_date})
           else
             @content.push({url: page_offline_issue_path(@page.id, issue.id), title: issue.title, date: issue.publish_date})
           end
         else
           if issue.cover.attached?
-            @content.push({url: page_online_issue_path(@page.id, issue.id), cover: polymorphic_url(issue.cover), title: issue.title, date: issue.created_at.to_s(:custom_datetime)})
+            @content.push({url: page_online_issue_path(@page.id, issue.id), cover: polymorphic_url(issue.cover.variant(resize_to_limit: [1000, 1000])), title: issue.title, date: issue.created_at.to_s(:custom_datetime)})
           else
             @content.push({url: page_online_issue_path(@page.id, issue.id), title: issue.title, date: issue.created_at.to_s(:custom_datetime)})
           end
@@ -83,13 +83,13 @@ class PageController < ApplicationController
       if f
         if f.has_attribute?("publish_date")
           if f.cover.attached?
-            @feature = {url: page_offline_issue_path(@page.id, f.id), title: f.title, cover: polymorphic_url(f.cover), date: f.created_at.to_s(:custom_datetime)}
+            @feature = {url: page_offline_issue_path(@page.id, f.id), title: f.title, cover: polymorphic_url(f.cover.variant(resize_to_limit: [1000, 1000])), date: f.created_at.to_s(:custom_datetime)}
           else
             @feature = {url: page_offline_issue_path(@page.id, f.id), title: f.title, date: f.created_at.to_s(:custom_datetime)}
           end
         else
           if f.cover.attached?
-            @feature = {url: page_online_issue_path(@page.id, f.id), title: f.title, cover: polymorphic_url(f.cover), date: f.created_at.to_s(:custom_datetime)}
+            @feature = {url: page_online_issue_path(@page.id, f.id), title: f.title, cover: polymorphic_url(f.cover.variant(resize_to_limit: [1000, 1000])), date: f.created_at.to_s(:custom_datetime)}
           else
             @feature = {url: page_online_issue_path(@page.id, f.id), title: f.title, date: f.created_at.to_s(:custom_datetime)}
           end
@@ -104,13 +104,13 @@ class PageController < ApplicationController
       issues.each do |issue|
         if issue.has_attribute?("publish_date")
           if issue.cover.attached?
-            @content.push({url: page_offline_issue_path(@page.id, issue.id), cover: polymorphic_url(issue.cover), title: issue.title, date: issue.publish_date})
+            @content.push({url: page_offline_issue_path(@page.id, issue.id), cover: polymorphic_url(issue.cover.variant(resize_to_limit: [1000, 1000])), title: issue.title, date: issue.publish_date})
           else
             @content.push({url: page_offline_issue_path(@page.id, issue.id), title: issue.title, date: issue.publish_date})
           end
         else
           if issue.cover.attached?
-            @content.push({url: page_online_issue_path(@page.id, issue.id), cover: polymorphic_url(issue.cover), title: issue.title, date: issue.created_at.to_s(:custom_datetime)})
+            @content.push({url: page_online_issue_path(@page.id, issue.id), cover: polymorphic_url(issue.cover.variant(resize_to_limit: [1000, 1000])), title: issue.title, date: issue.created_at.to_s(:custom_datetime)})
           else
             @content.push({url: page_online_issue_path(@page.id, issue.id), title: issue.title, date: issue.created_at.to_s(:custom_datetime)})
           end
@@ -123,13 +123,13 @@ class PageController < ApplicationController
         puts f.title
         if f.has_attribute?("publish_date")
           if f.cover.attached?
-            @feature = {url: page_offline_issue_path(@page.id, f.id), title: f.title, cover: polymorphic_url(f.cover), date: f.created_at.to_s(:custom_datetime)}
+            @feature = {url: page_offline_issue_path(@page.id, f.id), title: f.title, cover: polymorphic_url(f.cover.variant(resize_to_limit: [1000, 1000])), date: f.created_at.to_s(:custom_datetime)}
           else
             @feature = {url: page_offline_issue_path(@page.id, f.id), title: f.title, date: f.created_at.to_s(:custom_datetime)}
           end
         else
           if f.cover.attached?
-            @feature = {url: page_online_issue_path(@page.id, f.id), title: f.title, cover: polymorphic_url(f.cover), date: f.created_at.to_s(:custom_datetime)}
+            @feature = {url: page_online_issue_path(@page.id, f.id), title: f.title, cover: polymorphic_url(f.cover.variant(resize_to_limit: [1000, 1000])), date: f.created_at.to_s(:custom_datetime)}
           else
             @feature = {url: page_online_issue_path(@page.id, f.id), title: f.title, date: f.created_at.to_s(:custom_datetime)}
           end
@@ -142,7 +142,7 @@ class PageController < ApplicationController
     if @page.page_type == 'shop'
       @page.products.each do |prod|
         if prod.cover.attached?
-          @content.push({cover: polymorphic_url(prod.cover), title: prod.name, date: prod.release_date, url: prod.purchase_link, caption: prod.price})
+          @content.push({cover: polymorphic_url(prod.cover.variant(resize_to_limit: [1000, 1000])), title: prod.name, date: prod.release_date, url: prod.purchase_link, caption: prod.price})
         else
           @content.push({title: prod.name, date: prod.release_date, url: prod.purchase_link})
         end
