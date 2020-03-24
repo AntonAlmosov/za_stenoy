@@ -1,6 +1,7 @@
 class OnlineIssueController < ApplicationController
   skip_before_action :verify_authenticity_token
   require 'json'
+  before_action :authenticate_admin!, :except => [:show, :index]
 
   def get_online_issues
     @issues = OnlineIssue.where(page_id: params[:id]).sort_by(&:created_at)

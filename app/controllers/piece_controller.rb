@@ -1,6 +1,7 @@
 class PieceController < ApplicationController
   skip_before_action :verify_authenticity_token
   require 'json'
+  before_action :authenticate_admin!, :except => [:show]
 
   def index
     @pieces = Piece.all.sort_by(&:created_at)

@@ -1,5 +1,6 @@
 class ProductController < ApplicationController
   skip_before_action :verify_authenticity_token
+  before_action :authenticate_admin!, :except => [:show, :index]
 
   def get_products
     @products = Product.all.sort_by(&:created_at)

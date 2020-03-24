@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :admins
   root 'page#index'
-  devise_for :models
 
   resources :page, only: [:index, :show] do
     resources :compilation, only: [:show]
@@ -21,7 +21,6 @@ Rails.application.routes.draw do
   end
 
   resources :compilation, only: [] do
-  
     collection do
       get :get_compilations
       post :toggle_compilation

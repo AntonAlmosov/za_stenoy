@@ -1,6 +1,7 @@
 class CompilationController < ApplicationController
   skip_before_action :verify_authenticity_token
   require 'json'
+  before_action :authenticate_admin!, :except => [:show, :index]
 
   def get_compilations
     @compilations = Compilation.all.sort_by(&:created_at)

@@ -1,0 +1,49 @@
+.login-form {
+  margin: 10em auto 0;
+  width: 15em;
+  form {
+    width: 15em;
+    .field {
+      margin-top: 1.5em;
+      label {
+        font-size: 1em;
+        font-weight: 600;
+      }
+      input {
+        width: 100%;
+        font-size: 1em;
+        line-height: 1.5;
+        width: 100%;
+        outline: 0;
+        border: 0;
+      }
+      &.flex {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        input {
+          width: auto;
+        }
+        label {
+          font-size: 0.75em;
+          font-weight: 400;
+        }
+      }
+    }
+    .actions {
+      input {
+        margin-top: 3em;
+        width: 100%;
+        height: 2em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #000;
+        color: #fff;
+        font-size: 1em;
+        font-weight: 500;
+        cursor: pointer;
+      }
+    }
+  }
+}
