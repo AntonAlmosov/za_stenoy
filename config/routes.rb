@@ -53,7 +53,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :admin do
+  resources :admin, only: [:index, :show, :edit, :update] do
     resources :compilation, only: [:new, :edit, :create, :update, :destroy]
     resources :online_issue, only: [:new, :edit, :create, :update, :destroy]
     resources :offline_issue, only: [:new, :edit, :create, :update, :destroy]

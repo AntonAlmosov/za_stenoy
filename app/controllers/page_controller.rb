@@ -1,7 +1,7 @@
 class PageController < ApplicationController
   require 'json'
   def index
-    pages = Page.all
+    pages = Page.all.sort_by(&:created_at)
     @pages = []
     Time::DATE_FORMATS[:custom_datetime] = "%d.%m.%Y"
     @feature = false
@@ -40,6 +40,10 @@ class PageController < ApplicationController
     @page = Page.friendly.find(params[:id])
     @content = []
     @feature = {}
+    @cover = ''
+    if @page.cover.attached?
+      @cover = polymorphic_url(@page.cover)
+    end
 
     if @page.page_type == 'personal_projects'
       @page.compilations.where(published: true, featured: false).each do |comp|

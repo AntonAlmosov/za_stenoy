@@ -10,3 +10,6 @@
 <% if @page.page_type == 'shop' %>
   <%= react_component("templates/ShopTemplate", {page: @page, content: @content}, {prerender: true}) %>
 <% end %>
+<% if @page.page_type == 'about_us' %>
+  <%= react_component("templates/AboutTemplate", {page: @page, initialCover: @cover}, {prerender: true}) %>
+<% end %>

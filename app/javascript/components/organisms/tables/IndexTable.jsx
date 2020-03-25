@@ -8,9 +8,11 @@ export default function IndexTable(props) {
         props.pages.map(page => {
           let title = "";
           let actions = [];
+          let uri = "";
           //Авторский проект
           if (page.page_type === "personal_projects") {
             title = page.title;
+            uri = "/admin/" + page.slug;
             actions = [
               {
                 name: "Новый проект >",
@@ -28,7 +30,12 @@ export default function IndexTable(props) {
             page.page_type === "magasine_inversed"
           ) {
             title = "Журнал " + page.title;
+            uri = "/admin/" + page.slug;
             actions = [
+              {
+                name: "Редактировать описание >",
+                uri: "/admin/" + page.slug + "/edit",
+              },
               {
                 name: "Новый бумажный выпуск >",
                 uri: "/admin/" + page.slug + "/offline_issue/new",
@@ -42,6 +49,7 @@ export default function IndexTable(props) {
           //Магазин
           if (page.page_type === "shop") {
             title = page.title;
+            uri = "/admin/" + page.slug;
             actions = [
               {
                 name: "Новый товар >",
@@ -51,11 +59,18 @@ export default function IndexTable(props) {
           }
           if (page.page_type === "about_us") {
             title = page.title;
+            uri = "/admin/" + page.slug + "/edit";
+            actions = [
+              {
+                name: "Редактировать описание >",
+                uri: "/admin/" + page.slug + "/edit",
+              },
+            ];
           }
           return (
             <TableRow
               key={page.slug}
-              title={{ name: title, uri: "/admin/" + page.slug }}
+              title={{ name: title, uri: uri }}
               actions={actions}
             />
           );
@@ -68,7 +83,7 @@ function TableHeader() {
   return (
     <div className="table-header-wrapper">
       <h2 style={{ width: "22em" }}>Разделы</h2>
-      <h2 style={{ width: "28em" }}>Быстрые действия</h2>
+      <h2 style={{ width: "48em" }}>Быстрые действия</h2>
     </div>
   );
 }
@@ -79,7 +94,7 @@ function TableRow(props) {
       <div className="column" style={{ width: "22em" }}>
         <a href={props.title.uri}>{props.title.name}</a>
       </div>
-      <div className="column" style={{ width: "28em" }}>
+      <div className="column" style={{ width: "48em" }}>
         {props.actions.map(action => {
           return (
             <a href={action.uri} key={action.name}>
