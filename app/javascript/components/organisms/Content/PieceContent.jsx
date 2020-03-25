@@ -11,9 +11,10 @@ export default function PieceContent({ piece, cover, authors }) {
         <div className="piece-authors">
           {authors.map(author => {
             return (
-              <a href={author.url} key={author.url}>
-                {author.name}
-              </a>
+              <span key={author.url}>
+                <a href={author.url}>{author.name}</a>
+                <br />
+              </span>
             );
           })}
         </div>

@@ -61,7 +61,9 @@ export default ({ issue, pages, authors, inversed }) => {
               </pre>
             </div>
             <div className="description-menu">
-              <a href={issue.purchase_link}>Купить</a>
+              <a href={issue.purchase_link} target="_blank">
+                Купить
+              </a>
               <a onClick={() => setOpened(false)}>Закрыть</a>
             </div>
           </div>

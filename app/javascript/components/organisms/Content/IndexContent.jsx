@@ -3,22 +3,35 @@ import React from "react";
 import FeatureCardWide from "../../molecules/cards/FeatureCardWide.jsx";
 import IndexCard from "../../molecules/cards/IndexCard.jsx";
 
-export default function IndexContent(props) {
+export default function IndexContent({ pages }) {
   return (
     <div className="index-content">
       <FeatureCardWide />
       <div className="index-cards-wrapper">
-        {props.pages.map(page => {
-          if (page.page_type !== "about_us")
-            return (
-              <IndexCard
-                name={page.title}
-                uri={"/page/" + page.slug}
-                key={page.slug}
-                card={page.feature}
-              />
-            );
-        })}
+        <IndexCard
+          name={pages[1].title}
+          uri={"/page/" + pages[1].slug}
+          key={pages[1].slug}
+          card={pages[1].feature}
+        />
+        <IndexCard
+          name={pages[2].title}
+          uri={"/page/" + pages[2].slug}
+          key={pages[2].slug}
+          card={pages[2].feature}
+        />
+        <IndexCard
+          name={pages[0].title}
+          uri={"/page/" + pages[0].slug}
+          key={pages[0].slug}
+          card={pages[0].feature}
+        />
+        <IndexCard
+          name={pages[3].title}
+          uri={"/page/" + pages[4].slug}
+          key={pages[3].slug}
+          card={pages[3].feature}
+        />
       </div>
     </div>
   );

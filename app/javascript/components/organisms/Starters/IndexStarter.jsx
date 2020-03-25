@@ -6,9 +6,7 @@ export default function IndexStarter() {
     <div className="index-starter">
       <img src={flagsImage} />
       <p>
-        Сайт литературного издательства <a href="/">«Флаги»</a>
-        <br />
-        2020
+        Культурный проект <a href="/pages/about-us">«Флаги»</a>
       </p>
     </div>
   );
