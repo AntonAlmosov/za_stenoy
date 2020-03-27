@@ -3,10 +3,14 @@ import React from "react";
 import FeatureCardWide from "../../molecules/cards/FeatureCardWide.jsx";
 import IndexCard from "../../molecules/cards/IndexCard.jsx";
 
-export default function IndexContent({ pages }) {
+export default function IndexContent({ pages, feature }) {
   return (
     <div className="index-content">
-      <FeatureCardWide />
+      {feature && (
+        <a href={feature.url}>
+          <FeatureCardWide card={feature} />
+        </a>
+      )}
       <div className="index-cards-wrapper">
         <IndexCard
           name={pages[2].title}

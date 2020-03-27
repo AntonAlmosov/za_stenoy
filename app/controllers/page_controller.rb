@@ -3,8 +3,34 @@ class PageController < ApplicationController
   def index
     pages = Page.all.sort_by(&:created_at)
     @pages = []
+
     Time::DATE_FORMATS[:custom_datetime] = "%d.%m.%Y"
-    @feature = false
+
+    feature_data = Feature.first
+    feat = false
+    if feature_data
+      issue = {}
+      url = ''
+      if feature_data.feature_type == 'offline_issue'
+        issue = OfflineIssue.find(feature_data.origin_id)
+        url = page_offline_issue_path(issue.page_id, issue.id)
+      end
+      if feature_data.feature_type == 'online_issue'
+        issue = OnlineIssue.find(feature_data.origin_id)
+        url = page_online_issue_path(issue.page_id, issue.id)
+      end
+      if feature_data.feature_type == 'content'
+        issue = Content.find(feature_data.origin_id)
+        url = page_compilation_path(issue.page_id, issue.id)
+      end
+
+      if issue.cover.attached?
+        feat = {title: issue.title, publish_date: issue.publish_date, url: url, cover: polymorphic_url(issue.cover)}
+      else
+        feat = {title: issue.title, publish_date: issue.publish_date, url: url}
+      end
+    end
+    @feature = feat
 
     pages.each do |page|
       if page.page_type == 'personal_projects'

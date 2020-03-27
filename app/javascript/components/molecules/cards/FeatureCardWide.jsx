@@ -1,15 +1,14 @@
 import React from "react";
-import img from "images/exImage.png";
 
-export default function FeatureCardWide() {
+export default function FeatureCardWide({ card }) {
   return (
     <div className="feature-card-wide-wrapper">
       <div className="card-info">
-        <span>22.01.19</span>
-        <span className="property">онлайн выпуск</span>
+        <span>{card.publish_date}</span>
+        <span className="property">{card.caption ? card.caption : ""}</span>
       </div>
-      <img src={img} />
-      <h2>Название выпуска</h2>
+      {card.cover && <img src={card.cover} />}
+      <h2>{card.title}</h2>
     </div>
   );
 }

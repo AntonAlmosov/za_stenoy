@@ -4,6 +4,10 @@ export default function IndexTable(props) {
   return (
     <div className="table-wrapper">
       <TableHeader />
+      <TableRow
+        title={{ name: "Фичер главной", uri: "/feature/" }}
+        actions={[]}
+      />
       {props.pages &&
         props.pages.map(page => {
           let title = "";

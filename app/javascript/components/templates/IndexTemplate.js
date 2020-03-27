@@ -12,7 +12,7 @@ export default function IndexTemplate(props) {
     <>
       <HeaderOrganism logo={false} inverse={false} />
       <IndexStarter />
-      <IndexContent pages={props.pages} />
+      <IndexContent pages={props.pages} feature={props.feature} />
       <FooterOrganism />
     </>
   );
