@@ -11,12 +11,14 @@ class PageController < ApplicationController
     if feature_data
       issue = {}
       url = ''
+      caption = ''
       if feature_data.feature_type == 'offline_issue'
         issue = OfflineIssue.find(feature_data.origin_id)
         url = page_offline_issue_path(issue.page_id, issue.id)
       end
       if feature_data.feature_type == 'online_issue'
         issue = OnlineIssue.find(feature_data.origin_id)
+        caption = 'онлайн выпуск'
         url = page_online_issue_path(issue.page_id, issue.id)
       end
       if feature_data.feature_type == 'content'
@@ -25,9 +27,9 @@ class PageController < ApplicationController
       end
 
       if issue.cover.attached?
-        feat = {title: issue.title, publish_date: issue.publish_date, url: url, cover: polymorphic_url(issue.cover)}
+        feat = {title: issue.title, caption: caption,  publish_date: issue.publish_date, url: url, cover: polymorphic_url(issue.cover)}
       else
-        feat = {title: issue.title, publish_date: issue.publish_date, url: url}
+        feat = {title: issue.title, caption: caption,  publish_date: issue.publish_date, url: url}
       end
     end
     @feature = feat
