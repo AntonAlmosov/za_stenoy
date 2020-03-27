@@ -1,116 +1,243 @@
-.offline-issue-wrapper {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  .description-wrapper {
-    width: 34em;
-    height: 33.5em;
-    position: relative;
-    .description-inner {
-      overflow-y: scroll;
+@media (min-width: 512px) {
+  .offline-issue-wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .description-wrapper {
       width: 34em;
       height: 33.5em;
-      background: white;
-      &::-webkit-scrollbar {
-        display: none;
-      }
-      padding: 0 2em;
-      box-sizing: border-box;
-      h1 {
-        margin: 1em 0 1em;
-        font-size: 1.25em;
-        font-weight: 700;
-        color: black;
-      }
-      span {
-        font-size: 1em;
-        line-height: 1.2;
-        color: black;
-      }
-      .authors-block {
-        margin-top: 1.5em;
-        font-size: 1em;
-        color: black;
-        line-height: 1.2;
-        a {
+      position: relative;
+      .description-inner {
+        overflow-y: scroll;
+        width: 34em;
+        height: 33.5em;
+        background: white;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+        padding: 0 2em;
+        box-sizing: border-box;
+        h1 {
+          margin: 1em 0 1em;
+          font-size: 1.25em;
+          font-weight: 700;
+          color: black;
+        }
+        span {
+          font-size: 1em;
           line-height: 1.2;
           color: black;
         }
+        .authors-block {
+          margin-top: 1.5em;
+          font-size: 1em;
+          color: black;
+          line-height: 1.2;
+          a {
+            line-height: 1.2;
+            color: black;
+          }
+        }
+        p {
+          white-space: pre-wrap;
+          margin-top: 2em;
+          font-size: 1em;
+          line-height: 1.2;
+          color: black;
+          margin-bottom: 4em;
+        }
       }
-      p {
-        white-space: pre-wrap;
-        margin-top: 2em;
-        font-size: 1em;
-        line-height: 1.2;
-        color: black;
-        margin-bottom: 4em;
+      .description-menu {
+        position: absolute;
+        background-color: #fff;
+        bottom: 0;
+        left: 0;
+        padding: 1em 2em;
+        box-sizing: border-box;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        a {
+          color: black;
+          cursor: pointer;
+          text-decoration: underline;
+        }
       }
     }
-    .description-menu {
-      position: absolute;
-      background-color: #fff;
-      bottom: 0;
-      left: 0;
-      padding: 1em 2em;
-      box-sizing: border-box;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      a {
-        color: black;
-        cursor: pointer;
-        text-decoration: underline;
+    .issue-page {
+      width: 41.5em;
+      height: 28em;
+      position: relative;
+      &.margin {
+        margin-right: 39em;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+      }
+      .issue-page-switches-wrapper {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: space-between;
+        .page-switch {
+          width: 33%;
+          &.left {
+            cursor: w-resize;
+          }
+          &.right {
+            cursor: e-resize;
+          }
+        }
       }
     }
   }
-  .issue-page {
-    width: 41.5em;
-    height: 28em;
-    position: relative;
-    &.margin {
-      margin-right: 39em;
-    }
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center;
-    }
-    .issue-page-switches-wrapper {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      display: flex;
-      justify-content: space-between;
-      .page-switch {
-        width: 33%;
-        &.left {
-          cursor: w-resize;
-        }
-        &.right {
-          cursor: e-resize;
-        }
-      }
+  .bottom-menu {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    padding: 1em 2em;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    a {
+      font-size: 1.25em;
+      color: white;
+      text-decoration: underline;
+      cursor: pointer;
     }
   }
 }
-.bottom-menu {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100vw;
-  padding: 1em 2em;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: space-between;
-  a {
-    font-size: 1.25em;
-    color: white;
-    text-decoration: underline;
-    cursor: pointer;
+
+@media (max-width: 511px) {
+  .offline-issue-wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    .description-wrapper {
+      width: 100vw;
+      height: calc(100vh);
+      top: 4em;
+      position: relative;
+      background: white;
+      .description-inner {
+        overflow-y: scroll;
+        margin: 3.5em auto 15em;
+        width: 36em;
+        height: 100%;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+        box-sizing: border-box;
+        h1 {
+          margin-bottom: calc(#{$baseMobile} * 2);
+          font-size: 2em;
+          font-weight: 700;
+          color: black;
+        }
+        span {
+          font-size: 1.5em;
+          line-height: 1.2;
+          color: black;
+        }
+        .authors-block {
+          margin-top: calc(#{$baseMobile} * 2);
+          font-size: 1.5em;
+          color: black;
+          line-height: 1.33;
+          a {
+            font-size: 1.5em;
+            line-height: 1.33;
+            color: black;
+          }
+        }
+        p {
+          white-space: pre-wrap;
+          margin-top: calc(#{$baseMobile} * 2);
+          font-size: 1.5em;
+          line-height: 1.33;
+          color: black;
+          margin-bottom: 4em;
+        }
+      }
+      .description-menu {
+        position: fixed;
+        background-color: #fff;
+        width: 4.5em;
+        bottom: 0;
+        left: 0;
+        padding: 1em 2em;
+        box-sizing: border-box;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        a {
+          font-size: 2em;
+          color: black;
+          cursor: pointer;
+          text-decoration: underline;
+        }
+      }
+    }
+    .issue-page {
+      width: 36em;
+      height: 40vh;
+      position: relative;
+      &.moved {
+        display: none;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+      }
+      .issue-page-switches-wrapper {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: space-between;
+        .page-switch {
+          width: 45%;
+          &.left {
+            cursor: w-resize;
+          }
+          &.right {
+            cursor: e-resize;
+          }
+        }
+      }
+    }
+  }
+  .bottom-menu {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 4em;
+    padding: 1em 2em;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    a {
+      font-size: 2em;
+      color: white;
+      text-decoration: underline;
+      cursor: pointer;
+    }
   }
 }

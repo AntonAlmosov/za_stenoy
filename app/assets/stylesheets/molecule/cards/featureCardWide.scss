@@ -1,36 +1,78 @@
-.feature-card-wide-wrapper {
-  width: 74em;
-  height: 43em;
-  padding: 2em 4em;
-  box-sizing: border-box;
-  background-color: #000;
-  display: flex;
-  flex-flow: column;
-  justify-content: space-between;
-  user-select: none;
-  cursor: pointer;
-  .card-info {
+@media (min-width: 512px) {
+  .feature-card-wide-wrapper {
+    width: 74em;
+    height: 43em;
+    padding: 2em 4em;
+    box-sizing: border-box;
+    background-color: #000;
     display: flex;
+    flex-flow: column;
     justify-content: space-between;
-    span {
-      line-height: 2;
-      font-size: 1em;
-      color: #cccccc;
-      &.property {
-        color: #cc3434;
+    user-select: none;
+    cursor: pointer;
+    .card-info {
+      display: flex;
+      justify-content: space-between;
+      span {
+        line-height: 2;
+        font-size: 1em;
+        color: #cccccc;
+        &.property {
+          color: #cc3434;
+        }
       }
     }
+    img {
+      width: 46em;
+      height: 26em;
+      margin: 0 auto;
+      object-fit: contain;
+      object-position: center;
+    }
+    h2 {
+      line-height: 2;
+      font-size: 1em;
+      color: #fff;
+    }
   }
-  img {
-    width: 46em;
-    height: 26em;
-    margin: 0 auto;
-    object-fit: contain;
-    object-position: center;
-  }
-  h2 {
-    line-height: 2;
-    font-size: 1em;
-    color: #fff;
+}
+
+@media (max-width: 511px) {
+  .feature-card-wide-wrapper {
+    width: 40em;
+    height: 31em;
+    padding: 2em 2em;
+    box-sizing: border-box;
+    background-color: #000;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    user-select: none;
+    cursor: pointer;
+    .card-info {
+      display: flex;
+      justify-content: space-between;
+      span {
+        line-height: 1.33;
+        font-size: 1.5em;
+        color: #cccccc;
+        &.property {
+          color: #cc3434;
+        }
+      }
+    }
+    img {
+      width: 20em;
+      height: 16em;
+      margin: 0 auto;
+      object-fit: contain;
+      object-position: center;
+    }
+    h2 {
+      line-height: 1.33;
+      font-size: 1.5em;
+      font-weight: 500;
+      color: #fff;
+    }
   }
 }

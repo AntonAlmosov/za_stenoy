@@ -6,6 +6,16 @@ import HeaderTemplate from "../organisms/HeaderOrganism";
 export default ({ issue, pages, authors, inversed }) => {
   const [page, setPage] = React.useState(0);
   const [opened, setOpened] = React.useState(false);
+  const [isInversed, setIsInversed] = React.useState(inversed);
+
+  React.useEffect(() => {
+    if (opened && window.innerWidth < 511) {
+      setIsInversed(false);
+    }
+    if (!opened && window.innerWidth < 511) {
+      setIsInversed(true);
+    }
+  }, [opened]);
 
   const handlePageSwitch = nextPage => {
     if (nextPage && page !== pages.length - 1) {
@@ -23,7 +33,7 @@ export default ({ issue, pages, authors, inversed }) => {
 
   return (
     <>
-      <HeaderTemplate inverse={inversed} logo />
+      <HeaderTemplate inverse={isInversed} logo />
       <div className="offline-issue-wrapper">
         <div className={"issue-page" + (opened ? " moved" : "")}>
           <img src={pages[page]} />

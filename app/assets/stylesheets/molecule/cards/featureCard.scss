@@ -1,36 +1,94 @@
-.feature-card-wrapper {
-  width: 70em;
-  height: 43em;
-  padding: 2em 4em;
-  box-sizing: border-box;
-  background-color: #000;
-  display: flex;
-  flex-flow: column;
-  justify-content: space-between;
-  cursor: pointer;
-  user-select: none;
-  .card-info {
+@media (min-width: 512px) {
+  .feature-card-wrapper {
+    width: 70em;
+    height: 43em;
+    padding: 2em 4em;
+    box-sizing: border-box;
+    background-color: #000;
     display: flex;
+    flex-flow: column;
     justify-content: space-between;
-    span {
-      line-height: 2;
-      font-size: 1em;
-      color: #cccccc;
-      &.property {
-        color: #cc3434;
+    cursor: pointer;
+    user-select: none;
+    .card-info {
+      display: flex;
+      justify-content: space-between;
+      span {
+        line-height: 2;
+        font-size: 1em;
+        color: #cccccc;
+        &.property {
+          color: #cc3434;
+        }
       }
     }
+    img {
+      width: 46em;
+      height: 26em;
+      margin: 0 auto;
+      object-fit: contain;
+      object-position: center;
+    }
+    h2 {
+      line-height: 2;
+      font-size: 1em;
+      color: #fff;
+    }
   }
-  img {
-    width: 46em;
-    height: 26em;
-    margin: 0 auto;
-    object-fit: contain;
-    object-position: center;
-  }
-  h2 {
-    line-height: 2;
-    font-size: 1em;
-    color: #fff;
+}
+
+@media (max-width: 511px) {
+  .feature-card-wrapper {
+    width: 36em;
+    height: 28.75em;
+    padding: 2em 2em;
+    box-sizing: border-box;
+    background-color: #000;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    cursor: pointer;
+    user-select: none;
+    .card-info {
+      display: flex;
+      justify-content: space-between;
+      span {
+        line-height: 1.33;
+        font-size: 1.5em;
+        color: #cccccc;
+        &.property {
+          color: #cc3434;
+        }
+      }
+    }
+    img {
+      width: 26em;
+      height: 13.75em;
+      margin: 0 auto;
+      object-fit: contain;
+      object-position: center;
+    }
+    h2 {
+      line-height: 1.33;
+      font-size: 2em;
+      color: #fff;
+    }
+    .text-preview {
+      width: 20.25em;
+      height: 7em;
+      overflow: hidden;
+      margin: 0 auto;
+      p {
+        font-size: 0.75em;
+        line-height: 1.33;
+        color: #fff;
+      }
+    }
+    b {
+      font-weight: 700;
+    }
+    i {
+      font-style: italic;
+    }
   }
 }

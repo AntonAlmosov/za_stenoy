@@ -1,14 +1,34 @@
-.starters-heading-big {
-  line-height: 1.02;
-  font-size: 10em;
-  text-align: center;
-  letter-spacing: -0.055em;
-  user-select: none;
+@media (min-width: 512px) {
+  .starters-heading-big {
+    line-height: 1.02;
+    font-size: 10em;
+    text-align: center;
+    letter-spacing: -0.055em;
+  }
+
+  .starters-heading-small {
+    font-size: 6.5em;
+    line-height: 1;
+    text-align: center;
+    letter-spacing: -0.03em;
+  }
 }
 
-.starters-heading-small {
-  font-size: 6.5em;
-  line-height: 1;
-  text-align: center;
-  letter-spacing: -0.03em;
+@media (max-width: 511px) {
+  .starters-heading-big {
+    line-height: 1.02;
+    font-size: 5.5em;
+    text-align: center;
+    letter-spacing: -0.055em;
+    user-select: none;
+    word-break: break-all;
+  }
+
+  .starters-heading-small {
+    font-size: 5.5em;
+    word-break: break-all;
+    line-height: 1;
+    text-align: center;
+    letter-spacing: -0.03em;
+  }
 }

@@ -1,50 +1,105 @@
-.about-wrapper {
-  margin: 7em auto 5em;
-  width: 34em;
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  .flags {
-    width: 100%;
-  }
-  h1 {
-    margin-top: 1.33em;
-    font-size: 1.5em;
-    line-height: 1;
-    text-align: center;
-  }
-  .about-cover {
-    width: 26em;
-    height: 14.75em;
-    margin: 3.5em auto 3.75em;
-  }
-  .description {
-    width: 100%;
-    p {
-      font-size: 1em;
-      line-height: 1.2;
-      padding-top: 0.2em;
-      white-space: pre-wrap;
-      b {
-        font-weight: 700;
+@media (min-width: 512px) {
+  .about-wrapper {
+    margin: 7em auto 5em;
+    width: 34em;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    .flags {
+      width: 100%;
+    }
+    h1 {
+      margin-top: 1.33em;
+      font-size: 1.5em;
+      line-height: 1;
+      text-align: center;
+    }
+    .about-cover {
+      width: 26em;
+      height: 14.75em;
+      margin: 3.5em auto 3.75em;
+    }
+    .description {
+      width: 100%;
+      p {
+        font-size: 1em;
+        line-height: 1.2;
+        padding-top: 0.2em;
+        white-space: pre-wrap;
+        b {
+          font-weight: 700;
+        }
+        i {
+          font-style: italic;
+        }
       }
-      i {
-        font-style: italic;
-      }
+    }
+  }
+
+  .about-footer {
+    margin: 15em auto 8em;
+    width: 15em;
+    a {
+      display: block;
+      text-align: center;
+      font-size: 1.25em;
+      line-height: 1.6;
+      margin-top: 0.4em;
+      text-decoration: none;
+      color: black;
     }
   }
 }
 
-.about-footer {
-  margin: 15em auto 8em;
-  width: 15em;
-  a {
-    display: block;
-    text-align: center;
-    font-size: 1.25em;
-    line-height: 1.6;
-    margin-top: 0.4em;
-    text-decoration: none;
-    color: black;
+@media (max-width: 511px) {
+  .about-wrapper {
+    margin: 10em auto 5em;
+    width: 36em;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    .flags {
+      width: 100%;
+    }
+    h1 {
+      margin-top: 1.33em;
+      font-size: 2em;
+      line-height: 1;
+      text-align: center;
+    }
+    .about-cover {
+      width: 36em;
+      height: 18em;
+      margin: 2.75em auto 3em;
+    }
+    .description {
+      width: 100%;
+      p {
+        font-size: 1.5em;
+        line-height: 1.33;
+        padding-top: 0.2em;
+        white-space: pre-wrap;
+        b {
+          font-weight: 700;
+        }
+        i {
+          font-style: italic;
+        }
+      }
+    }
+  }
+
+  .about-footer {
+    margin: 7em auto 7em;
+    width: 36em;
+    a {
+      display: block;
+      text-align: center;
+      font-size: 1.5em;
+      line-height: 1.6;
+      margin-top: $baseMobile;
+      text-decoration: none;
+      color: black;
+    }
   }
 }

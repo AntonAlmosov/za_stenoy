@@ -1,16 +1,38 @@
-.index-card {
-  width: 34.5em;
-  margin-top: 2em;
-  user-select: none;
-  a {
-    color: black;
-    font-size: 1em;
-    line-height: 1.5;
-    &:hover {
-      text-decoration: none;
+@media (min-width: 512px) {
+  .index-card {
+    width: 34.5em;
+    margin-top: 2em;
+    user-select: none;
+    a {
+      color: black;
+      font-size: 1em;
+      line-height: 1.5;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+    .compilation-card-wrapper {
+      margin-top: 1.5em;
     }
   }
-  .compilation-card-wrapper {
-    margin-top: 1.5em;
+}
+
+@media (max-width: 511px) {
+  .index-card {
+    width: 36em;
+    margin-top: 3em;
+    user-select: none;
+    a {
+      color: black;
+      font-size: 2em;
+      line-height: 1;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+    .compilation-card-wrapper {
+      font-size: $baseMobile;
+      margin-top: 2em;
+    }
   }
 }

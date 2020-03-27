@@ -1,16 +1,37 @@
-.index-content {
-  margin: 5.875em auto 0;
-  a {
-    text-decoration: none;
-  }
-  .index-cards-wrapper {
+@media (min-width: 512px) {
+  .index-content {
+    margin: 5.875em auto 0;
     a {
-      text-decoration: underline;
+      text-decoration: none;
     }
-    display: flex;
-    width: 70em;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin: 0 auto;
+    .index-cards-wrapper {
+      a {
+        text-decoration: underline;
+      }
+      display: flex;
+      width: 70em;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin: 0 auto;
+    }
+  }
+}
+
+@media (max-width: 511px) {
+  .index-content {
+    margin: 3.5em auto 0;
+    a {
+      text-decoration: none;
+    }
+    .index-cards-wrapper {
+      a {
+        text-decoration: underline;
+      }
+      display: flex;
+      width: 36em;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin: 0 auto;
+    }
   }
 }

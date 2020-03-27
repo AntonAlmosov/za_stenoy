@@ -1,40 +1,85 @@
-.user-profile-content-wrapper {
-  margin-top: 1em;
-  .list-view-wrapper {
-    width: 70em;
-    margin: 4em auto 0;
-    display: flex;
-    flex-flow: column;
-    h2 {
-      line-height: 1.25;
-      font-size: 1em;
-      margin-bottom: 1.25em;
-      color: #fff;
-    }
-    a {
-      color: #fff;
-      font-size: 1em;
-      line-height: 1.25;
-      margin-top: 0.25em;
-      &:hover {
-        text-decoration: none;
+@media (min-width: 512px) {
+  .user-profile-content-wrapper {
+    margin-top: 1em;
+    .list-view-wrapper {
+      width: 70em;
+      margin: 4em auto 0;
+      display: flex;
+      flex-flow: column;
+      h2 {
+        line-height: 1.25;
+        font-size: 1em;
+        margin-bottom: 1.25em;
+        color: #fff;
+      }
+      a {
+        color: #fff;
+        font-size: 1em;
+        line-height: 1.25;
+        margin-top: 0.25em;
+        &:hover {
+          text-decoration: none;
+        }
       }
     }
-  }
-  .card-view-wrapper {
-    width: 70em;
-    margin: 4em auto 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    a {
-      text-decoration: none;
+    .card-view-wrapper {
+      width: 70em;
+      margin: 4em auto 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      a {
+        text-decoration: none;
+      }
+      .compilation-card-wrapper {
+        box-sizing: border-box;
+        border: #595959 solid 0.0625em;
+        margin-bottom: 1em;
+      }
     }
-    .compilation-card-wrapper {
-      box-sizing: border-box;
-      border: #595959 solid 0.0625em;
-      margin-bottom: 1em;
-    }
+    margin-bottom: 1em;
   }
-  margin-bottom: 1em;
+}
+
+@media (max-width: 512px) {
+  .user-profile-content-wrapper {
+    margin-top: 3em;
+    .list-view-wrapper {
+      width: 36em;
+      margin: 4em auto 0;
+      display: flex;
+      flex-flow: column;
+      h2 {
+        line-height: 1.33;
+        font-size: 1.5em;
+        margin-bottom: calc(#{$baseMobile} * 2);
+        color: #fff;
+      }
+      a {
+        color: #fff;
+        font-size: 1.5em;
+        line-height: 1.5;
+        margin-top: $baseMobile;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+    .card-view-wrapper {
+      width: 36em;
+      margin: 4em auto 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      a {
+        text-decoration: none;
+      }
+      .compilation-card-wrapper {
+        box-sizing: border-box;
+        border: #595959 solid 0.0625em;
+        margin-bottom: calc(#{$baseMobile} * 3);
+      }
+    }
+    margin-bottom: 2em;
+  }
 }

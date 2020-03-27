@@ -1,4 +1,13 @@
-.user-profile-starter-wrapper {
-  width: 70em;
-  margin: 7em auto 0;
+@media (min-width: 512px) {
+  .user-profile-starter-wrapper {
+    width: 70em;
+    margin: 7em auto 0;
+  }
+}
+
+@media (max-width: 511px) {
+  .user-profile-starter-wrapper {
+    width: 36em;
+    margin: 8em auto 0;
+  }
 }
