@@ -11,25 +11,29 @@ class PageController < ApplicationController
     if feature_data
       issue = {}
       url = ''
+      publish_date = ''
       caption = ''
       if feature_data.feature_type == 'offline_issue'
         issue = OfflineIssue.find(feature_data.origin_id)
+        publish_date = issue.publish_date
         url = page_offline_issue_path(issue.page_id, issue.id)
       end
       if feature_data.feature_type == 'online_issue'
         issue = OnlineIssue.find(feature_data.origin_id)
         caption = 'онлайн выпуск'
+        publish_date = issue.updated_at.to_s(:custom_datetime)
         url = page_online_issue_path(issue.page_id, issue.id)
       end
       if feature_data.feature_type == 'content'
         issue = Content.find(feature_data.origin_id)
+        publish_date = issue.updated_at.to_s(:custom_datetime)
         url = page_compilation_path(issue.page_id, issue.id)
       end
 
       if issue.cover.attached?
-        feat = {title: issue.title, caption: caption,  publish_date: issue.publish_date, url: url, cover: polymorphic_url(issue.cover)}
+        feat = {title: issue.title, caption: caption,  publish_date: publish_date, url: url, cover: polymorphic_url(issue.cover)}
       else
-        feat = {title: issue.title, caption: caption,  publish_date: issue.publish_date, url: url}
+        feat = {title: issue.title, caption: caption,  publish_date: publish_date, url: url}
       end
     end
     @feature = feat
@@ -38,7 +42,7 @@ class PageController < ApplicationController
       if page.page_type == 'personal_projects'
         comp = page.compilations.find_by(featured: true)
         if comp and comp.cover.attached? 
-          feature = {title: comp.title, cover: polymorphic_url(comp.cover), date: comp.created_at.to_s(:custom_datetime)}
+          feature = {title: comp.title, cover: polymorphic_url(comp.cover), date: comp.updated_at.to_s(:custom_datetime)}
         end
       end
 
@@ -49,14 +53,14 @@ class PageController < ApplicationController
         if offline and offline.cover.attached?
           feature = {title: offline.title, cover: polymorphic_url(offline.cover), date: offline.publish_date}
         elsif online and online.cover.attached?
-          feature = {title: online.title, cover: polymorphic_url(online.cover), date: online.created_at.to_s(:custom_datetime), caption: 'онлайн выпуск'}
+          feature = {title: online.title, cover: polymorphic_url(online.cover), date: online.updated_at.to_s(:custom_datetime), caption: 'онлайн выпуск'}
         end
       end
 
       if page.page_type == 'shop'
         product = page.products.last
         if product and product.cover.attached?
-          feature = {title: product.name, cover: polymorphic_url(product.cover), date: product.created_at.to_s(:custom_datetime), caption: product.price}
+          feature = {title: product.name, cover: polymorphic_url(product.cover), date: product.updated_at.to_s(:custom_datetime), caption: product.price}
         end
       end
 
@@ -76,17 +80,17 @@ class PageController < ApplicationController
     if @page.page_type == 'personal_projects'
       @page.compilations.where(published: true, featured: false).each do |comp|
         if comp.cover.attached?
-          @content.push({url: page_compilation_path(@page.id, comp.id), title: comp.title, cover: polymorphic_url(comp.cover), date: comp.created_at.to_s(:custom_datetime)})
+          @content.push({url: page_compilation_path(@page.id, comp.id), title: comp.title, cover: polymorphic_url(comp.cover), date: comp.updated_at.to_s(:custom_datetime)})
         else
-          @content.push({url: page_compilation_path(@page.id, comp.id), title: comp.title, date: comp.created_at.to_s(:custom_datetime)})
+          @content.push({url: page_compilation_path(@page.id, comp.id), title: comp.title, date: comp.updated_at.to_s(:custom_datetime)})
         end
       end
       f = @page.compilations.find_by(featured: true)
       if f
         if f.cover.attached?
-          @feature = {url: page_compilation_path(@page.id, f.id), title: f.title, cover: polymorphic_url(f.cover), date: f.created_at.to_s(:custom_datetime)}
+          @feature = {url: page_compilation_path(@page.id, f.id), title: f.title, cover: polymorphic_url(f.cover), date: f.updated_at.to_s(:custom_datetime)}
         else
-          @feature = {url: page_compilation_path(@page.id, f.id), title: f.title, date: f.created_at.to_s(:custom_datetime)}
+          @feature = {url: page_compilation_path(@page.id, f.id), title: f.title, date: f.updated_at.to_s(:custom_datetime)}
         end
       else
         @feature = false
