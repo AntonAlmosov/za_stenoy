@@ -6,7 +6,7 @@ import flags from "images/flags-black.svg";
 export default function IndexTemplate({ page, initialCover }) {
   const desc = JSON.parse(page.description).blocks;
   React.useEffect(() => {
-    document.title = "О НАС";
+    document.title = "О НАС" + " — Культурный проект «ФЛАГИ»";
   }, []);
   return (
     <>

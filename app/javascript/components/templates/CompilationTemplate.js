@@ -7,7 +7,7 @@ import CompilationContent from "../organisms/Content/CardsContent.jsx";
 
 export default function CompilationTemplate(props) {
   React.useEffect(() => {
-    document.title = props.page.title;
+    document.title = props.page.title + " — Культурный проект «ФЛАГИ»";
   }, []);
   return (
     <>

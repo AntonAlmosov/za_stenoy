@@ -13,7 +13,7 @@ export default function CompilationTemplate({
 }) {
   React.useEffect(() => {
     if (inversed) document.body.classList.add("bg-black");
-    document.title = page.title;
+    document.title = page.title + " — Культурный проект «ФЛАГИ»";
   }, []);
   return (
     <>

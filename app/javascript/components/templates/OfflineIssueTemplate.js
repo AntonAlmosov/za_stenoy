@@ -18,7 +18,7 @@ export default ({ issue, pages, authors, inversed }) => {
 
   React.useEffect(() => {
     if (inversed) document.body.classList.add("bg-black");
-    document.title = issue.title;
+    document.title = issue.title + " — Культурный проект «ФЛАГИ»";
   }, []);
 
   return (

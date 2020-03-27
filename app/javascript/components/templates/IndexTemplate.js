@@ -6,7 +6,7 @@ import IndexContent from "../organisms/Content/IndexContent.jsx";
 
 export default function IndexTemplate(props) {
   React.useEffect(() => {
-    document.title = "ИЗДАТЕЛЬСТВО «ФЛАГИ»";
+    document.title = "Культурный проект «ФЛАГИ»";
   }, []);
   return (
     <>

@@ -7,6 +7,7 @@ import ListCardContent from "../organisms/Content/ListCardContent.jsx";
 export default function UserProfileTemplate({ pieces, author }) {
   React.useEffect(() => {
     document.body.classList.add("bg-black");
+    document.title = author.name + " — Культурный проект «ФЛАГИ»";
   }, []);
 
   return (

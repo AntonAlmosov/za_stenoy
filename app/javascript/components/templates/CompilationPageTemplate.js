@@ -8,7 +8,7 @@ import ListCardContent from "../organisms/Content/ListCardContent.jsx";
 export default function CompilationTemplate(props) {
   React.useEffect(() => {
     if (props.inversed) document.body.classList.add("bg-black");
-    document.title = props.compilation.title;
+    document.title = props.compilation.title + " — Культурный проект «ФЛАГИ»";
   }, []);
   return (
     <>
