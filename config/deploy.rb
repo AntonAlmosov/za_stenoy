@@ -27,7 +27,6 @@ namespace :deploy do
     end
    end
 end
-
 append :linked_dirs, 'storage'
 
 # Optionally, you can symlink your database.yml and/or secrets.yml file from the shared directory during deploy

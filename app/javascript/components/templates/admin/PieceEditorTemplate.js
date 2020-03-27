@@ -102,10 +102,10 @@ export default function PieceEditorTemplate({
           margin: "7em auto 7em",
         }}
       >
-        <div style={{ margin: "0 auto 2em", width: "60em" }}>
+        <div style={{ margin: "0 auto 2em", width: "27.5em" }}>
           <ImagePicker
-            width="60em"
-            height="25.5em"
+            width="27.5em"
+            height="15.5em"
             cover={cover}
             setCover={setCover}
           />
