@@ -22,11 +22,21 @@ class FeatureController < ApplicationController
   def create
     f = Feature.first
 
-    if f.feature_type == params[:feature_type] and f.origin_id == [:origin_id]
-      Feature.destroy_all
-      render :json => {feature_type: '', origin_id: ''}
+    if f
+      if f.feature_type == params[:feature_type] and f.origin_id == [:origin_id]
+        Feature.destroy_all
+        render :json => {feature_type: '', origin_id: ''}
+      else
+        Feature.destroy_all
+        feature = Feature.new()
+        feature.feature_type = params[:feature_type]
+        feature.origin_id = params[:origin_id]
+    
+        if feature.save!
+          render :json => {feature_type: feature.feature_type, origin_id: feature.origin_id}
+        end
+      end
     else
-      Feature.destroy_all
       feature = Feature.new()
       feature.feature_type = params[:feature_type]
       feature.origin_id = params[:origin_id]
