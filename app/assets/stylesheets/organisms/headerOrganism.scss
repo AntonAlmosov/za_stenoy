@@ -54,6 +54,10 @@
   height: calc(100vh - 4em);
   background-color: #000;
   z-index: 999;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .search-wrapper {
@@ -88,6 +92,7 @@
 
   .additional-search-wrapper {
     margin-top: 7em;
+    margin-bottom: 10em;
     display: flex;
     justify-content: space-between;
     .additional-search {
@@ -111,11 +116,6 @@
       }
       .additional-results {
         width: 15em;
-        height: calc(100vh - 32.25em);
-        overflow-y: scroll;
-        &::-webkit-scrollbar {
-          display: none;
-        }
         margin: 2em auto 0;
         a {
           font-size: 1em;

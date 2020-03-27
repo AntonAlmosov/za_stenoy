@@ -9,16 +9,16 @@ export default function IndexContent({ pages }) {
       <FeatureCardWide />
       <div className="index-cards-wrapper">
         <IndexCard
-          name={pages[1].title}
-          uri={"/page/" + pages[1].slug}
-          key={pages[1].slug}
-          card={pages[1].feature}
-        />
-        <IndexCard
           name={pages[2].title}
           uri={"/page/" + pages[2].slug}
           key={pages[2].slug}
           card={pages[2].feature}
+        />
+        <IndexCard
+          name={pages[1].title}
+          uri={"/page/" + pages[1].slug}
+          key={pages[1].slug}
+          card={pages[1].feature}
         />
         <IndexCard
           name={pages[0].title}
