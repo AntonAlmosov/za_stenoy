@@ -1,2 +1,0 @@
-class PageFeature < ApplicationRecord
-end
