@@ -1,15 +1,15 @@
 <% if @page.page_type == 'personal_projects' %>
-  <%= react_component("templates/CompilationTemplate", {page: @page, content: @content, feature: @feature}, {prerender: true}) %>
+  <%= react_component("templates/CompilationTemplate", {page: @page, content: @content, editPath: @edit_path, feature: @feature}, {prerender: true}) %>
 <% end %>
 <% if @page.page_type == 'magasine' %>
-  <%= react_component("templates/MagasineTemplate", {page: @page, content: @content, feature: @feature}, {prerender: true}) %>
+  <%= react_component("templates/MagasineTemplate", {page: @page, content: @content, editPath: @edit_path, feature: @feature}, {prerender: true}) %>
 <% end %>
 <% if @page.page_type == 'magasine_inversed' %>
-  <%= react_component("templates/MagasineTemplate", {page: @page, content: @content, feature: @feature, inversed: true}, {prerender: true}) %>
+  <%= react_component("templates/MagasineTemplate", {page: @page, content: @content, editPath: @edit_path, feature: @feature, inversed: true}, {prerender: true}) %>
 <% end %>
 <% if @page.page_type == 'shop' %>
-  <%= react_component("templates/ShopTemplate", {page: @page, content: @content}, {prerender: true}) %>
+  <%= react_component("templates/ShopTemplate", {page: @page, content: @content, editPath: @edit_path}, {prerender: true}) %>
 <% end %>
 <% if @page.page_type == 'about_us' %>
-  <%= react_component("templates/AboutTemplate", {page: @page, initialCover: @cover}, {prerender: true}) %>
+  <%= react_component("templates/AboutTemplate", {page: @page, initialCover: @cover, editPath: @edit_path}, {prerender: true}) %>
 <% end %>

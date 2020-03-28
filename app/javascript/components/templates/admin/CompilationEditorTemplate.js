@@ -12,7 +12,8 @@ export default ({
   postPath,
   origin,
   initialPieces,
-  backUri,
+  backPath,
+  closePath,
 }) => {
   const [saveText, setSaveText] = React.useState("Сохранить");
   const [title, setTitle] = React.useState(compilation.title);
@@ -88,7 +89,8 @@ export default ({
   return (
     <>
       <HeaderAdminOrganism
-        backShown
+        backShown={backPath}
+        closeShown={closePath}
         onDoneClick={handleSubmit}
         doneActive={title && caption && cover && compilationPieces.length}
         doneText={saveText}

@@ -18,6 +18,8 @@ export default function PieceEditorTemplate({
   coverUrl,
   postPath,
   origin,
+  closePath,
+  backPath,
 }) {
   const [title, setTitle] = React.useState(piece.title);
   const [text, setText] = React.useState(JSON.parse(piece.text));
@@ -94,7 +96,8 @@ export default function PieceEditorTemplate({
   return (
     <>
       <HeaderAdminOrganism
-        backShown
+        backShown={backPath}
+        closeShown={closePath || false}
         onDoneClick={handleSubmit}
         doneActive={title && text && date && authors.length}
         doneText={saveText}

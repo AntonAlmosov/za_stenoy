@@ -28,7 +28,7 @@ export default function FeatureTemplate({ initialFeature, content }) {
 
   return (
     <>
-      <HeaderAdminOrganism closeShown backShown />
+      <HeaderAdminOrganism closeShown={"/"} backShown="js" />
       <AdminStarter title={"Фичер главной"} />
       <IssueTable
         feature={feature}

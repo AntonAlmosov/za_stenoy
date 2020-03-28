@@ -7,7 +7,10 @@ import ShopTable from "../../organisms/tables/ShopTable.jsx";
 export default function ShopTemplate(props) {
   return (
     <>
-      <HeaderAdminOrganism closeShown backShown />
+      <HeaderAdminOrganism
+        closeShown={props.closePath}
+        backShown={props.backPath}
+      />
       <AdminStarter title={props.page.title} />
       <ShopActions />
       <ShopTable />

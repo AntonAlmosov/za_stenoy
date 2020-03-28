@@ -6,7 +6,13 @@ import axios from "axios";
 import HeaderAdminOrganism from "../../organisms/HeaderAdminOrganism.jsx";
 import ImagePicker from "../../molecules/misc/ImagePicker";
 
-export default function EditTemplate({ page, initialCover, postUrl, token }) {
+export default function EditTemplate({
+  page,
+  initialCover,
+  postUrl,
+  token,
+  closePath,
+}) {
   const [description, setDescription] = React.useState(
     JSON.parse(page.description || '{"blocks": []}')
   );
@@ -59,7 +65,8 @@ export default function EditTemplate({ page, initialCover, postUrl, token }) {
   return (
     <>
       <HeaderAdminOrganism
-        backShown
+        backShown={"/admin"}
+        closeShown={closePath}
         doneActive={description}
         doneText={saveText}
         onDoneClick={() => handleSubmit()}

@@ -7,7 +7,10 @@ import MagasineTable from "../../organisms/tables/MagasineTable.jsx";
 export default function MagasineTemplate(props) {
   return (
     <>
-      <HeaderAdminOrganism closeShown backShown />
+      <HeaderAdminOrganism
+        closeShown={props.closePath}
+        backShown={props.backPath}
+      />
       <AdminStarter title={props.page.title} />
       <MagasineActions slug={props.page.slug} />
       <MagasineTable slug={props.page.slug} id={props.page.id} />

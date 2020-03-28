@@ -4,16 +4,15 @@ export default function HeaderAdminOrganism(props) {
   return (
     <div className="header-wrapper">
       <div className="header">
-        <a
-          onClick={() => {
-            window.history.back();
-            // window.location.reload();
-          }}
-        >
-          {props.backShown ? "Назад" : ""}
-        </a>
+        {props.backShown == "js" ? (
+          <a onClick={() => window.history.back()}>
+            {props.backShown ? "Назад" : ""}
+          </a>
+        ) : (
+          <a href={props.backShown}>{props.backShown ? "Назад" : ""}</a>
+        )}
         {props.closeShown && (
-          <a href="/" className="close">
+          <a href={props.closeShown} className="close">
             {"Close"}
           </a>
         )}

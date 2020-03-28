@@ -10,7 +10,7 @@ export default function IndexTemplate(props) {
   }, []);
   return (
     <>
-      <HeaderOrganism logo={false} inverse={false} />
+      <HeaderOrganism logo={false} inverse={false} editPath={props.editPath} />
       <IndexStarter />
       <IndexContent pages={props.pages} feature={props.feature} />
       <FooterOrganism />

@@ -6,7 +6,7 @@ import IndexTable from "../../organisms/tables/IndexTable.jsx";
 export default function IndexTemplate(props) {
   return (
     <>
-      <HeaderAdminOrganism closeShown />
+      <HeaderAdminOrganism closeShown={props.closePath} />
       <IndexAdminStarter />
       <IndexTable pages={props.pages} />
     </>

@@ -7,7 +7,10 @@ import PersonalProjectsTable from "../../organisms/tables/PersonalProjectsTable.
 export default function PersonalProjectsTemplate(props) {
   return (
     <>
-      <HeaderAdminOrganism closeShown backShown />
+      <HeaderAdminOrganism
+        closeShown={props.closePath}
+        backShown={props.backPath}
+      />
       <AdminStarter title={props.page.title} />
       <PersonalProjectsActions />
       <PersonalProjectsTable />

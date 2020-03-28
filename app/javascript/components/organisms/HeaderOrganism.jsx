@@ -4,7 +4,7 @@ import logoInversed from "images/logo-inverse.svg";
 import flgasImage from "images/flags.svg";
 import axios from "axios";
 
-export default function HeaderTemplate({ logo, inverse }) {
+export default function HeaderTemplate({ logo, inverse, editPath }) {
   const [searchOpened, setSearchOpened] = React.useState(false);
   const [menuOpened, setMenuOpened] = React.useState(false);
   const [pages, setPages] = React.useState([]);
@@ -13,7 +13,6 @@ export default function HeaderTemplate({ logo, inverse }) {
     projects: [],
     authors: [],
   });
-  const [auth, setAuth] = React.useState(false);
 
   React.useEffect(() => {
     axios.get("/menu").then(data => setPages(data.data));
@@ -21,17 +20,13 @@ export default function HeaderTemplate({ logo, inverse }) {
     axios.get("/menu/get_data").then(res => {
       setData(res.data);
     });
-    axios.get("/menu/check_authentication").then(res => {
-      setAuth(res.data.authenticated);
-      console.log(res.data.authenticated);
-    });
   }, []);
 
   return (
     <>
       <HeaderRow
         logo={logo}
-        auth={auth}
+        editPath={editPath}
         inverse={searchOpened || menuOpened ? true : inverse}
         search={{ status: searchOpened, setSearchOpened }}
         menu={{ status: menuOpened, setMenuOpened }}
@@ -42,7 +37,7 @@ export default function HeaderTemplate({ logo, inverse }) {
   );
 }
 
-function HeaderRow({ logo, inverse, search, menu, auth }) {
+function HeaderRow({ logo, inverse, search, menu, editPath }) {
   return (
     <div className={"header-wrapper " + (inverse && "inverse")}>
       <div className="header">
@@ -54,13 +49,13 @@ function HeaderRow({ logo, inverse, search, menu, auth }) {
         >
           {search.status ? "Закрыть" : "Поиск"}
         </a>
-        {logo && !menu.status && !search.status && !auth && (
+        {logo && !menu.status && !search.status && !editPath && (
           <a href="/" className="logo">
             <img src={inverse ? logoInversed : logoImage} />
           </a>
         )}
-        {auth && !menu.status && !search.status && (
-          <a href="/admin" className="close">
+        {editPath && !menu.status && !search.status && (
+          <a href={editPath} className="close">
             Admin
           </a>
         )}

@@ -10,6 +10,7 @@ export default function CompilationTemplate({
   inversed,
   content,
   feature,
+  editPath,
 }) {
   React.useEffect(() => {
     if (inversed) document.body.classList.add("bg-black");
@@ -17,7 +18,7 @@ export default function CompilationTemplate({
   }, []);
   return (
     <>
-      <HeaderTemplate inverse={inversed} logo />
+      <HeaderTemplate inverse={inversed} logo editPath={editPath} />
       <MagasineStarter page={page} />
       <CardsContent cards={content || []} feature={feature} />
       <FooterOrganism />

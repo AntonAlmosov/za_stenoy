@@ -9,7 +9,7 @@ export default function IndexTemplate(props) {
   }, []);
   return (
     <>
-      <HeaderOrganism logo />
+      <HeaderOrganism logo editPath={props.editPath} />
       <PieceContent {...props} />
       <FooterOrganism />
     </>

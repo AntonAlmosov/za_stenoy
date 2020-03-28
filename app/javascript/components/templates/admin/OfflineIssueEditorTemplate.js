@@ -19,6 +19,8 @@ export default ({
   origin,
   initialAuthors,
   initialPages,
+  closePath,
+  backPath,
 }) => {
   const [saveText, setSaveText] = React.useState("Сохранить");
   const [title, setTitle] = React.useState(issue.title);
@@ -174,7 +176,8 @@ export default ({
   return (
     <>
       <HeaderAdminOrganism
-        backShown
+        backShown={backPath}
+        closeShown={closePath}
         onDoneClick={handleSubmit}
         doneActive={
           title && cover && authors.length && description && publishDate

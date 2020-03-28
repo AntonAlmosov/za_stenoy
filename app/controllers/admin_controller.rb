@@ -4,25 +4,18 @@ class AdminController < ApplicationController
 
   def index
     @pages = Page.all.sort_by(&:created_at)
+    @close_path = page_index_path
   end
 
   def show
     @page = Page.friendly.find(params[:id])
-  end
-
-  def edit
-    @token = @verifier.generate("upload", :admin)
-
-    @page = Page.friendly.find(params[:id])
-    @cover = ''
-    if @page.cover.attached?
-      @cover = polymorphic_url(@page.cover)
-    end
-    @post_path = admin_path(@page.id)
+    @close_path = page_path(@page.id)
+    @back_path = admin_index_path
   end
 
   def edit
     @page = Page.friendly.find(params[:id])
+    @close_path = page_path(@page.id)
     @cover = ''
     if @page.cover.attached?
       @cover = polymorphic_url(@page.cover)

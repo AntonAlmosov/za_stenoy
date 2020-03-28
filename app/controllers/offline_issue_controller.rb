@@ -62,6 +62,11 @@ class OfflineIssueController < ApplicationController
     @pages = [polymorphic_url(@issue.cover)]
     @authors = []
 
+    @edit_path = false
+    if admin_signed_in?
+      @edit_path = edit_admin_offline_issue_path(@issue.page_id, @issue.id)
+    end
+
     @issue.issue_pages.sort_by(&:page_number).each do |page|
       @pages.push(polymorphic_url(page.page))
     end
@@ -77,6 +82,7 @@ class OfflineIssueController < ApplicationController
     @issue.featured = false
     @cover = ''
     @post_path = admin_offline_issue_index_path
+    @back_path = 'js'
   end
 
   def create
@@ -126,6 +132,9 @@ class OfflineIssueController < ApplicationController
 
     @initialAuthors = []
     @initialPages = []
+
+    @close_path = page_offline_issue_path(@issue.page_id, @issue.id)
+    @back_path = admin_path(@issue.page_id)
 
     @issue.authors.each do |author|
       @initialAuthors.push(author.to_json)

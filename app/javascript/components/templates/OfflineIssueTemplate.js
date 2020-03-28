@@ -3,7 +3,7 @@ import { v4 } from "uuid";
 
 import HeaderTemplate from "../organisms/HeaderOrganism";
 
-export default ({ issue, pages, authors, inversed }) => {
+export default ({ issue, pages, authors, inversed, editPath }) => {
   const [page, setPage] = React.useState(0);
   const [opened, setOpened] = React.useState(false);
   const [isInversed, setIsInversed] = React.useState(inversed);
@@ -33,7 +33,7 @@ export default ({ issue, pages, authors, inversed }) => {
 
   return (
     <>
-      <HeaderTemplate inverse={isInversed} logo />
+      <HeaderTemplate inverse={isInversed} logo editPath={editPath} />
       <div className="offline-issue-wrapper">
         <div className={"issue-page" + (opened ? " moved" : "")}>
           <img src={pages[page]} />

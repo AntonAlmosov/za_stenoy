@@ -19,6 +19,11 @@ class PieceController < ApplicationController
     @piece.authors.each do |author|
       @authors.push({url: author_path(author.id), name: author.name})
     end
+
+    @edit_path = false
+    if admin_signed_in?
+      @edit_path = edit_piece_path(@piece.id)
+    end
     
     @cover = ''
 
@@ -30,6 +35,7 @@ class PieceController < ApplicationController
   def new
     @piece = Piece.new
     @post_path = piece_index_path
+    @back_path = 'js'
   end
 
   def create
@@ -59,6 +65,8 @@ class PieceController < ApplicationController
     if @piece.cover.attached?
       @cover =  polymorphic_url(@piece.cover)
     end
+    @close_path = piece_path(@piece.id)
+    @back_path = admin_index_path
   end
 
   def update

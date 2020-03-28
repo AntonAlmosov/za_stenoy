@@ -45,6 +45,11 @@ class OnlineIssueController < ApplicationController
       
     @pieces = []
 
+    @edit_path = false
+    if admin_signed_in?
+      @edit_path = edit_admin_online_issue_path(@issue.page_id, @issue.id)
+    end
+
     @issue.pieces.each do |piece|
       authors = []
       piece.authors.each do |author|
@@ -60,6 +65,7 @@ class OnlineIssueController < ApplicationController
     @issue.featured = false
     @cover = ''
     @post_path = admin_online_issue_index_path
+    @back_path = 'js'
   end
 
   def create
@@ -106,6 +112,9 @@ class OnlineIssueController < ApplicationController
     @post_path = admin_online_issue_path(params[:admin_id], params[:id])
 
     @initialPieces = []
+
+    @close_path = page_online_issue_path(@issue.page_id, @issue.id)
+    @back_path = admin_path(@issue.page_id)
 
     @issue.pieces.each do |piece|
       @initialPieces.push(piece.id)

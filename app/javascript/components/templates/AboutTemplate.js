@@ -3,14 +3,14 @@ import React from "react";
 import HeaderOrganism from "../organisms/HeaderOrganism.jsx";
 import flags from "images/flags-black.svg";
 
-export default function IndexTemplate({ page, initialCover }) {
+export default function IndexTemplate({ page, initialCover, editPath }) {
   const desc = JSON.parse(page.description).blocks;
   React.useEffect(() => {
     document.title = "О НАС" + " — Культурный проект «ФЛАГИ»";
   }, []);
   return (
     <>
-      <HeaderOrganism logo inverse={false} />
+      <HeaderOrganism logo inverse={false} editPath={editPath} />
       <div className="about-wrapper">
         <img src={flags} className="flags" />
         <h1>О НАС</h1>

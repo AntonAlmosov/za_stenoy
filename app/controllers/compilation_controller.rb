@@ -34,6 +34,12 @@ class CompilationController < ApplicationController
     @compilation = Compilation.find(params[:id])
     @cover = polymorphic_url(@compilation.cover)
     @pieces = []
+
+    @edit_path = false
+    if admin_signed_in?
+      @edit_path = edit_admin_compilation_path(@compilation.page_id, @compilation.id)
+    end
+
     @compilation.pieces.each do |piece|
       if piece.cover.attached?
         @pieces.push({url: piece_path(piece.id), title: piece.title, date: piece.publish_date, cover: polymorphic_url(piece.cover), text: piece.text})
@@ -49,6 +55,7 @@ class CompilationController < ApplicationController
     @compilation.featured = false
     @cover = ''
     @post_path = admin_compilation_index_path
+    @back_path = 'js'
   end
 
   def create
@@ -95,6 +102,9 @@ class CompilationController < ApplicationController
     @compilation.pieces.each do |piece|
       @initialPieces.push(piece.id)
     end
+
+    @close_path = page_compilation_path(@compilation.page_id, @compilation.id)
+    @back_path = admin_path(@compilation.page_id)
 
 
     @cover = ''

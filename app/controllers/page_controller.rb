@@ -4,6 +4,11 @@ class PageController < ApplicationController
     pages = Page.all.sort_by(&:created_at)
     @pages = []
 
+    @edit_path = false
+    if admin_signed_in?
+      @edit_path = admin_index_path
+    end
+
     Time::DATE_FORMATS[:custom_datetime] = "%d.%m.%Y"
 
     feature_data = Feature.first
@@ -75,6 +80,15 @@ class PageController < ApplicationController
     @cover = ''
     if @page.cover.attached?
       @cover = polymorphic_url(@page.cover)
+    end
+
+    @edit_path = false
+    if admin_signed_in?
+      if @page.page_type == 'about_us'
+        @edit_path = edit_admin_path(@page.id)
+      else
+        @edit_path = admin_path(@page.id)
+      end
     end
 
     if @page.page_type == 'personal_projects'

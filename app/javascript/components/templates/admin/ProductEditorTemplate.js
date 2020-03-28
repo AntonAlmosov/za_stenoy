@@ -61,7 +61,7 @@ export default ({ product, coverUrl, postPath, origin }) => {
   return (
     <>
       <HeaderAdminOrganism
-        backShown
+        backShown={"/admin/shop"}
         onDoneClick={handleSubmit}
         doneActive={name && purchaseLink && cover && releaseDate}
         doneText={saveText}

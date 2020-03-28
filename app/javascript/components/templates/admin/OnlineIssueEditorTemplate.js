@@ -6,7 +6,15 @@ import HeaderAdminOrganism from "../../organisms/HeaderAdminOrganism.jsx";
 import ImagePicker from "../../molecules/misc/ImagePicker.jsx";
 import DefaultButton from "../../molecules/buttons/DefaultButton.jsx";
 
-export default ({ issue, coverUrl, postPath, origin, initialPieces }) => {
+export default ({
+  issue,
+  coverUrl,
+  postPath,
+  origin,
+  initialPieces,
+  closePath,
+  backPath,
+}) => {
   const [saveText, setSaveText] = React.useState("Сохранить");
   const [title, setTitle] = React.useState(issue.title);
   const [cover, setCover] = React.useState(coverUrl);
@@ -83,7 +91,8 @@ export default ({ issue, coverUrl, postPath, origin, initialPieces }) => {
   return (
     <>
       <HeaderAdminOrganism
-        backShown
+        backShown={backPath}
+        closeShown={closePath}
         onDoneClick={handleSubmit}
         doneActive={title && cover && issuePieces.length}
         doneText={saveText}

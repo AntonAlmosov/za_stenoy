@@ -11,7 +11,11 @@ export default function CompilationTemplate(props) {
   }, []);
   return (
     <>
-      <HeaderTemplate inverse={props.inversed} logo={true} />
+      <HeaderTemplate
+        inverse={props.inversed}
+        logo={true}
+        editPath={props.editPath}
+      />
       <CompilationStarter title={props.page.title} />
       <CompilationContent cards={props.content} feature={props.feature} />
       <FooterOrganism />
