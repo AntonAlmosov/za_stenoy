@@ -99,7 +99,7 @@ class PageController < ApplicationController
           @content.push({url: page_compilation_path(@page.id, comp.id), title: comp.title, date: comp.updated_at.to_s(:custom_datetime)})
         end
       end
-      f = @page.compilations.find_by(featured: true)
+      f = @page.compilations.find_by(featured: true, published: true)
       if f
         if f.cover.attached?
           @feature = {url: page_compilation_path(@page.id, f.id), title: f.title, cover: polymorphic_url(f.cover), date: f.updated_at.to_s(:custom_datetime)}
@@ -129,7 +129,7 @@ class PageController < ApplicationController
         end
       end
 
-      f = @page.online_issues.find_by(featured: true) || @page.offline_issues.find_by(featured: true)
+      f = @page.online_issues.find_by(featured: true, published: true) || @page.offline_issues.find_by(featured: true, published: true)
       if f
         if f.has_attribute?("publish_date")
           if f.cover.attached?
@@ -167,7 +167,7 @@ class PageController < ApplicationController
         end
       end
 
-      f = @page.online_issues.find_by(featured: true) || @page.offline_issues.find_by(featured: true)
+      f = @page.online_issues.find_by(featured: true, published: true) || @page.offline_issues.find_by(featured: true, published: true)
       if f
         puts 'Title :'
         puts f.title
