@@ -10,6 +10,7 @@ import {
   AuthorPicker,
   Author,
 } from "../../molecules/misc/AuthorsInterface.jsx";
+import DefaultButton from "../../molecules/buttons/DefaultButton.jsx";
 
 export default function PieceEditorTemplate({
   piece,
@@ -24,6 +25,7 @@ export default function PieceEditorTemplate({
   const [cover, setCover] = React.useState(coverUrl);
   const [authors, setAuthors] = React.useState(initialAuthors);
   const [saveText, setSaveText] = React.useState("Сохранить");
+  const [published, setPublished] = React.useState(piece.published);
 
   React.useEffect(() => {
     const editor = new EditorJS({
@@ -54,6 +56,7 @@ export default function PieceEditorTemplate({
     formData.append("text", JSON.stringify(text));
     formData.append("publish_date", date);
     formData.append("authors", JSON.stringify(authors));
+    formData.append("published", JSON.stringify(published));
 
     if (origin === "new") {
       axios
@@ -102,7 +105,7 @@ export default function PieceEditorTemplate({
           margin: "7em auto 7em",
         }}
       >
-        <div style={{ margin: "0 auto 2em", width: "27.5em" }}>
+        <div style={{ margin: "0 0 2em", width: "27.5em" }}>
           <ImagePicker
             width="27.5em"
             height="15.5em"
@@ -112,22 +115,30 @@ export default function PieceEditorTemplate({
         </div>
         <div style={{ width: "60em", margin: "0 auto" }}>
           <div style={{ marginBottom: "3.5em" }}>
-            <div style={{ marginBottom: "0.5em" }}>
-              {authors.map(author => {
-                return (
-                  <Author
-                    key={author.name}
-                    currentAuthors={authors}
-                    setAuthors={setAuthors}
-                    author={author}
-                  />
-                );
-              })}
+            <div>
+              <DefaultButton
+                text={["Закрыть для просмотра >", "Открыть для просмотра >"]}
+                state={published}
+                onClick={() => setPublished(!published)}
+                style={{ margin: "2em 0em" }}
+              />
+              <div style={{ marginBottom: "0.5em" }}>
+                {authors.map(author => {
+                  return (
+                    <Author
+                      key={author.name}
+                      currentAuthors={authors}
+                      setAuthors={setAuthors}
+                      author={author}
+                    />
+                  );
+                })}
+              </div>
+              <AuthorPicker
+                currentAuthors={authors}
+                setCurrentAuthors={setAuthors}
+              />
             </div>
-            <AuthorPicker
-              currentAuthors={authors}
-              setCurrentAuthors={setAuthors}
-            />
           </div>
           <TextareaAutosize
             className="textarea title-textarea"

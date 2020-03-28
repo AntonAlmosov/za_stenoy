@@ -13,16 +13,20 @@ class AuthorController < ApplicationController
     @pieces = []
 
     @author.pieces.each do |piece|
-      if piece.cover.attached?
-        @pieces.push({url: piece_path(piece.id), text: piece.text, title: piece.title, date: piece.publish_date, cover: polymorphic_url(piece.cover)})
-      else
-        @pieces.push({url: piece_path(piece.id), text: piece.text, title: piece.title, date: piece.publish_date})
+      if piece.published
+        if piece.cover.attached?
+          @pieces.push({url: piece_path(piece.id), text: piece.text, title: piece.title, date: piece.publish_date, cover: polymorphic_url(piece.cover)})
+        else
+          @pieces.push({url: piece_path(piece.id), text: piece.text, title: piece.title, date: piece.publish_date})
+        end
       end
     end
 
     @author.offline_issues.each do |issue|
-      if issue.cover.attached?
-        @pieces.push({url: page_offline_issue_path(issue.page_id, issue.id), title: issue.title, date: issue.publish_date, cover: polymorphic_url(issue.cover)})
+      if issue.published
+        if issue.cover.attached?
+          @pieces.push({url: page_offline_issue_path(issue.page_id, issue.id), title: issue.title, date: issue.publish_date, cover: polymorphic_url(issue.cover)})
+        end
       end
     end
   end

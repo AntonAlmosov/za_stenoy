@@ -13,6 +13,7 @@ export default function HeaderTemplate({ logo, inverse }) {
     projects: [],
     authors: [],
   });
+  const [auth, setAuth] = React.useState(false);
 
   React.useEffect(() => {
     axios.get("/menu").then(data => setPages(data.data));
@@ -20,12 +21,17 @@ export default function HeaderTemplate({ logo, inverse }) {
     axios.get("/menu/get_data").then(res => {
       setData(res.data);
     });
+    axios.get("/menu/check_authentication").then(res => {
+      setAuth(res.data.authenticated);
+      console.log(res.data.authenticated);
+    });
   }, []);
 
   return (
     <>
       <HeaderRow
         logo={logo}
+        auth={auth}
         inverse={searchOpened || menuOpened ? true : inverse}
         search={{ status: searchOpened, setSearchOpened }}
         menu={{ status: menuOpened, setMenuOpened }}
@@ -36,7 +42,7 @@ export default function HeaderTemplate({ logo, inverse }) {
   );
 }
 
-function HeaderRow({ logo, inverse, search, menu }) {
+function HeaderRow({ logo, inverse, search, menu, auth }) {
   return (
     <div className={"header-wrapper " + (inverse && "inverse")}>
       <div className="header">
@@ -48,9 +54,14 @@ function HeaderRow({ logo, inverse, search, menu }) {
         >
           {search.status ? "Закрыть" : "Поиск"}
         </a>
-        {logo && !menu.status && !search.status && (
+        {logo && !menu.status && !search.status && !auth && (
           <a href="/" className="logo">
             <img src={inverse ? logoInversed : logoImage} />
+          </a>
+        )}
+        {auth && !menu.status && !search.status && (
+          <a href="/admin" className="close">
+            Admin
           </a>
         )}
         <a
@@ -138,7 +149,9 @@ function MenuOrganism({ pages }) {
   return (
     <div className="header-menu-wrapper">
       <div className="menu-flags">
-        <img src={flgasImage} />
+        <a href="/">
+          <img src={flgasImage} />
+        </a>
         <div className="menu-info-wrapper">
           <div className="menu-links-wrapper">
             {pages.map(page => {

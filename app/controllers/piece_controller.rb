@@ -36,6 +36,7 @@ class PieceController < ApplicationController
     piece = Piece.new()
     piece.title = params[:title]
     piece.text = params[:text]
+    piece.published = params[:published]
     piece.publish_date = params[:publish_date]
     if params.has_key?(:cover)
       piece.cover = params[:cover]
@@ -85,11 +86,11 @@ class PieceController < ApplicationController
     end
 
     if params.has_key?(:cover)
-      if @piece.update(title: params[:title], text: params[:text], publish_date: params[:publish_date], cover: params[:cover] )
+      if @piece.update(title: params[:title], published: params[:published], text: params[:text], publish_date: params[:publish_date], cover: params[:cover] )
         render :json => {status: 'ok'}
       end
     else
-      if @piece.update(title: params[:title], text: params[:text], publish_date: params[:publish_date] )
+      if @piece.update(title: params[:title], published: params[:published], text: params[:text], publish_date: params[:publish_date] )
         render :json => {status: 'ok'}
       end
     end

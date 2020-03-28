@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_27_145918) do
+ActiveRecord::Schema.define(version: 2020_03_28_100510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,6 +140,13 @@ ActiveRecord::Schema.define(version: 2020_03_27_145918) do
     t.index ["slug"], name: "index_online_issues_on_slug", unique: true
   end
 
+  create_table "page_features", force: :cascade do |t|
+    t.string "feature_type"
+    t.integer "origin_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "pages", force: :cascade do |t|
     t.string "title"
     t.string "page_type"
@@ -179,6 +186,7 @@ ActiveRecord::Schema.define(version: 2020_03_27_145918) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
+    t.boolean "published"
     t.index ["slug"], name: "index_pieces_on_slug", unique: true
   end
 

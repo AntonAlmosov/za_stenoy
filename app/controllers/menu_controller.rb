@@ -4,6 +4,14 @@ class MenuController < ApplicationController
     render :json => pages
   end
 
+  def check_authentication
+    if admin_signed_in?
+      render :json => {authenticated: true}
+    else
+      render :json => {authenticated: false}
+    end
+  end
+
   def get_data
     authors = []
     Author.all.each do |author| 
@@ -11,7 +19,7 @@ class MenuController < ApplicationController
     end
 
     pieces = []
-    Piece.all.each do |piece|
+    Piece.where(published:true).each do |piece|
       pieces.push({url: piece_path(piece.id), title: piece.title})
     end
 

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :menu, only: [:index] do
     collection do 
       get :get_data
+      get :check_authentication
     end
   end
 
