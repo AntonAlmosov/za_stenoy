@@ -26,7 +26,7 @@ export default function IndexTemplate({ page, initialCover, editPath }) {
         </div>
       </div>
       <div className="about-footer">
-        <a href="tel: 8-(952)-517-37-91">8-(952)-517-37-91</a>
+        <a href="tel: 8-(952)-517-37-91">8(952) 517 37 91</a>
         <a href="email: flagspublishing@gmail.com">flagspublishing@gmail.com</a>
         <a href="https://vk.com/flagi">vk.com/flagi</a>
       </div>

@@ -1,35 +1,79 @@
-.contents-wrapper {
-  width: 56em;
-  margin: 0 auto;
-  h3 {
-    font-size: 1.25em;
-    line-height: 1.2;
-    text-align: center;
-    color: #fff;
-  }
-  .contents {
+@media (min-width: 512px) {
+  .contents-wrapper {
     width: 56em;
-    margin-top: 3.5em;
-    .authors-row {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 3em;
-      .name {
-        width: 20em;
-        font-size: 1em;
-        line-height: 1.25;
-        color: #fff;
-      }
-      .pieces {
-        width: 20em;
-        a {
-          display: block;
-          color: white;
+    margin: 0 auto;
+    h3 {
+      font-size: 1.25em;
+      line-height: 1.2;
+      text-align: center;
+      color: #fff;
+    }
+    .contents {
+      width: 56em;
+      margin-top: 3.5em;
+      .authors-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 3em;
+        .name {
+          width: 20em;
           font-size: 1em;
           line-height: 1.25;
-          margin-bottom: 1em;
-          &:hover {
-            text-decoration: none;
+          color: #fff;
+        }
+        .pieces {
+          width: 20em;
+          a {
+            display: block;
+            color: white;
+            font-size: 1em;
+            line-height: 1.25;
+            margin-bottom: 1em;
+            &:hover {
+              text-decoration: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 511px) {
+  .contents-wrapper {
+    width: 36em;
+    margin: 6em auto 0;
+    h3 {
+      font-size: 2em;
+      line-height: 1.2;
+      color: #fff;
+    }
+    .contents {
+      width: 36em;
+      margin-top: 4em;
+      .authors-row {
+        display: flex;
+        flex-flow: column;
+        justify-content: space-between;
+        margin-bottom: 4em;
+        .name {
+          font-size: 1.5em;
+          line-height: 1.5;
+          font-weight: 500;
+          color: #fff;
+          margin-bottom: calc(#{$baseMobile} * 2);
+        }
+        .pieces {
+          margin-bottom: 2em;
+          a {
+            display: block;
+            color: white;
+            font-size: calc(#{$baseMobile} * 1.5);
+            line-height: 1.5;
+            margin-bottom: $baseMobile;
+            &:hover {
+              text-decoration: none;
+            }
           }
         }
       }

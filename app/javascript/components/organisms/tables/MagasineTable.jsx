@@ -139,7 +139,7 @@ function IssueTable(props) {
                 state: issue.featured,
               },
               {
-                name: ["Открыть для просмотра >", "Закрыть для просмотра >"],
+                name: ["Закрыть для просмотра >", "Открыть для просмотра >"],
                 uri: () => toggleHash(issue.id, "published", !issue.published),
                 state: issue.published,
               },

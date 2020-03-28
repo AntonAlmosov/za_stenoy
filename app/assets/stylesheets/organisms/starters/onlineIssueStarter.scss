@@ -1,19 +1,43 @@
-.online-issue-starter {
-  width: 70em;
-  margin: 8em auto 0;
-  display: flex;
-  justify-content: center;
-  flex-flow: column;
-  h1 {
-    font-size: 8em;
-    letter-spacing: -0.055em;
-    text-align: center;
+@media (min-width: 512px) {
+  .online-issue-starter {
+    width: 70em;
+    margin: 8em auto 0;
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+    h1 {
+      font-size: 8em;
+      letter-spacing: -0.055em;
+      text-align: center;
+    }
+    img {
+      width: 27.5em;
+      height: 15.5em;
+      object-fit: contain;
+      object-position: center;
+      margin: 3.75em auto 0;
+    }
   }
-  img {
-    width: 27.5em;
-    height: 15.5em;
-    object-fit: contain;
-    object-position: center;
-    margin: 3.75em auto 0;
+}
+
+@media (max-width: 511px) {
+  .online-issue-starter {
+    width: 36em;
+    margin: 10em auto 0;
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+    h1 {
+      font-size: 5.5em;
+      letter-spacing: -0.055em;
+      text-align: center;
+    }
+    img {
+      width: 26em;
+      height: 13.75em;
+      object-fit: contain;
+      object-position: center;
+      margin: 6em auto 0;
+    }
   }
 }

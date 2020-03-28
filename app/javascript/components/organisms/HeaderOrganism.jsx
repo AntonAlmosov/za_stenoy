@@ -92,6 +92,57 @@ const AdditionalSearch = ({ data, title }) => {
   );
 };
 
+const AdditionalSearchMobile = ({ data, title }) => {
+  const isLong = data.length > 7;
+  const [opened, setOpened] = React.useState(false);
+
+  return (
+    <div className="additional-search">
+      <div className="additional-search-input">
+        <h4>{title}</h4>
+        <div className="divider"></div>
+      </div>
+      <div className="additional-results">
+        {!isLong &&
+          data.map(el => {
+            return (
+              <a href={el.url} key={el.url}>
+                {el.title}
+              </a>
+            );
+          })}
+        {isLong && (
+          <>
+            {data.slice(0, 6).map(el => {
+              return (
+                <a
+                  href={el.url}
+                  key={el.url}
+                  className={opened ? "" : "isopened"}
+                >
+                  {el.title}
+                </a>
+              );
+            })}
+            {!opened && (
+              <span onClick={() => setOpened(true)}>Показать еще...</span>
+            )}
+            {opened &&
+              data.slice(6, data.length - 1).map(el => {
+                return (
+                  <a href={el.url} key={el.url}>
+                    {el.title}
+                  </a>
+                );
+              })}
+            {opened && <span onClick={() => setOpened(false)}>Скрыть</span>}
+          </>
+        )}
+      </div>
+    </div>
+  );
+};
+
 function SearchOrganism({ data }) {
   const [authors, setAuthors] = React.useState(data.authors || []);
   const [pieces, setPieces] = React.useState(data.pieces || []);
@@ -116,6 +167,8 @@ function SearchOrganism({ data }) {
     );
   }, [search]);
 
+  const mobile = window.innerWidth <= 512;
+
   return (
     <div className="header-menu-wrapper">
       <div className="search-wrapper">
@@ -131,9 +184,23 @@ function SearchOrganism({ data }) {
           <div className="divider"></div>
         </div>
         <div className="additional-search-wrapper">
-          <AdditionalSearch data={authors} title={"Авторы"} />
-          <AdditionalSearch data={projects} title={"Проекты"} />
-          <AdditionalSearch data={pieces} title={"Название произведения"} />
+          {!mobile && (
+            <>
+              <AdditionalSearch data={authors} title={"Авторы"} />
+              <AdditionalSearch data={projects} title={"Проекты"} />
+              <AdditionalSearch data={pieces} title={"Название произведения"} />
+            </>
+          )}
+          {mobile && (
+            <>
+              <AdditionalSearchMobile data={authors} title={"Авторы"} />
+              <AdditionalSearchMobile data={projects} title={"Проекты"} />
+              <AdditionalSearchMobile
+                data={pieces}
+                title={"Название произведения"}
+              />
+            </>
+          )}
         </div>
       </div>
     </div>
@@ -165,7 +232,7 @@ function MenuOrganism({ pages }) {
             })}
           </div>
           <div className="menu-adress">
-            <a href="tel: 8-(952)-517-37-91">8-(952)-517-37-91</a>
+            <a href="tel: 8-(952)-517-37-91">8(952) 517 37 91</a>
             <a href="email: flagspublishing@gmail.com">
               flagspublishing@gmail.com
             </a>
