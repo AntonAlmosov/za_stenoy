@@ -25,6 +25,7 @@ export default function PieceEditorTemplate({
   const [text, setText] = React.useState(JSON.parse(piece.text));
   const [date, setDate] = React.useState(piece.publish_date);
   const [cover, setCover] = React.useState(coverUrl);
+  const [coverData, setCoverData] = React.useState({});
   const [authors, setAuthors] = React.useState(initialAuthors);
   const [saveText, setSaveText] = React.useState("Сохранить");
   const [published, setPublished] = React.useState(piece.published);
@@ -52,8 +53,7 @@ export default function PieceEditorTemplate({
     setSaveText("Обработка");
 
     const formData = new FormData();
-    const coverData = document.querySelector(".cover_image_input");
-    if (cover !== coverUrl) formData.append("cover", coverData.files[0]);
+    if (cover !== coverUrl) formData.append("cover", coverData);
     formData.append("title", title);
     formData.append("text", JSON.stringify(text));
     formData.append("publish_date", date);
@@ -93,13 +93,18 @@ export default function PieceEditorTemplate({
     }
   }
 
+  const handleCover = (url, file) => {
+    setCover(url);
+    setCoverData(file);
+  };
+
   return (
     <>
       <HeaderAdminOrganism
         backShown={backPath}
         closeShown={closePath || false}
         onDoneClick={handleSubmit}
-        doneActive={title && text && date && authors.length}
+        doneActive={title && text && authors.length}
         doneText={saveText}
       />
       <div
@@ -113,7 +118,7 @@ export default function PieceEditorTemplate({
             width="27.5em"
             height="15.5em"
             cover={cover}
-            setCover={setCover}
+            setCover={handleCover}
           />
         </div>
         <div style={{ width: "60em", margin: "0 auto" }}>

@@ -20,7 +20,7 @@ export default ({
   const [cover, setCover] = React.useState(coverUrl);
   const [published, setPublished] = React.useState(issue.published);
   const [featured, setFeatured] = React.useState(issue.featured);
-  const [issuePieces, setissuePieces] = React.useState(initialPieces);
+  const [issuePieces, setIssuePieces] = React.useState(initialPieces);
   const [pieces, setPieces] = React.useState([]);
   const [description, setDescription] = React.useState(issue.description || "");
   const [descriptionHeading, setDescriptionHeading] = React.useState(
@@ -84,9 +84,25 @@ export default ({
   function handleissuePieces(adding, piece) {
     const res = adding
       ? [...issuePieces, piece]
-      : issuePieces.filter(p => p != piece);
-    setissuePieces(res);
+      : issuePieces.filter(p => p.id != piece.id);
+    setIssuePieces(res);
   }
+
+  React.useEffect(() => {
+    issuePieces.forEach((el, i) => {
+      if (el) el.order = i;
+    });
+
+    console.log(issuePieces);
+  }, [issuePieces]);
+
+  const movePieces = (from, to) => {
+    console.log(from, to);
+    let newArray = issuePieces;
+    const piece = newArray.splice(from, 1)[0];
+    newArray.splice(to, 0, piece);
+    setIssuePieces([...newArray]);
+  };
 
   return (
     <>
@@ -171,6 +187,7 @@ export default ({
         <MaterialsTable
           pieces={pieces}
           issuePieces={issuePieces}
+          movePieces={movePieces}
           onClick={handleissuePieces}
         />
       </div>
@@ -188,9 +205,35 @@ function MaterialsTable(props) {
         onNameChange={setTitle}
         onAuthorChange={setAuthor}
       />
+      {props.issuePieces.map(piece => {
+        if (piece)
+          return (
+            <MaterialsTableRow
+              key={piece.id}
+              piece={piece}
+              attached={true}
+              onClick={props.onClick}
+              actions={[
+                {
+                  name: "Редактировать",
+                  uri: "/piece/" + piece.id + "/edit",
+                },
+                {
+                  name: "Выше",
+                  uri: () => props.movePieces(piece.order, piece.order - 1),
+                },
+                {
+                  name: "Ниже",
+                  uri: () => props.movePieces(piece.order, piece.order + 1),
+                },
+              ]}
+            />
+          );
+      })}
       {props.pieces
         .filter(piece => {
           return (
+            !props.issuePieces.some(p => p && p.id == piece.id) &&
             RegExp(title, "i").test(piece.title) &&
             piece.authors?.some(a => RegExp(author, "i").test(a.name))
           );
@@ -199,14 +242,12 @@ function MaterialsTable(props) {
           return (
             <MaterialsTableRow
               key={piece.id}
-              id={piece.id}
-              title={piece.title}
-              authors={piece.authors}
-              attached={props.issuePieces.some(p => piece.id == p)}
+              piece={piece}
+              attached={false}
               onClick={props.onClick}
               actions={[
                 {
-                  name: "Редактировать материал",
+                  name: "Редактировать",
                   uri: "/piece/" + piece.id + "/edit",
                 },
               ]}
@@ -230,8 +271,8 @@ function MaterialsTableHeader({ onNameChange, onAuthorChange }) {
         onChange={text => onAuthorChange(text)}
         placeholder="Поиск по авторам"
       />
-      <h2 style={{ width: "10em" }}>Статус</h2>
-      <h2 style={{ width: "14em" }}>Быстрые действия</h2>
+      <h2 style={{ width: "7em" }}>Статус</h2>
+      <h2 style={{ width: "17em" }}>Быстрые действия</h2>
     </div>
   );
 }
@@ -240,10 +281,10 @@ function MaterialsTableRow(props) {
   return (
     <div className="table-row-wrapper">
       <div className="column" style={{ width: "16em", lineHeight: 1.3 }}>
-        {props.title}
+        {props.piece.title}
       </div>
       <div className="column" style={{ width: "16em", lineHeight: 1.3 }}>
-        {props.authors.map(author => {
+        {props.piece.authors.map(author => {
           return (
             <span key={author.name + props.title}>
               {author.name}
@@ -252,15 +293,15 @@ function MaterialsTableRow(props) {
           );
         })}
       </div>
-      <div className="column" style={{ width: "10em" }}>
+      <div className="column" style={{ width: "7em" }}>
         <span
           onClick={
             props.attached
               ? () => {
-                  props.onClick(false, props.id);
+                  props.onClick(false, props.piece);
                 }
               : () => {
-                  props.onClick(true, props.id);
+                  props.onClick(true, props.piece);
                 }
           }
           style={{
@@ -273,21 +314,34 @@ function MaterialsTableRow(props) {
           {props.attached ? "Убрать" : "Добавить"}
         </span>
       </div>
-      <div className="column" style={{ width: "14em" }}>
+      <div className="column" style={{ width: "17em" }}>
         {props.actions.map(action => {
-          if (action.name !== "Удалить")
+          if (action.name !== "Редактировать")
             return (
               <a
                 key={action.name}
-                style={{ fontSize: "1em", lineHeight: 1, marginRight: "1em" }}
-                href={action.uri}
-                target="_blank"
+                style={{
+                  fontSize: "1em",
+                  lineHeight: 1,
+                  marginRight: "1em",
+                  textDecoration: "underline",
+                  cursor: "pointer",
+                }}
+                onClick={action.uri}
               >
                 {action.name}
               </a>
             );
           else {
-            return <DeleteButton key={action.name} uri={action.uri} />;
+            return (
+              <a
+                key={action.name}
+                style={{ fontSize: "1em", lineHeight: 1, marginRight: "1em" }}
+                href={action.uri}
+              >
+                {action.name}
+              </a>
+            );
           }
         })}
       </div>

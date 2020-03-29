@@ -25,11 +25,13 @@ class AdminController < ApplicationController
 
   def update
     page = Page.find(params[:id])
-
-    # @verifier.verify(params[:token], purpose: :admin)
     
     if params.has_key?(:cover)
-      page.cover.attach(params[:cover])
+      if params[:cover] == 'null'
+        page.cover.purge
+      else
+        page.cover.attach(params[:cover])
+      end
       if page.update(description: params[:description])
         render :json => {status: 'ok'}
       end

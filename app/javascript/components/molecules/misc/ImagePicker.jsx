@@ -1,4 +1,5 @@
 import React from "react";
+import { X } from "react-feather";
 
 export default ({
   width,
@@ -12,7 +13,7 @@ export default ({
 }) => {
   const containerStyle = style ? style : {};
   const imgStyle = imageStyle ? imageStyle : {};
-  const [uri, setUri] = React.useState("");
+  const [uri, setUri] = React.useState(cover);
   const [file, setFile] = React.useState({});
 
   React.useEffect(() => {
@@ -28,9 +29,25 @@ export default ({
         ...containerStyle,
       }}
     >
-      {cover && (
+      {uri && (
+        <div
+          style={{
+            position: "absolute",
+            right: "-1.5em",
+            top: 0,
+            cursor: "pointer",
+          }}
+          onClick={() => {
+            setUri("");
+            setCover("", "null");
+          }}
+        >
+          <X size="1em" color="#000" />
+        </div>
+      )}
+      {uri && (
         <img
-          src={cover}
+          src={uri}
           style={{
             width: width,
             height: height,
@@ -70,7 +87,7 @@ export default ({
           }}
           style={{ display: "none" }}
         />
-        {!cover && (
+        {!uri && (
           <label
             htmlFor={id ? id : "cover"}
             style={{
@@ -88,7 +105,7 @@ export default ({
             <div style={{ color: "#b3b3b3" }}>Добавить обложку ></div>
           </label>
         )}
-        {cover && (
+        {uri && (
           <label
             htmlFor={id ? id : "cover"}
             style={{

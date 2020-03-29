@@ -11,7 +11,9 @@ export default function FooterOrganism() {
           <a href="email: flagspublishing@gmail.com">
             flagspublishing@gmail.com
           </a>
-          <a href="https://vk.com/flagi">vk.com/flagi</a>
+          <a href="vk.com/projectflagi" target="_blank">
+            vk.com/projectflagi
+          </a>
         </div>
       </div>
     </div>

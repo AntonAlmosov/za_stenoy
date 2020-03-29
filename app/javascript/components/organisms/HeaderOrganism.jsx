@@ -218,11 +218,7 @@ function MenuOrganism({ pages }) {
           <div className="menu-links-wrapper">
             {pages.map(page => {
               return (
-                <a
-                  href={"/page/" + page.slug}
-                  key={page.slug}
-                  style={{ textTransform: "capitalize" }}
-                >
+                <a href={"/page/" + page.slug} key={page.slug}>
                   {page.page_type == "magasine" ||
                   page.page_type == "magasine_inversed"
                     ? "Журнал " + page.title
@@ -236,7 +232,9 @@ function MenuOrganism({ pages }) {
             <a href="email: flagspublishing@gmail.com">
               flagspublishing@gmail.com
             </a>
-            <a href="https://vk.com/flagi">vk.com/flagi</a>
+            <a href="https://vk.com/projectflagi" target="_blank">
+              vk.com/projectflagi
+            </a>
           </div>
         </div>
       </div>

@@ -57,6 +57,8 @@ class OnlineIssueController < ApplicationController
       end
       @pieces.push({authors: authors, title: piece.title, text: piece.text, publish_date: piece.publish_date, id: piece.id})
     end
+
+    @pieces = @pieces.sort { |a,b| a['order'] <=> b['order'] }
   end
 
   def new
@@ -99,7 +101,8 @@ class OnlineIssueController < ApplicationController
 
     if issue.save!
       pieces.each do |piece|
-        PieceOnlineIssue.create(piece_id: piece, online_issue_id: issue.id)
+        PieceOnlineIssue.create(piece_id: piece.id, online_issue_id: issue.id, order: piece['order'])
+        Piece.find(piece['id']).update(published: issue.published)
       end
 
       render :json => {redirectPath: edit_admin_online_issue_path(params[:admin_id], issue.id), id: issue.id}
@@ -116,9 +119,16 @@ class OnlineIssueController < ApplicationController
     @close_path = page_online_issue_path(@issue.page_id, @issue.id)
     @back_path = admin_path(@issue.page_id)
 
-    @issue.pieces.each do |piece|
-      @initialPieces.push(piece.id)
+    @issue.piece_online_issues.each do |piece_association|
+      authors = []
+      piece = Piece.find(piece_association.piece_id)
+      piece.authors.each do |a|
+        authors.push(a.to_json)
+      end
+      @initialPieces.push({id: piece_association.piece_id, order: piece_association.order, title: piece.title, authors: piece.authors })
     end
+
+    @initialPieces = @initialPieces.sort { |a,b| a['order'] <=> b['order'] }
 
 
     @cover = ''
@@ -135,21 +145,25 @@ class OnlineIssueController < ApplicationController
 
     #Adding new pieces
     pieces.each do |piece|
+      puts piece['order']
       present = issue.pieces.any? do |p|
-        piece == p.id
+        piece['id'] == p.id
       end
       if !present
-        PieceOnlineIssue.create(piece_id: piece, online_issue_id: issue.id)
+        PieceOnlineIssue.create(piece_id: piece['id'], online_issue_id: issue.id, order: piece['order'])
+        Piece.find(piece['id']).update(published: issue.published)
+      else
+        PieceOnlineIssue.find_by(piece_id: piece['id'], online_issue_id: issue.id).update(order: piece['order'])
       end
     end
 
     #Removing pieces 
     issue.pieces.each do |piece|
       present = pieces.any? do |p|
-        piece.id == p
+        piece.id == p['id']
       end
       if !present
-        PieceOnlineIssue.find_by(piece_id: piece, online_issue_id: issue.id).destroy
+        PieceOnlineIssue.find_by(piece_id: piece.id, online_issue_id: issue.id).destroy
       end
     end
 

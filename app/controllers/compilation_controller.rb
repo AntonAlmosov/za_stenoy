@@ -85,6 +85,7 @@ class CompilationController < ApplicationController
     if compilation.save!
       pieces.each do |piece|
         PieceCompilation.create(piece_id: piece, compilation_id: compilation.id)
+        Piece.find(piece).update(published: compilation.published)
       end
 
       render :json => {redirectPath: edit_admin_compilation_path(params[:admin_id], compilation.id), id: compilation.id}
@@ -125,6 +126,7 @@ class CompilationController < ApplicationController
       end
       if !present
         PieceCompilation.create(piece_id: piece, compilation_id: compilation.id)
+        Piece.find(piece).update(published: params[:published])
       end
     end
 

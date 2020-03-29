@@ -44,7 +44,7 @@ class PieceController < ApplicationController
     piece.text = params[:text]
     piece.published = params[:published]
     piece.publish_date = params[:publish_date]
-    if params.has_key?(:cover)
+    if params.has_key?(:cover) and params[:cover] != 'null'
       piece.cover = params[:cover]
     end
     authors = JSON.parse(params[:authors])
@@ -94,8 +94,12 @@ class PieceController < ApplicationController
     end
 
     if params.has_key?(:cover)
-      if @piece.update(title: params[:title], published: params[:published], text: params[:text], publish_date: params[:publish_date], cover: params[:cover] )
-        render :json => {status: 'ok'}
+      if params[:cover] == 'null'
+        @piece.cover.purge
+      else
+        if @piece.update(title: params[:title], published: params[:published], text: params[:text], publish_date: params[:publish_date], cover: params[:cover] )
+          render :json => {status: 'ok'}
+        end
       end
     else
       if @piece.update(title: params[:title], published: params[:published], text: params[:text], publish_date: params[:publish_date] )

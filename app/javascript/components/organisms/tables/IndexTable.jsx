@@ -2,7 +2,7 @@ import React from "react";
 
 export default function IndexTable(props) {
   return (
-    <div className="table-wrapper">
+    <div className="table-wrapper" style={{ marginBottom: "6em" }}>
       <TableHeader />
       <TableRow
         title={{ name: "Фичер главной", uri: "/feature/" }}

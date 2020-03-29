@@ -9,11 +9,11 @@ export default function MagasineStarter({ page }) {
       <div className="starter-wrapper compilation-starter">
         <h1
           className="starters-heading-big"
-          style={{ textTransform: "uppercase" }}
+          style={{ textTransform: "uppercase", wordBreak: "normal" }}
         >
           {page.title}
         </h1>
-        <p>
+        {/* <p>
           ЛИТЕРАТУРНЫЙ ЖУРНАЛ{" "}
           <a
             onClick={() => setOpened(true)}
@@ -27,7 +27,7 @@ export default function MagasineStarter({ page }) {
           </a>
           <br />
           {page.established}
-        </p>
+        </p> */}
       </div>
       {opened && (
         <div className="description-wrapper">
