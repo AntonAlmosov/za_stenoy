@@ -50,15 +50,15 @@ class OnlineIssueController < ApplicationController
       @edit_path = edit_admin_online_issue_path(@issue.page_id, @issue.id)
     end
 
-    @issue.pieces.each do |piece|
+    @issue.piece_online_issues.sort_by(&:order).each do |piece_association|
       authors = []
+      piece = Piece.find(piece_association.piece_id)
       piece.authors.each do |author|
         authors.push({name: author.name, url: author_path(author.id)})
       end
       @pieces.push({authors: authors, title: piece.title, text: piece.text, publish_date: piece.publish_date, id: piece.id})
     end
 
-    @pieces = @pieces.sort { |a,b| a['order'] <=> b['order'] }
   end
 
   def new
@@ -119,7 +119,7 @@ class OnlineIssueController < ApplicationController
     @close_path = page_online_issue_path(@issue.page_id, @issue.id)
     @back_path = admin_path(@issue.page_id)
 
-    @issue.piece_online_issues.each do |piece_association|
+    @issue.piece_online_issues.sort_by(&:order).each do |piece_association|
       authors = []
       piece = Piece.find(piece_association.piece_id)
       piece.authors.each do |a|
@@ -127,8 +127,6 @@ class OnlineIssueController < ApplicationController
       end
       @initialPieces.push({id: piece_association.piece_id, order: piece_association.order, title: piece.title, authors: piece.authors })
     end
-
-    @initialPieces = @initialPieces.sort { |a,b| a['order'] <=> b['order'] }
 
 
     @cover = ''
@@ -142,8 +140,11 @@ class OnlineIssueController < ApplicationController
     pieces = JSON.parse(params[:pieces])
     issue.featured = params[:featured]
     page = Page.friendly.find(params[:admin_id])
-
     #Adding new pieces
+    puts 'asdasd'
+    puts 'asdasd'
+    puts 'asdasd'
+    puts 'asdasd'
     pieces.each do |piece|
       puts piece['order']
       present = issue.pieces.any? do |p|

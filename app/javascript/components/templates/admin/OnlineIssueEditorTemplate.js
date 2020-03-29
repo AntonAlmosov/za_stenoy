@@ -92,12 +92,9 @@ export default ({
     issuePieces.forEach((el, i) => {
       if (el) el.order = i;
     });
-
-    console.log(issuePieces);
   }, [issuePieces]);
 
   const movePieces = (from, to) => {
-    console.log(from, to);
     let newArray = issuePieces;
     const piece = newArray.splice(from, 1)[0];
     newArray.splice(to, 0, piece);

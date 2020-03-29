@@ -22,10 +22,6 @@ export default function FeatureTemplate({ initialFeature, content }) {
     });
   };
 
-  React.useEffect(() => {
-    console.log(feature);
-  }, [feature]);
-
   return (
     <>
       <HeaderAdminOrganism closeShown={"/"} backShown="js" />
