@@ -3,13 +3,13 @@
     width: 100vw;
     position: fixed;
     top: 0;
-    background-color: #fff;
+    background-color: #f2f2f2;
     z-index: 999;
     &.inverse {
       background-color: #000;
       .header {
         a {
-          color: #fff;
+          color: #f2f2f2;
         }
       }
     }
@@ -72,7 +72,7 @@
       background-color: #000;
       input {
         width: 100%;
-        color: #fff;
+        color: #f2f2f2;
         outline: none;
         border: 0;
         font-size: 2em;
@@ -87,7 +87,7 @@
         width: 100%;
         margin-top: 0.8125em;
         height: 0.1875em;
-        background-color: #fff;
+        background-color: #f2f2f2;
       }
     }
 
@@ -102,7 +102,7 @@
           width: 16em;
           h4 {
             width: 16em;
-            color: #fff;
+            color: #f2f2f2;
             font-size: 1em;
             line-height: 1.25;
             padding: 0 0.5em;
@@ -112,7 +112,7 @@
             width: 100%;
             margin-top: 0.375em;
             height: 0.125em;
-            background-color: #fff;
+            background-color: #f2f2f2;
           }
         }
         .additional-results {
@@ -121,7 +121,7 @@
           a {
             font-size: 1em;
             line-height: 1.5;
-            color: #fff;
+            color: #f2f2f2;
             margin-bottom: 0.5em;
             display: block;
             &:hover {
@@ -152,7 +152,7 @@
           font-size: 1.25em;
           line-height: 1.2;
           margin-bottom: $base;
-          color: #fff;
+          color: #f2f2f2;
           &:hover {
             text-decoration: none;
           }
@@ -164,7 +164,7 @@
           display: block;
           font-size: 1.25;
           line-height: 1.2;
-          color: #fff;
+          color: #f2f2f2;
           text-decoration: none;
         }
       }
@@ -177,13 +177,13 @@
     width: 40em;
     position: fixed;
     top: 0;
-    background-color: #fff;
+    background-color: #f2f2f2;
     z-index: 999;
     &.inverse {
       background-color: #000;
       .header {
         a {
-          color: #fff;
+          color: #f2f2f2;
         }
       }
     }
@@ -247,7 +247,7 @@
       background-color: #000;
       input {
         width: 100%;
-        color: #fff;
+        color: #f2f2f2;
         outline: none;
         border: 0;
         font-size: 1.5em;
@@ -263,7 +263,7 @@
         width: 100%;
         margin-top: 1em;
         height: 0.125em;
-        background-color: #fff;
+        background-color: #f2f2f2;
       }
     }
 
@@ -277,7 +277,7 @@
           width: 36em;
           margin-top: 5.75em;
           h4 {
-            color: #fff;
+            color: #f2f2f2;
             font-size: 1.5em;
             line-height: 1.33;
             font-weight: 500;
@@ -292,7 +292,7 @@
           a {
             font-size: 1.5em;
             line-height: 1.33;
-            color: #fff;
+            color: #f2f2f2;
             margin-bottom: calc(#{$baseMobile} * 2);
             display: block;
             &:hover {
@@ -311,7 +311,7 @@
             font-size: 1.5em;
             line-height: 1.5;
             font-weight: 500;
-            color: #fff;
+            color: #f2f2f2;
             margin-bottom: calc(#{$baseMobile} * 2);
             display: block;
             text-decoration: underline;
@@ -343,7 +343,7 @@
           font-size: 2em;
           line-height: 1.5;
           margin-bottom: 1em;
-          color: #fff;
+          color: #f2f2f2;
         }
       }
       .menu-adress {
@@ -353,7 +353,7 @@
           display: block;
           font-size: 2em;
           line-height: 1.5;
-          color: #fff;
+          color: #f2f2f2;
           text-decoration: none;
         }
       }

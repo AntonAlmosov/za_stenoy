@@ -10,7 +10,6 @@ export default ({ pieces, issue }) => {
   React.useEffect(() => {
     const setY = () => {
       setScrolY(window.scrollY);
-      console.log(scrollY);
     };
     document.addEventListener("scroll", setY);
     return () => {
