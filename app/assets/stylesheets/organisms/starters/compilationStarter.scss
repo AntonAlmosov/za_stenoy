@@ -152,17 +152,17 @@
   }
   .description-wrapper {
     width: 100vw;
-    margin-top: 1.25em;
+    margin-top: 2em;
     padding: 2.5em 0 2em;
     background-color: #000;
     .description {
-      width: 60em;
+      width: 36em;
       margin: 0 auto;
       display: flex;
       flex-flow: column;
       justify-content: center;
       p {
-        font-size: 1.25em;
+        font-size: 1.5em;
         line-height: 1.2;
         letter-spacing: -0.03em;
         color: #fff;
@@ -172,9 +172,9 @@
       }
       a {
         color: #fff;
-        font-size: 1.25em;
+        font-size: 2em;
         line-height: 1.6;
-        margin-top: 2em;
+        margin-top: calc(#{$baseMobile} * 2);
         text-decoration: underline;
         text-align: center;
       }

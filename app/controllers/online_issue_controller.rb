@@ -150,9 +150,10 @@ class OnlineIssueController < ApplicationController
       present = issue.pieces.any? do |p|
         piece['id'] == p.id
       end
+      Piece.find(piece['id']).update(published: params[:published])
       if !present
         PieceOnlineIssue.create(piece_id: piece['id'], online_issue_id: issue.id, order: piece['order'])
-        Piece.find(piece['id']).update(published: issue.published)
+        Piece.find(piece['id']).update(published: params[:published])
       else
         PieceOnlineIssue.find_by(piece_id: piece['id'], online_issue_id: issue.id).update(order: piece['order'])
       end

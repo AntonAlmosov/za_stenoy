@@ -13,7 +13,7 @@ export default function MagasineStarter({ page }) {
         >
           {page.title}
         </h1>
-        {/* <p>
+        <p>
           ЛИТЕРАТУРНЫЙ ЖУРНАЛ{" "}
           <a
             onClick={() => setOpened(true)}
@@ -25,9 +25,7 @@ export default function MagasineStarter({ page }) {
           >
             {page.title}
           </a>
-          <br />
-          {page.established}
-        </p> */}
+        </p>
       </div>
       {opened && (
         <div className="description-wrapper">

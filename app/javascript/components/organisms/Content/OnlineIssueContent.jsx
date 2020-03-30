@@ -101,7 +101,6 @@ const Piece = ({ piece }) => {
             return <p key={i}>{ReactHtmlParser(line.data.text)}</p>;
           })}
         </div>
-        <span>{piece.publish_date}</span>
       </div>
     </>
   );

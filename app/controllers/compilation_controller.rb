@@ -124,6 +124,7 @@ class CompilationController < ApplicationController
       present = compilation.pieces.any? do |p|
         piece == p.id
       end
+      Piece.find(piece).update(published: params[:published])
       if !present
         PieceCompilation.create(piece_id: piece, compilation_id: compilation.id)
         Piece.find(piece).update(published: params[:published])
