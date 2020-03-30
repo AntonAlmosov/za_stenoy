@@ -207,7 +207,7 @@ class OfflineIssueController < ApplicationController
       issue.cover.destroy
     end
 
-    connections = OfflineIssueAuthor.where(issue_id: issue.id)
+    connections = OfflineIssueAuthor.where(offline_issue_id: issue.id)
     connections.each do |e|
       e.destroy
     end
