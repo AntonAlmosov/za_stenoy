@@ -2,6 +2,7 @@ import React from "react";
 import { v4 } from "uuid";
 
 import HeaderTemplate from "../organisms/HeaderOrganism";
+import { isUri } from "valid-url";
 
 export default ({ issue, pages, authors, inversed, editPath }) => {
   const [page, setPage] = React.useState(0);
@@ -49,7 +50,7 @@ export default ({ issue, pages, authors, inversed, editPath }) => {
           </div>
         </div>
         {opened && (
-          <div className="description-wrapper">
+          <div className="description-wrapper-issue">
             <div className="description-inner">
               <h1>{issue.title}</h1>
               <span>{issue.publish_date}</span>
@@ -72,7 +73,7 @@ export default ({ issue, pages, authors, inversed, editPath }) => {
             </div>
             <div className="description-menu">
               <a href={issue.purchase_link} target="_blank">
-                Купить
+                {isUri(issue.purchase_link) ? "Купить" : ""}
               </a>
               <a onClick={() => setOpened(false)}>Закрыть</a>
             </div>

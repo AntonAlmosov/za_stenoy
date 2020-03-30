@@ -4,7 +4,7 @@ import TextareaAutosize from "react-textarea-autosize";
 import { v4 } from "uuid";
 
 import HeaderAdminOrganism from "../../organisms/HeaderAdminOrganism.jsx";
-import ImagePicker from "../../molecules/misc/ImagePicker.jsx";
+import ImagePicker from "../../molecules/misc/ImagePickerPage.jsx";
 import DefaultButton from "../../molecules/buttons/DefaultButton.jsx";
 import {
   AuthorPicker,
@@ -35,6 +35,12 @@ export default ({
   );
   const [pages, setPages] = React.useState(initialPages);
 
+  React.useEffect(() => {
+    pages.forEach((p, i) => {
+      p.page_number = i + 1;
+    });
+  }, [pages]);
+
   function handleSubmit() {
     setSaveText("Обработка");
 
@@ -46,16 +52,16 @@ export default ({
       const existing = initialPages.some(p => p.id == page.id);
 
       if (existing) {
-        if (!page.file)
+        if (page.file)
           return {
-            status: "unchanged",
+            status: "changed",
             id: page.id,
             page_number: page.page_number,
             page: page.file,
           };
         else
           return {
-            status: "changed",
+            status: "unchanged",
             id: page.id,
             page_number: page.page_number,
             page: page.file,
@@ -149,15 +155,7 @@ export default ({
   function handlePage(adding, page) {
     if (!adding && origin == "edit" && initialPages.some(p => p.id == page.id))
       axios.post("/offline_issue/delete_page", { id: page.id });
-    const res = adding
-      ? [...pages, page]
-      : pages
-          .filter(p => p.id != page.id)
-          .map((p, i) => {
-            p.page_number = i + 1;
-            return p;
-          });
-
+    const res = adding ? [...pages, page] : pages.filter(p => p.id != page.id);
     setPages(res);
   }
 

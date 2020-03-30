@@ -141,7 +141,7 @@ class OfflineIssueController < ApplicationController
     end
 
     @issue.issue_pages.sort_by(&:page_number).each do |page|
-      @initialPages.push({id: page.id, page_number: page.page_number, page: polymorphic_url(page.page)})
+      @initialPages.push({id: page.id, page_number: page.page_number, page: polymorphic_url(page.page), file: nil})
     end
 
 
