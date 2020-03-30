@@ -1,6 +1,6 @@
 class MenuController < ApplicationController
   def index
-    pages = Page.all
+    pages = Page.all.sort_by(&:created_at)
     render :json => pages
   end
 
