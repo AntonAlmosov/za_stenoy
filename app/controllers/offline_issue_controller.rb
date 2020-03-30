@@ -51,6 +51,7 @@ class OfflineIssueController < ApplicationController
     if status == 'new'
       IssuePage.create(page_number: page_number, page: page, offline_issue_id: params[:issue_id])
     end
+    render :json => {status: 'ok'}
   end
 
   def delete_page

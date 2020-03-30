@@ -97,7 +97,7 @@ export default ({
           setInterval(() => setSaveText("Сохранить"), 1000);
         })
         .then(res => {
-          pageCollection.forEach(page => {
+          pageCollection.forEach((page, i, collection) => {
             const data = new FormData();
             data.append("status", page.status);
             data.append("page_number", page.page_number);
@@ -105,17 +105,20 @@ export default ({
             data.append("page", page.page);
             data.append("issue_id", res.data.id);
 
-            axios.post("/offline_issue/handle_pages", data, {
-              headers: {
-                "Content-Type": "multipart/form-data",
-              },
-            });
+            axios
+              .post("/offline_issue/handle_pages", data, {
+                headers: {
+                  "Content-Type": "multipart/form-data",
+                },
+              })
+              .then(() => {
+                if (i == collection.length - 1)
+                  setInterval(
+                    () => window.location.replace(res.data.redirectPath),
+                    100
+                  );
+              });
           });
-          return res;
-        })
-        .then(res => {
-          setSaveText("Сохранить");
-          window.location.replace(res.data.redirectPath);
         });
     } else if (origin === "edit") {
       axios
