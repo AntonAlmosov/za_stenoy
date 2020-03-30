@@ -83,7 +83,7 @@ export default ({ issue, pages, authors, inversed, editPath }) => {
       {!opened && (
         <div className="bottom-menu">
           <a href={issue.purchase_link} target="_blank">
-            Купить
+            {isUri(issue.purchase_link) ? "Купить" : ""}
           </a>
           <a onClick={() => setOpened(true)}>Подробнее</a>
         </div>

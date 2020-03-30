@@ -1,0 +1,45 @@
+@media (min-width: 512px) {
+  .scroll-top {
+    position: fixed;
+    bottom: calc(#{$base} * 1);
+    right: calc(#{$base} * 1.5);
+    width: calc(#{$base} * 8);
+    height: calc(#{$base} * 3.5);
+    font-size: 1.25em;
+    background-color: #151515;
+    color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: calc(#{$base} * 1.375);
+    img {
+      margin-left: calc(#{$base} * 0.5);
+      width: calc(#{$base} * 0.8125);
+      height: calc(#{$base} * 1.25);
+    }
+  }
+}
+
+@media (max-width: 511px) {
+  .scroll-top {
+    position: fixed;
+    bottom: calc(#{$baseMobile} * 1);
+    right: calc(#{$baseMobile} * 1);
+    width: calc(#{$baseMobile} * 12.5);
+    height: calc(#{$baseMobile} * 5.5);
+    font-size: 2em;
+    background-color: #151515;
+    color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: calc(#{$baseMobile} * 2.25);
+    img {
+      margin-left: calc(#{$baseMobile} * 0.75);
+      width: calc(#{$baseMobile} * 1.125);
+      height: calc(#{$baseMobile} * 1.75);
+    }
+  }
+}

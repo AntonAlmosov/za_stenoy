@@ -1,9 +1,22 @@
 import React from "react";
 import cyrillicToTranslit from "cyrillic-to-translit-js";
 import ReactHtmlParser from "react-html-parser";
+import arrow from "images/arrow.svg";
 
 export default ({ pieces, issue }) => {
   let [current, setCurrent] = React.useState({});
+  const [scrollY, setScrolY] = React.useState(0);
+
+  React.useEffect(() => {
+    const setY = () => {
+      setScrolY(window.scrollY);
+      console.log(scrollY);
+    };
+    document.addEventListener("scroll", setY);
+    return () => {
+      document.removeEventListener("scroll", setY);
+    };
+  });
 
   React.useEffect(() => {
     let authors = {};
@@ -31,22 +44,34 @@ export default ({ pieces, issue }) => {
   }, []);
 
   return (
-    <div className="online-issue-content-wrapper">
-      <Contents authors={current} />
-      {issue.description && (
-        <div className="description">
-          <h2>
-            {issue.description_heading ? issue.description_heading : "ЭПИЛОГ"}
-          </h2>
-          <pre>
-            <p>{issue.description}</p>
-          </pre>
+    <>
+      <div className="online-issue-content-wrapper">
+        <Contents authors={current} />
+        {issue.description && (
+          <div className="description">
+            <h2>
+              {issue.description_heading ? issue.description_heading : "ЭПИЛОГ"}
+            </h2>
+            <pre>
+              <p>{issue.description}</p>
+            </pre>
+          </div>
+        )}
+        {pieces.map(piece => {
+          return <Piece key={piece.id} piece={piece} />;
+        })}
+      </div>
+      {scrollY > 1000 && (
+        <div
+          className="scroll-top"
+          onClick={() => {
+            window.scrollTo(0, 0);
+          }}
+        >
+          Наверх <img src={arrow} />
         </div>
       )}
-      {pieces.map(piece => {
-        return <Piece key={piece.id} piece={piece} />;
-      })}
-    </div>
+    </>
   );
 };
 
