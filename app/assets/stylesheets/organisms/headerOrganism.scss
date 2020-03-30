@@ -149,9 +149,9 @@
         width: 14em;
         a {
           display: block;
-          font-size: 1.25;
+          font-size: 1.25em;
           line-height: 1.2;
-          margin-bottom: 1em;
+          margin-bottom: $base;
           color: #fff;
           &:hover {
             text-decoration: none;

@@ -23,7 +23,7 @@ class FeatureController < ApplicationController
     f = Feature.first
 
     if f
-      if f.feature_type == params[:feature_type] and f.origin_id == [:origin_id]
+      if f.feature_type == params[:feature_type] and f.origin_id == params[:origin_id]
         Feature.destroy_all
         render :json => {feature_type: '', origin_id: ''}
       else
