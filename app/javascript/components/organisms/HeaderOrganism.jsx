@@ -229,11 +229,14 @@ function MenuOrganism({ pages }) {
           </div>
           <div className="menu-adress">
             <a href="tel: 8-(952)-517-37-91">8(952) 517 37 91</a>
-            <a href="email: flagspublishing@gmail.com">
+            <a href="mailto: flagspublishing@gmail.com">
               flagspublishing@gmail.com
             </a>
             <a href="https://vk.com/projectflagi" target="_blank">
               vk.com/projectflagi
+            </a>
+            <a href="https://fb.com/projectflagi" target="_blank">
+              fb.com/projectflagi
             </a>
           </div>
         </div>

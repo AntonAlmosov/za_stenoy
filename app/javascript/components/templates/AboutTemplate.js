@@ -28,6 +28,9 @@ export default function IndexTemplate({ page, initialCover, editPath }) {
         <a href="https://vk.com/projectflagi" target="_blank">
           vk.com/projectflagi
         </a>
+        <a href="https://fb.com/projectflagi" target="_blank">
+          fb.com/projectflagi
+        </a>
       </div>
     </>
   );

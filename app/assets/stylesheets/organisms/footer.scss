@@ -2,27 +2,39 @@
   .footer-wrapper {
     margin-top: 2em;
     width: 74em;
-    height: 30em;
+    height: 32.5em;
     background-color: #000;
     display: flex;
     justify-content: center;
     align-items: center;
     .footer-info {
-      width: 46em;
+      width: 52em;
+      display: flex;
+      flex-flow: column;
+      justify-content: center;
       img {
         width: 46em;
         height: 16em;
+        margin: 0 auto;
       }
       .flags-links {
-        width: 46em;
+        width: 52em;
         margin-top: 2em;
         display: flex;
-        justify-content: space-between;
+        flex-flow: column;
+        justify-content: center;
+        .row {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 0.5em;
+        }
         a {
-          font-size: 1.3em;
+          font-size: 1.5em;
           line-height: 1.33;
           color: white;
           text-decoration: none;
+          text-align: center;
           &:hover {
             text-decoration: underline;
           }
@@ -36,7 +48,7 @@
   .footer-wrapper {
     margin-top: 2em;
     width: 40em;
-    height: 27em;
+    height: 29em;
     background-color: #000;
     display: flex;
     justify-content: center;
@@ -49,17 +61,17 @@
       }
       .flags-links {
         width: 36em;
-        height: 7.75em;
         margin-top: 2em;
         display: flex;
-        justify-content: space-between;
         flex-flow: column;
         a {
+          margin-bottom: calc(#{$baseMobile} * 2);
           font-size: 1.25em;
           line-height: 1;
           color: white;
           text-decoration: none;
           text-align: center;
+          display: block;
         }
       }
     }
