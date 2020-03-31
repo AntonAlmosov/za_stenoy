@@ -5,7 +5,6 @@ import { isWebUri } from "valid-url";
 
 import HeaderAdminOrganism from "../../organisms/HeaderAdminOrganism.jsx";
 import ImagePicker from "../../molecules/misc/ImagePicker.jsx";
-import DefaultButton from "../../molecules/buttons/DefaultButton.jsx";
 
 export default ({ product, coverUrl, postPath, origin }) => {
   const [saveText, setSaveText] = React.useState("Сохранить");

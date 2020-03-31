@@ -8,10 +8,13 @@ export default function FooterOrganism() {
         <img src={flagsImage} alt="" />
         <div className="flags-links">
           <a href="tel: 8-(952)-517-37-91">8(952) 517 37 91</a>
+          <a href="https://fb.com/projectflagi " target="_blank">
+            fb.com/projectflagi
+          </a>
           <a href="email: flagspublishing@gmail.com">
             flagspublishing@gmail.com
           </a>
-          <a href="vk.com/projectflagi" target="_blank">
+          <a href="https://vk.com/projectflagi" target="_blank">
             vk.com/projectflagi
           </a>
         </div>

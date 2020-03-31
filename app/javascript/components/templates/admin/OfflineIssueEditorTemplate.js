@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import TextareaAutosize from "react-textarea-autosize";
 import { v4 } from "uuid";
+import { isWebUri } from "valid-url";
 
 import HeaderAdminOrganism from "../../organisms/HeaderAdminOrganism.jsx";
 import ImagePicker from "../../molecules/misc/ImagePickerPage.jsx";
@@ -82,7 +83,11 @@ export default ({
     formData.append("featured", featured);
     formData.append("description", description);
     formData.append("publish_date", publishDate);
-    formData.append("purchase_link", purchaseLink);
+    if (isWebUri(purchaseLink) == undefined) {
+      formData.append("purchase_link", "http://" + purchaseLink);
+    } else {
+      formData.append("purchase_link", purchaseLink);
+    }
     formData.append("authors", JSON.stringify(authors));
 
     if (origin === "new") {

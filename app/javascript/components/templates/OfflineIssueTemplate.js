@@ -37,7 +37,13 @@ export default ({ issue, pages, authors, inversed, editPath }) => {
       <HeaderTemplate inverse={isInversed} logo editPath={editPath} />
       <div className="offline-issue-wrapper">
         <div className={"issue-page" + (opened ? " moved" : "")}>
-          <img src={pages[page]} />
+          {pages.map((curPage, i) => {
+            return (
+              <div className="issue-image" key={i}>
+                {i == page && <img src={curPage} />}
+              </div>
+            );
+          })}
           <div className="issue-page-switches-wrapper">
             <div
               onClick={() => handlePageSwitch(false)}
