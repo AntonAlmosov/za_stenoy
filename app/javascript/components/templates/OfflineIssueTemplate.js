@@ -2,7 +2,7 @@ import React from "react";
 import { v4 } from "uuid";
 
 import HeaderTemplate from "../organisms/HeaderOrganism";
-import { isUri } from "valid-url";
+import { isWebUri } from "valid-url";
 
 export default ({ issue, pages, authors, inversed, editPath }) => {
   const [page, setPage] = React.useState(0);
@@ -73,7 +73,7 @@ export default ({ issue, pages, authors, inversed, editPath }) => {
             </div>
             <div className="description-menu">
               <a href={issue.purchase_link} target="_blank">
-                {isUri(issue.purchase_link) ? "Купить" : ""}
+                {isWebUri(issue.purchase_link) ? "Купить" : ""}
               </a>
               <a onClick={() => setOpened(false)}>Закрыть</a>
             </div>
@@ -83,7 +83,7 @@ export default ({ issue, pages, authors, inversed, editPath }) => {
       {!opened && (
         <div className="bottom-menu">
           <a href={issue.purchase_link} target="_blank">
-            {isUri(issue.purchase_link) ? "Купить" : ""}
+            {isWebUri(issue.purchase_link) ? "Купить" : ""}
           </a>
           <a onClick={() => setOpened(true)}>Подробнее</a>
         </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import TextareaAutosize from "react-textarea-autosize";
+import { isWebUri } from "valid-url";
 
 import HeaderAdminOrganism from "../../organisms/HeaderAdminOrganism.jsx";
 import ImagePicker from "../../molecules/misc/ImagePicker.jsx";
@@ -22,7 +23,11 @@ export default ({ product, coverUrl, postPath, origin }) => {
     if (cover !== coverUrl) formData.append("cover", coverData.files[0]);
     formData.append("name", name);
     formData.append("price", price);
-    formData.append("purchase_link", purchaseLink);
+    if (isWebUri(purchaseLink) == undefined) {
+      formData.append("purchase_link", "http://" + purchaseLink);
+    } else {
+      formData.append("purchase_link", purchaseLink);
+    }
     formData.append("release_date", releaseDate);
 
     if (origin === "new") {
