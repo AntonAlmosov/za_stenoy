@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_29_121051) do
+ActiveRecord::Schema.define(version: 2020_05_10_123329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,7 +73,6 @@ ActiveRecord::Schema.define(version: 2020_03_29_121051) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "feature_type"
     t.integer "origin_id"
-    t.string "caption"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -104,6 +103,14 @@ ActiveRecord::Schema.define(version: 2020_03_29_121051) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_models_on_email", unique: true
     t.index ["reset_password_token"], name: "index_models_on_reset_password_token", unique: true
+  end
+
+  create_table "news", force: :cascade do |t|
+    t.string "title"
+    t.text "text"
+    t.text "caption"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "offline_issue_authors", force: :cascade do |t|
@@ -138,13 +145,6 @@ ActiveRecord::Schema.define(version: 2020_03_29_121051) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
     t.index ["slug"], name: "index_online_issues_on_slug", unique: true
-  end
-
-  create_table "page_features", force: :cascade do |t|
-    t.string "feature_type"
-    t.integer "origin_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "pages", force: :cascade do |t|
