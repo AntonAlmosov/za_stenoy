@@ -73,7 +73,6 @@ ActiveRecord::Schema.define(version: 2020_03_29_121051) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "feature_type"
     t.integer "origin_id"
-    t.string "caption"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -138,13 +137,6 @@ ActiveRecord::Schema.define(version: 2020_03_29_121051) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
     t.index ["slug"], name: "index_online_issues_on_slug", unique: true
-  end
-
-  create_table "page_features", force: :cascade do |t|
-    t.string "feature_type"
-    t.integer "origin_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "pages", force: :cascade do |t|
