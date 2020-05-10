@@ -69,6 +69,13 @@ class PageController < ApplicationController
         end
       end
 
+      if page.page_type == 'news'
+        news = page.news.last
+        if news and news.cover.attached?
+          feature = {title: news.title, cover: polymorphic_url(news.cover), date: product.updated_at.to_s(:custom_datetime)}
+        end
+      end
+
       @pages.push({id: page.id, slug: page.slug, title: page.title, page_type: page.page_type, feature: feature})
     end
   end

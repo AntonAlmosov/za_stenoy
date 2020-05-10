@@ -36,6 +36,12 @@ export default function IndexContent({ pages, feature }) {
           key={pages[3].slug}
           card={pages[3].feature}
         />
+        <IndexCard
+          name={pages[4].title}
+          uri={"/page/" + pages[4].slug}
+          key={pages[4].slug}
+          card={pages[4].feature}
+        />
       </div>
     </div>
   );
