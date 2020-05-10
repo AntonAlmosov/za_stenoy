@@ -205,6 +205,27 @@ class PageController < ApplicationController
         end
       end
     end
+
+    if @page.page_type == 'news'
+      newsCollection = @page.news.where(published: true, featured: false).sort_by(&:created_at)
+      newsCollection.each do |news|
+        if news.cover.attached?
+          @content.push({cover: polymorphic_url(news.cover), title: news.title, date: news.created_at.to_s(:custom_datetime), url: page_news_path(@page.id, news.id)})
+        else
+          @content.push({title: news.title, date: news.created_at.to_s(:custom_datetime), url: page_news_path(@page.id, news.id)})
+        end
+      end
+      f = @page.news.where(published: true, featured: true)
+      if f.exists?
+        if f.cover.attached?
+          @featured.push({cover: polymorphic_url(news.cover), title: news.title, date: news.created_at.to_s(:custom_datetime), url: page_news_path(@page.id, news.id)})
+        else
+          @featured.push({title: news.title, date: news.created_at.to_s(:custom_datetime), url: page_news_path(@page.id, news.id)})
+        end
+      else
+        @featured = false
+      end
+    end
   end
 
 end

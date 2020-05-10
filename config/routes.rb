@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :compilation, only: [:show]
     resources :online_issue, only: [:show]
     resources :offline_issue, only: [:show]
+    resources :news, only: [:show]
   end
 
   resources :menu, only: [:index] do

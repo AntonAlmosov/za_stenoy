@@ -5,6 +5,8 @@ class CreateNews < ActiveRecord::Migration[6.0]
       t.text :text
       t.text :caption
       t.integer :page_id
+      t.boolean :published
+      t.boolean :featured
 
       t.timestamps
     end

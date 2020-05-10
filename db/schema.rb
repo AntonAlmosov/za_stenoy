@@ -110,6 +110,8 @@ ActiveRecord::Schema.define(version: 2020_05_10_123329) do
     t.text "text"
     t.text "caption"
     t.integer "page_id"
+    t.boolean "published"
+    t.boolean "featured"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
