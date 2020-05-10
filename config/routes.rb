@@ -55,6 +55,13 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :news, only: [] do
+    collection do
+      get :get_news
+      post :toggle_news
+    end
+  end
+
   resources :feature, only: [:index, :create]
 
   resources :admin, only: [:index, :show, :edit, :update] do
@@ -62,5 +69,6 @@ Rails.application.routes.draw do
     resources :online_issue, only: [:new, :edit, :create, :update, :destroy]
     resources :offline_issue, only: [:new, :edit, :create, :update, :destroy]
     resources :product, only: [:new, :edit, :create, :update, :destroy]
+    resources :news, only: [:new, :edit, :create, :update, :destroy]
   end
 end

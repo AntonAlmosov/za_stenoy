@@ -9,7 +9,7 @@ export default function IndexTable(props) {
         actions={[]}
       />
       {props.pages &&
-        props.pages.map(page => {
+        props.pages.map((page) => {
           let title = "";
           let actions = [];
           let uri = "";
@@ -71,6 +71,16 @@ export default function IndexTable(props) {
               },
             ];
           }
+          if (page.page_type === "news") {
+            title = page.title;
+            uri = "/admin/" + page.slug;
+            actions = [
+              {
+                name: "Новая новость >",
+                uri: "/admin/" + page.slug + "/news/new",
+              },
+            ];
+          }
           return (
             <TableRow
               key={page.slug}
@@ -99,7 +109,7 @@ function TableRow(props) {
         <a href={props.title.uri}>{props.title.name}</a>
       </div>
       <div className="column" style={{ width: "48em" }}>
-        {props.actions.map(action => {
+        {props.actions.map((action) => {
           return (
             <a href={action.uri} key={action.name}>
               {action.name}

@@ -7,3 +7,6 @@
 <% if @page.page_type === "shop"%>
   <%= react_component("templates/admin/ShopTemplate", {page: @page, closePath: @close_path, backPath: @back_path}, {prerender: true}) %>
 <% end %>
+<% if @page.page_type === "news"%>
+  <%= react_component("templates/admin/NewsTemplate", {page: @page, closePath: @close_path, backPath: @back_path}, {prerender: true}) %>
+<% end %>
