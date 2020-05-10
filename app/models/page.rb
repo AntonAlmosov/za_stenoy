@@ -3,6 +3,7 @@ class Page < ApplicationRecord
   has_many :offline_issues
   has_many :compilations
   has_many :products
+  has_many :news
 
   has_one_attached :cover
   
