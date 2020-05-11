@@ -1,7 +1,11 @@
 class NewsController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :authenticate_admin!
+
   def new
+    @news = News.new
+    @post_path = admin_news_index_path(params[:admin_id])
+    @back_path = 'js'
   end
 
   def get_news
