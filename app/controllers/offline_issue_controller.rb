@@ -219,7 +219,7 @@ class OfflineIssueController < ApplicationController
     end
 
     if issue.destroy
-      get_online_issues
+      get_offline_issues
     end
 
   end

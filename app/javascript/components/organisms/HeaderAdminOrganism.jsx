@@ -11,10 +11,12 @@ export default function HeaderAdminOrganism(props) {
         ) : (
           <a href={props.backShown}>{props.backShown ? "Назад" : ""}</a>
         )}
-        {props.closeShown && (
+        {props.closeShown ? (
           <a href={props.closeShown} className="close">
             {"Close"}
           </a>
+        ) : (
+          <a></a>
         )}
         <a
           onClick={props.doneActive ? props.onDoneClick : () => {}}

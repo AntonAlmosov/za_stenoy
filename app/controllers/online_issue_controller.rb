@@ -101,7 +101,7 @@ class OnlineIssueController < ApplicationController
 
     if issue.save!
       pieces.each do |piece|
-        PieceOnlineIssue.create(piece_id: piece.id, online_issue_id: issue.id, order: piece['order'])
+        PieceOnlineIssue.create(piece_id: piece['id'], online_issue_id: issue.id, order: piece['order'])
         Piece.find(piece['id']).update(published: issue.published)
       end
 
@@ -141,10 +141,6 @@ class OnlineIssueController < ApplicationController
     issue.featured = params[:featured]
     page = Page.friendly.find(params[:admin_id])
     #Adding new pieces
-    puts 'asdasd'
-    puts 'asdasd'
-    puts 'asdasd'
-    puts 'asdasd'
     pieces.each do |piece|
       puts piece['order']
       present = issue.pieces.any? do |p|
@@ -200,7 +196,7 @@ class OnlineIssueController < ApplicationController
       issue.cover.destroy
     end
     
-    connections = PieceOnlineIssue.where(issue_id: issue.id)
+    connections = PieceOnlineIssue.where(online_issue_id: issue.id)
     connections.each do |e|
       e.destroy
     end
