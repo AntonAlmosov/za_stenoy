@@ -129,7 +129,7 @@ export default function NewsEditorTemplate({
             onClick={() => setPublished(!published)}
           />
           <DefaultButton
-            text={["Сделать обложкой >", "Убрать обложку >"]}
+            text={["Убрать фичер >", "Сделать фичером >"]}
             state={featured}
             onClick={() => setFeatured(!featured)}
           />

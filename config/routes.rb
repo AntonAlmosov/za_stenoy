@@ -55,7 +55,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :news, only: [] do
+  resources :news, only: [:show] do
     collection do
       get :get_news
       post :toggle_news

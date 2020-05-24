@@ -44,6 +44,7 @@ export default function NewsTable() {
         return (
           <NewsTableRow
             key={news.id}
+            id={news.id}
             title={news.title}
             actions={[
               {
@@ -78,7 +79,7 @@ function NewsTableRow(props) {
   return (
     <div className="table-row-wrapper">
       <div className="column" style={{ width: "22em" }}>
-        <span>{props.title}</span>
+        <a href={"/admin/news/news/" + props.id + "/edit"}>{props.title}</a>
       </div>
       <div className="column" style={{ width: "38em" }}>
         {props.actions.map((action) => {
