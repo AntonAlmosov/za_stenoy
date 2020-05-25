@@ -34,6 +34,11 @@ class PageController < ApplicationController
         publish_date = issue.updated_at.to_s(:custom_datetime)
         url = page_compilation_path(issue.page_id, issue.id)
       end
+      if feature_data.feature_type == 'news'
+        issue = News.find(feature_data.origin_id)
+        publish_date = issue.created_at.to_s(:custom_datetime)
+        url = news_path(issue.id)
+      end
 
       if issue.cover.attached?
         feat = {title: issue.title, caption: caption,  publish_date: publish_date, url: url, cover: polymorphic_url(issue.cover)}

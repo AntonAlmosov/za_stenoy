@@ -16,6 +16,9 @@ class FeatureController < ApplicationController
     Compilation.where(published: true).each do |feature|
       @content.push(feature_type: 'compilation', origin_id: feature.id, title: feature.title, created_at: feature.created_at)
     end
+    News.where(published: true).each do |feature|
+      @content.push(feature_type: 'news', origin_id: feature.id, title: feature.title, created_at: feature.created_at)
+    end
     @content = @content.sort { |a,b| a['created_at'] <=> b['created_at'] }
   end
 
