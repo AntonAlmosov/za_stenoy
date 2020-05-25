@@ -75,9 +75,11 @@ class PageController < ApplicationController
       end
 
       if page.page_type == 'news'
-        news = page.news.last
+        news = News.last
         if news and news.cover.attached?
-          feature = {title: news.title, cover: polymorphic_url(news.cover), date: product.updated_at.to_s(:custom_datetime)}
+          feature = {title: news.title, cover: polymorphic_url(news.cover), date: news.created_at.to_s(:custom_datetime)}
+        elsif news
+          feature = {title: news.title, date: news.created_at.to_s(:custom_datetime)}
         end
       end
 
