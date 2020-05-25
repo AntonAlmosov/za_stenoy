@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_29_121051) do
+ActiveRecord::Schema.define(version: 2020_05_24_221851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,22 @@ ActiveRecord::Schema.define(version: 2020_03_29_121051) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_models_on_email", unique: true
     t.index ["reset_password_token"], name: "index_models_on_reset_password_token", unique: true
+  end
+
+  create_table "news", force: :cascade do |t|
+    t.string "title"
+    t.text "text"
+    t.text "caption"
+    t.integer "page_id"
+    t.boolean "published"
+    t.boolean "featured"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "news_images", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "offline_issue_authors", force: :cascade do |t|

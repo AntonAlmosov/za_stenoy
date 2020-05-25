@@ -34,6 +34,11 @@ class PageController < ApplicationController
         publish_date = issue.updated_at.to_s(:custom_datetime)
         url = page_compilation_path(issue.page_id, issue.id)
       end
+      if feature_data.feature_type == 'news'
+        issue = News.find(feature_data.origin_id)
+        publish_date = issue.created_at.to_s(:custom_datetime)
+        url = news_path(issue.id)
+      end
 
       if issue.cover.attached?
         feat = {title: issue.title, caption: caption,  publish_date: publish_date, url: url, cover: polymorphic_url(issue.cover)}
@@ -66,6 +71,15 @@ class PageController < ApplicationController
         product = page.products.last
         if product and product.cover.attached?
           feature = {title: product.name, cover: polymorphic_url(product.cover), date: product.updated_at.to_s(:custom_datetime), caption: product.price}
+        end
+      end
+
+      if page.page_type == 'news'
+        news = News.last
+        if news and news.cover.attached?
+          feature = {title: news.title, cover: polymorphic_url(news.cover), date: news.created_at.to_s(:custom_datetime)}
+        elsif news
+          feature = {title: news.title, date: news.created_at.to_s(:custom_datetime)}
         end
       end
 
@@ -196,6 +210,30 @@ class PageController < ApplicationController
         else
           @content.push({title: prod.name, date: prod.release_date, url: prod.purchase_link})
         end
+      end
+    end
+
+    if @page.page_type == 'news'
+      @content = []
+      newsCollection = News.where(published: true, featured: false).sort_by(&:created_at)
+      @feature = {}
+      newsCollection.each do |news|
+        if news.cover.attached?
+          @content.push({cover: polymorphic_url(news.cover), title: news.title, date: news.created_at.to_s(:custom_datetime), url: page_news_path(@page.id, news.id)})
+        else
+          @content.push({title: news.title, date: news.created_at.to_s(:custom_datetime), url: page_news_path(@page.id, news.id)})
+        end
+      end
+      f = News.find_by(published: true, featured: true)
+
+      if f
+        if f.cover.attached?
+          @feature = {cover: polymorphic_url(f.cover), title: f.title, date: f.created_at.to_s(:custom_datetime), url: page_news_path(@page.id, f.id)}
+        else
+          @feature = {title: f.title, date: f.created_at.to_s(:custom_datetime), url: page_news_path(@page.id, f.id)}
+        end
+      else
+        @feature = false
       end
     end
   end

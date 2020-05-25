@@ -13,6 +13,12 @@ export default function IndexContent({ pages, feature }) {
       )}
       <div className="index-cards-wrapper">
         <IndexCard
+          name={pages[5].title}
+          uri={"/page/" + pages[5].slug}
+          key={pages[5].slug}
+          card={pages[5].feature}
+        />
+        <IndexCard
           name={pages[2].title}
           uri={"/page/" + pages[2].slug}
           key={pages[2].slug}

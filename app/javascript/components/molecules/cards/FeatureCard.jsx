@@ -1,5 +1,4 @@
 import React from "react";
-import img from "images/exImage.png";
 
 export default function FeatureCard({ card }) {
   return (

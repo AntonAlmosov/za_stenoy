@@ -823,6 +823,11 @@
     codex-notifier "^1.1.2"
     codex-tooltip "^1.0.0"
 
+"@editorjs/image@^2.3.4":
+  version "2.3.4"
+  resolved "https://registry.yarnpkg.com/@editorjs/image/-/image-2.3.4.tgz#0b6fc9247ecc7750e5157aae5ea954c75196b3e6"
+  integrity sha512-KMtmK6VDERewL0t5+Ooo/vHNVxbueq/M6WRjKJWgXYU4sOybhwpKAuVL2KHogBY3Cx2RGcHI9mjvjeHUMyip0g==
+
 "@editorjs/paragraph@^2.6.1":
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/@editorjs/paragraph/-/paragraph-2.6.1.tgz#efd21da9912686024abd96eedd0c2258193f7d31"
