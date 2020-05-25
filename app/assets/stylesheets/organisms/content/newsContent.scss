@@ -52,31 +52,31 @@
 
 @media (max-width: 511px) {
   .news-content {
-    width: 70em;
-    margin: 4.5em auto 5.5em;
+    width: 38em;
+    margin: 5em auto 4em;
     img {
-      width: 70em;
-      height: 37.5em;
+      width: 38em;
+      height: 20.5em;
       margin: 0 auto 2.5em;
       object-fit: cover;
       object-position: center;
     }
     .news-header {
+      width: 36em;
+      margin: 0 auto;
       h1 {
-        font-size: 4em;
+        font-size: 2em;
         line-height: 1;
-        font-weight: 400;
-        letter-spacing: -5.5%;
+        font-weight: 500;
         white-space: pre-wrap;
       }
     }
     .news {
-      margin-top: 3.5em;
-      margin-bottom: 2.75em;
-      width: 50em;
+      margin: 2em auto;
+      width: 36em;
       p {
-        font-size: 1.25em;
-        line-height: 1.2;
+        font-size: 1.5em;
+        line-height: 1.5;
         padding: 0.2em 0 0;
         b {
           font-weight: 500;
@@ -84,13 +84,22 @@
         i {
           font-style: italic;
         }
+        a {
+          color: blue;
+          &:visited {
+            color: blue;
+          }
+        }
       }
     }
     span {
-      width: calc(50em / 1.25);
-      font-size: 1.25em;
-      line-height: 1.2;
+      display: flex;
+      width: calc(36em / 1.5);
+      margin: 0 auto;
+      font-size: 1.5em;
+      line-height: 1.33;
       font-weight: 500;
+      text-decoration: underline;
     }
   }
 }

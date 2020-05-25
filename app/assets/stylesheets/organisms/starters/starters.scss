@@ -22,6 +22,11 @@
     letter-spacing: -0.03em;
     white-space: pre-wrap;
   }
+
+  .news-starter {
+    margin-top: 12em;
+    margin-bottom: 12.75em;
+  }
 }
 
 @media (max-width: 511px) {
@@ -50,5 +55,10 @@
     text-align: left;
     letter-spacing: -0.03em;
     white-space: pre-wrap;
+  }
+
+  .news-starter {
+    margin-top: 8em;
+    margin-bottom: 6em;
   }
 }

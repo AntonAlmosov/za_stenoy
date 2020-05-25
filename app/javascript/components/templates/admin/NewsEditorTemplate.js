@@ -52,8 +52,8 @@ export default function NewsEditorTemplate({
     formData.append("title", title);
     formData.append("text", JSON.stringify(text));
     formData.append("caption", caption);
-    formData.append("published", JSON.stringify(published));
-    formData.append("featured", JSON.stringify(featured));
+    formData.append("published", JSON.stringify(!!published));
+    formData.append("featured", JSON.stringify(!!featured));
 
     if (origin === "new") {
       axios

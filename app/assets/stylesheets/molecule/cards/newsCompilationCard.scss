@@ -1,0 +1,44 @@
+@media (min-width: 512px) {
+  .news-wrapper {
+    justify-content: flex-start !important;
+  }
+  .news-card {
+    width: 16em;
+    height: 24em;
+    box-sizing: border-box;
+    border-top: 1px solid #fff;
+    display: flex;
+    flex-flow: column;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    margin-bottom: 5.5em;
+    .card-info {
+      width: 100%;
+      margin: 1em 0;
+      display: flex;
+      justify-content: space-between;
+      span {
+        line-height: 2;
+        font-size: 1em;
+        color: #fff;
+        &.property {
+          color: #cc3434;
+        }
+      }
+    }
+    img {
+      position: absolute;
+      bottom: 0;
+      width: 16em;
+      height: 9em;
+      object-fit: contain;
+      object-position: center;
+    }
+    h2 {
+      line-height: 1.33;
+      font-size: 1.5em;
+      color: #fff;
+    }
+  }
+}

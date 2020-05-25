@@ -5,7 +5,7 @@ class NewsController < ApplicationController
   def new
     @news = News.new
     @post_path = admin_news_index_path(params[:admin_id])
-    @back_path = 'js'
+    @back_path = admin_path('news')
   end
 
   def create
@@ -42,7 +42,7 @@ class NewsController < ApplicationController
       @cover = polymorphic_url(@news.cover)
     end
     @close_path = news_path(@news.id)
-    @back_path = 'js'
+    @back_path = admin_path('news')
   end
 
   def update
@@ -60,8 +60,9 @@ class NewsController < ApplicationController
       news.cover.purge
     end
 
-    if news.featured
-      News.where(featured: true).update(featured: false)
+    fNews = News.find_by(featured: true)
+    if fNews and news.featured and news.id != fNews.id
+      fNews.update(featured: false)  
     end
 
     if news.save!

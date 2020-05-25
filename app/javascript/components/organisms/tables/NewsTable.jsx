@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import _ from "lodash";
 
 import {
   DeleteButton,
@@ -79,7 +80,9 @@ function NewsTableRow(props) {
   return (
     <div className="table-row-wrapper">
       <div className="column" style={{ width: "22em" }}>
-        <a href={"/admin/news/news/" + props.id + "/edit"}>{props.title}</a>
+        <a href={"/admin/news/news/" + props.id + "/edit"}>
+          {_.truncate(props.title, 70)}
+        </a>
       </div>
       <div className="column" style={{ width: "38em" }}>
         {props.actions.map((action) => {
