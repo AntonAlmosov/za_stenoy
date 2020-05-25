@@ -15,9 +15,9 @@ export default function HeaderTemplate({ logo, inverse, editPath }) {
   });
 
   React.useEffect(() => {
-    axios.get("/menu").then(data => setPages(data.data));
+    axios.get("/menu").then((data) => setPages(data.data));
 
-    axios.get("/menu/get_data").then(res => {
+    axios.get("/menu/get_data").then((res) => {
       setData(res.data);
     });
   }, []);
@@ -54,10 +54,12 @@ function HeaderRow({ logo, inverse, search, menu, editPath }) {
             <img src={inverse ? logoInversed : logoImage} />
           </a>
         )}
-        {editPath && !menu.status && !search.status && (
+        {editPath && !menu.status && !search.status ? (
           <a href={editPath} className="close">
             Admin
           </a>
+        ) : (
+          <a></a>
         )}
         <a
           onClick={() => {
@@ -80,7 +82,7 @@ const AdditionalSearch = ({ data, title }) => {
         <div className="divider"></div>
       </div>
       <div className="additional-results">
-        {data.map(el => {
+        {data.map((el) => {
           return (
             <a href={el.url} key={el.url}>
               {el.title}
@@ -104,7 +106,7 @@ const AdditionalSearchMobile = ({ data, title }) => {
       </div>
       <div className="additional-results">
         {!isLong &&
-          data.map(el => {
+          data.map((el) => {
             return (
               <a href={el.url} key={el.url}>
                 {el.title}
@@ -113,7 +115,7 @@ const AdditionalSearchMobile = ({ data, title }) => {
           })}
         {isLong && (
           <>
-            {data.slice(0, 6).map(el => {
+            {data.slice(0, 6).map((el) => {
               return (
                 <a
                   href={el.url}
@@ -128,7 +130,7 @@ const AdditionalSearchMobile = ({ data, title }) => {
               <span onClick={() => setOpened(true)}>Показать еще...</span>
             )}
             {opened &&
-              data.slice(6, data.length - 1).map(el => {
+              data.slice(6, data.length - 1).map((el) => {
                 return (
                   <a href={el.url} key={el.url}>
                     {el.title}
@@ -151,17 +153,17 @@ function SearchOrganism({ data }) {
 
   React.useEffect(() => {
     setAuthors(
-      data.authors.filter(el => {
+      data.authors.filter((el) => {
         return RegExp(search, "i").test(el.title);
       })
     );
     setPieces(
-      data.pieces.filter(el => {
+      data.pieces.filter((el) => {
         return RegExp(search, "i").test(el.title);
       })
     );
     setProjects(
-      data.projects.filter(el => {
+      data.projects.filter((el) => {
         return RegExp(search, "i").test(el.title);
       })
     );
@@ -176,7 +178,7 @@ function SearchOrganism({ data }) {
           <input
             type="text"
             autoComplete="false"
-            onChange={e => setSearch(e.target.value)}
+            onChange={(e) => setSearch(e.target.value)}
             placeholder={
               "Введите имя автора, название проекта или произведения"
             }
@@ -216,7 +218,7 @@ function MenuOrganism({ pages }) {
         </a>
         <div className="menu-info-wrapper">
           <div className="menu-links-wrapper">
-            {pages.map(page => {
+            {pages.map((page) => {
               return (
                 <a href={"/page/" + page.slug} key={page.slug}>
                   {page.page_type == "magasine" ||

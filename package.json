@@ -4,6 +4,7 @@
   "dependencies": {
     "@babel/preset-react": "^7.8.3",
     "@editorjs/editorjs": "^2.17.0",
+    "@editorjs/image": "^2.3.4",
     "@editorjs/paragraph": "^2.6.1",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",

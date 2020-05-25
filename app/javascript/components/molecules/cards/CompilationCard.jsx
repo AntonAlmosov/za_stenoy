@@ -7,7 +7,7 @@ export default function CompilationCard({ card }) {
         <span>{card ? card.date : ""}</span>
         <span className="property">{card ? card.caption || "" : ""}</span>
       </div>
-      {card && <img src={card ? card.cover : ""} />}
+      {card && card.cover && <img src={card ? card.cover : ""} />}
       <h2>{card ? card.title : ""}</h2>
     </div>
   );
