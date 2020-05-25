@@ -20,7 +20,7 @@ export default function NewsEditorTemplate({
   const [text, setText] = React.useState(JSON.parse(news.text));
   const [cover, setCover] = React.useState(coverUrl);
   const [coverData, setCoverData] = React.useState({});
-  const [caption, setCaption] = React.useState(news.caption);
+  const [caption, setCaption] = React.useState(news.caption || "");
   const [saveText, setSaveText] = React.useState("Сохранить");
   const [published, setPublished] = React.useState(news.published);
   const [featured, setFeatured] = React.useState(news.featured);
@@ -112,6 +112,7 @@ export default function NewsEditorTemplate({
           width="43.75em"
           height="23.4375em"
           style={{ margin: "0 auto" }}
+          imageStyle={{ objectFit: "cover" }}
           cover={cover}
           setCover={handleCover}
         />
@@ -142,6 +143,12 @@ export default function NewsEditorTemplate({
             placeholder={"Заголовок новости"}
           />
           <div style={{ marginTop: "3.5em", width: "50em" }} id="piece"></div>
+          <TextareaAutosize
+            className="news-caption textarea"
+            value={caption || ""}
+            onChange={(e) => setCaption(e.target.value)}
+            placeholder={"Подпись к новости"}
+          />
         </div>
       </div>
     </>

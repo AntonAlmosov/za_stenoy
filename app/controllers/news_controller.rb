@@ -1,6 +1,6 @@
 class NewsController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :authenticate_admin!
+  before_action :authenticate_admin!, :except => [:show]
 
   def new
     @news = News.new
@@ -30,6 +30,10 @@ class NewsController < ApplicationController
     end
   end
 
+  def upload_image
+    puts params
+  end
+
   def edit
     @news = News.find(params[:id])
     @post_path = admin_news_path(params[:id])
@@ -52,7 +56,7 @@ class NewsController < ApplicationController
     news.caption = params[:caption]
     if params.has_key?(:cover) and params[:cover] != 'null'
       news.cover = params[:cover]
-    elsif news.cover.attached?
+    elsif params[:cover] == 'null'
       news.cover.purge
     end
 
@@ -101,4 +105,15 @@ class NewsController < ApplicationController
       get_news
     end
   end
+
+  def show
+    @news = News.find(params[:id])
+    @cover = nil
+    if @news.cover.attached?
+      @cover = polymorphic_url(@news.cover)
+    end
+    @edit_path = edit_admin_news_path(@news.page_id, @news.id)
+  end
+
 end
+

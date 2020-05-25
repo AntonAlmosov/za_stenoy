@@ -59,6 +59,7 @@ Rails.application.routes.draw do
     collection do
       get :get_news
       post :toggle_news
+      post :upload_image
     end
   end
 
