@@ -41,6 +41,9 @@ export default function NewsEditorTemplate({
           setText(res);
         });
       },
+      sanitizer: {
+        p: true,
+      },
     });
   }, []);
 
