@@ -29,18 +29,18 @@
         &:hover {
           text-decoration: none;
         }
-        &:nth-child(1) {
+        &.first {
           position: absolute;
           left: 0;
         }
-        &:nth-child(2) {
+        &.second {
           position: absolute;
           width: 5em;
           left: 50%;
           text-align: center;
           margin-left: -2.5em;
         }
-        &:nth-child(3) {
+        &.third {
           position: absolute;
           right: 0;
         }
@@ -216,18 +216,18 @@
         &:hover {
           text-decoration: none;
         }
-        &:nth-child(1) {
+        &.first {
           position: absolute;
           left: 0;
         }
-        &:nth-child(2) {
+        &.second {
           position: absolute;
           width: 5em;
           left: 50%;
           text-align: center;
           margin-left: -2.5em;
         }
-        &:nth-child(3) {
+        &.third {
           position: absolute;
           right: 0;
         }

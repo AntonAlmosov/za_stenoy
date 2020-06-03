@@ -20,6 +20,7 @@ export default function HeaderTemplate({ logo, inverse, editPath }) {
     axios.get("/menu/get_data").then((res) => {
       setData(res.data);
     });
+    console.log(editPath);
   }, []);
 
   return (
@@ -42,6 +43,7 @@ function HeaderRow({ logo, inverse, search, menu, editPath }) {
     <div className={"header-wrapper " + (inverse && "inverse")}>
       <div className="header">
         <a
+          className={"first"}
           onClick={() => {
             menu.setMenuOpened(false);
             search.setSearchOpened(!search.status);
@@ -50,22 +52,21 @@ function HeaderRow({ logo, inverse, search, menu, editPath }) {
           {search.status ? "Закрыть" : "Поиск"}
         </a>
         {logo && !menu.status && !search.status && !editPath && (
-          <a href="/" className="logo">
+          <a href="/" className="logo second">
             <img src={inverse ? logoInversed : logoImage} />
           </a>
         )}
-        {editPath && !menu.status && !search.status ? (
-          <a href={editPath} className="close">
+        {editPath && !menu.status && !search.status && (
+          <a href={editPath} className="close second">
             Admin
           </a>
-        ) : (
-          <a></a>
         )}
         <a
           onClick={() => {
             search.setSearchOpened(false);
             menu.setMenuOpened(!menu.status);
           }}
+          className={"third"}
         >
           {menu.status ? "Закрыть" : "Меню"}
         </a>
