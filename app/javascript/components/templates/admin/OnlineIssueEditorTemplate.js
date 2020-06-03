@@ -32,7 +32,7 @@ export default ({
   }, []);
 
   function fetchPieces() {
-    axios.get("/piece/").then(res => setPieces(res.data.pieces));
+    axios.get("/piece/").then((res) => setPieces(res.data.pieces));
   }
 
   function handleSubmit() {
@@ -59,7 +59,7 @@ export default ({
           setSaveText("Ошибка");
           setInterval(() => setSaveText("Сохранить"), 1000);
         })
-        .then(res => {
+        .then((res) => {
           setSaveText("Сохранить");
           window.location.replace(res.data.redirectPath);
         });
@@ -84,7 +84,7 @@ export default ({
   function handleissuePieces(adding, piece) {
     const res = adding
       ? [...issuePieces, piece]
-      : issuePieces.filter(p => p.id != piece.id);
+      : issuePieces.filter((p) => p.id != piece.id);
     setIssuePieces(res);
   }
 
@@ -122,8 +122,7 @@ export default ({
         <TextareaAutosize
           className="starters-heading-small textarea"
           value={title || ""}
-          onChange={e => setTitle(e.target.value)}
-          maxRows={2}
+          onChange={(e) => setTitle(e.target.value)}
           placeholder={"Название материала"}
         />
         <ImagePicker
@@ -138,7 +137,7 @@ export default ({
           <TextareaAutosize
             className="textarea"
             value={descriptionHeading || ""}
-            onChange={e => setDescriptionHeading(e.target.value)}
+            onChange={(e) => setDescriptionHeading(e.target.value)}
             maxRows={2}
             placeholder={"Эпилог"}
             style={{
@@ -149,7 +148,7 @@ export default ({
           <TextareaAutosize
             className="textarea"
             value={description || ""}
-            onChange={e => setDescription(e.target.value)}
+            onChange={(e) => setDescription(e.target.value)}
             placeholder={
               "Опиши выпуск. Что это за выпуск, чему он посвящен и так далее. На самом деле не важно что ты напишешь. Да и вообще ничего не важно."
             }
@@ -202,7 +201,7 @@ function MaterialsTable(props) {
         onNameChange={setTitle}
         onAuthorChange={setAuthor}
       />
-      {props.issuePieces.map(piece => {
+      {props.issuePieces.map((piece) => {
         if (piece)
           return (
             <MaterialsTableRow
@@ -228,14 +227,14 @@ function MaterialsTable(props) {
           );
       })}
       {props.pieces
-        .filter(piece => {
+        .filter((piece) => {
           return (
-            !props.issuePieces.some(p => p && p.id == piece.id) &&
+            !props.issuePieces.some((p) => p && p.id == piece.id) &&
             RegExp(title, "i").test(piece.title) &&
-            piece.authors?.some(a => RegExp(author, "i").test(a.name))
+            piece.authors?.some((a) => RegExp(author, "i").test(a.name))
           );
         })
-        .map(piece => {
+        .map((piece) => {
           return (
             <MaterialsTableRow
               key={piece.id}
@@ -260,12 +259,12 @@ function MaterialsTableHeader({ onNameChange, onAuthorChange }) {
     <div className="table-header-wrapper">
       <HeaderInput
         width="16em"
-        onChange={text => onNameChange(text)}
+        onChange={(text) => onNameChange(text)}
         placeholder="Поиск по названию материалов"
       />
       <HeaderInput
         width="16em"
-        onChange={text => onAuthorChange(text)}
+        onChange={(text) => onAuthorChange(text)}
         placeholder="Поиск по авторам"
       />
       <h2 style={{ width: "7em" }}>Статус</h2>
@@ -281,7 +280,7 @@ function MaterialsTableRow(props) {
         {props.piece.title}
       </div>
       <div className="column" style={{ width: "16em", lineHeight: 1.3 }}>
-        {props.piece.authors.map(author => {
+        {props.piece.authors.map((author) => {
           return (
             <span key={author.name + props.title}>
               {author.name}
@@ -312,7 +311,7 @@ function MaterialsTableRow(props) {
         </span>
       </div>
       <div className="column" style={{ width: "17em" }}>
-        {props.actions.map(action => {
+        {props.actions.map((action) => {
           if (action.name !== "Редактировать")
             return (
               <a
@@ -352,7 +351,7 @@ function HeaderInput({ width, onChange, placeholder }) {
       <input
         placeholder={placeholder}
         autoComplete="false"
-        onChange={e => onChange(e.target.value)}
+        onChange={(e) => onChange(e.target.value)}
         style={{
           fontSize: "1em",
           lineHeight: 1,

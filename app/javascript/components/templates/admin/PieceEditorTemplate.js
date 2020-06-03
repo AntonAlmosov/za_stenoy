@@ -155,7 +155,6 @@ export default function PieceEditorTemplate({
             className="textarea title-textarea"
             value={title || ""}
             onChange={(e) => setTitle(e.target.value)}
-            maxRows={2}
             placeholder={"Название материала"}
           />
           <input

@@ -32,7 +32,7 @@ export default ({
   const [publishDate, setPublishDate] = React.useState(issue.publish_date);
   const [purchaseLink, setPurchaseLink] = React.useState(issue.purchase_link);
   const [authors, setAuthors] = React.useState(
-    initialAuthors.map(a => JSON.parse(a))
+    initialAuthors.map((a) => JSON.parse(a))
   );
   const [pages, setPages] = React.useState(initialPages);
 
@@ -49,8 +49,8 @@ export default ({
     const coverData = document.querySelector(".cover_image_input");
     if (cover !== coverUrl) formData.append("cover", coverData.files[0]);
 
-    let pageCollection = pages.map(page => {
-      const existing = initialPages.some(p => p.id == page.id);
+    let pageCollection = pages.map((page) => {
+      const existing = initialPages.some((p) => p.id == page.id);
 
       if (existing) {
         if (page.file)
@@ -101,7 +101,7 @@ export default ({
           setSaveText("Ошибка");
           setInterval(() => setSaveText("Сохранить"), 1000);
         })
-        .then(res => {
+        .then((res) => {
           pageCollection.forEach((page, i, collection) => {
             const data = new FormData();
             data.append("status", page.status);
@@ -136,8 +136,8 @@ export default ({
           setSaveText("Ошибка");
           setInterval(() => setSaveText("Сохранить"), 1000);
         })
-        .then(res => {
-          pageCollection.forEach(page => {
+        .then((res) => {
+          pageCollection.forEach((page) => {
             const data = new FormData();
             data.append("status", page.status);
             data.append("page_number", page.page_number);
@@ -161,15 +161,21 @@ export default ({
   }
 
   function handlePage(adding, page) {
-    if (!adding && origin == "edit" && initialPages.some(p => p.id == page.id))
+    if (
+      !adding &&
+      origin == "edit" &&
+      initialPages.some((p) => p.id == page.id)
+    )
       axios.post("/offline_issue/delete_page", { id: page.id });
-    const res = adding ? [...pages, page] : pages.filter(p => p.id != page.id);
+    const res = adding
+      ? [...pages, page]
+      : pages.filter((p) => p.id != page.id);
     setPages(res);
   }
 
   function updatePage(id, uri, file) {
     setPages(
-      pages.map(page => {
+      pages.map((page) => {
         if (page.id == id) {
           page.page = uri;
           page.file = file;
@@ -202,8 +208,7 @@ export default ({
         <TextareaAutosize
           className="starters-heading-small textarea"
           value={title || ""}
-          onChange={e => setTitle(e.target.value)}
-          maxRows={2}
+          onChange={(e) => setTitle(e.target.value)}
           placeholder={"Название материала"}
         />
         <ImagePicker
@@ -226,14 +231,14 @@ export default ({
             <input
               placeholder={"Дата публикации"}
               value={publishDate || ""}
-              onChange={e => setPublishDate(e.target.value)}
+              onChange={(e) => setPublishDate(e.target.value)}
               className="input"
               style={{ fontSize: "1em", lineHeight: 1 }}
             />
             <input
               placeholder={"Ссылка на покупку"}
               value={purchaseLink || ""}
-              onChange={e => setPurchaseLink(e.target.value)}
+              onChange={(e) => setPurchaseLink(e.target.value)}
               className="input"
               style={{
                 marginTop: "0.5em",
@@ -243,7 +248,7 @@ export default ({
             />
             <div style={{ marginTop: "1.5em" }}>
               <div style={{ marginBottom: "0.5em" }}>
-                {authors.map(author => {
+                {authors.map((author) => {
                   return (
                     <Author
                       key={author.name + author.id}
@@ -263,7 +268,7 @@ export default ({
           <TextareaAutosize
             className="textarea"
             value={description || ""}
-            onChange={e => setDescription(e.target.value)}
+            onChange={(e) => setDescription(e.target.value)}
             placeholder={
               "Опиши выпуск. Что это за выпуск, чему он посвящен и так далее. На самом деле не важно что ты напишешь. Да и вообще ничего не важно."
             }
@@ -304,7 +309,7 @@ function Table({ pages, handlePage, updatePage }) {
   return (
     <div className="table-wrapper" style={{ marginTop: "4em" }}>
       <TableHeader />
-      {pages.map(page => {
+      {pages.map((page) => {
         return (
           <TableRow
             key={page.id}
