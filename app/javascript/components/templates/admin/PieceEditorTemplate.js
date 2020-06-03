@@ -41,10 +41,13 @@ export default function PieceEditorTemplate({
         },
       },
       data: text,
-      onChange: api => {
-        api.saver.save().then(res => {
+      onChange: (api) => {
+        api.saver.save().then((res) => {
           setText(res);
         });
+      },
+      sanitizer: {
+        p: true,
       },
     });
   }, []);
@@ -71,7 +74,7 @@ export default function PieceEditorTemplate({
           setSaveText("Ошибка");
           setInterval(() => setSaveText("Сохранить"), 1000);
         })
-        .then(res => {
+        .then((res) => {
           setSaveText("Сохранить");
           window.location.replace(res.data.redirectPath);
         });
@@ -86,7 +89,7 @@ export default function PieceEditorTemplate({
           setSaveText("Ошибка");
           setInterval(() => setSaveText("Сохранить"), 1000);
         })
-        .then(res => {
+        .then((res) => {
           setSaveText("Готово!");
           setInterval(() => setSaveText("Сохранить"), 1000);
         });
@@ -131,7 +134,7 @@ export default function PieceEditorTemplate({
                 style={{ margin: "2em 0em" }}
               />
               <div style={{ marginBottom: "0.5em" }}>
-                {authors.map(author => {
+                {authors.map((author) => {
                   return (
                     <Author
                       key={author.name}
@@ -151,13 +154,13 @@ export default function PieceEditorTemplate({
           <TextareaAutosize
             className="textarea title-textarea"
             value={title || ""}
-            onChange={e => setTitle(e.target.value)}
+            onChange={(e) => setTitle(e.target.value)}
             maxRows={2}
             placeholder={"Название материала"}
           />
           <input
             defaultValue={date}
-            onChange={e => setDate(e.target.value)}
+            onChange={(e) => setDate(e.target.value)}
             style={{
               fontSize: "1em",
               lineHeight: 1,
