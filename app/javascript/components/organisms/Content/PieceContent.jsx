@@ -9,7 +9,7 @@ export default function PieceContent({ piece, cover, authors }) {
       <div className="piece-header">
         <h1>{piece.title}</h1>
         <div className="piece-authors">
-          {authors.map(author => {
+          {authors.map((author) => {
             return (
               <span key={author.url}>
                 <a href={author.url}>{author.name}</a>
@@ -21,7 +21,9 @@ export default function PieceContent({ piece, cover, authors }) {
       </div>
       <div className="piece">
         {text.map((line, i) => {
-          return <p key={i}>{ReactHtmlParser(line.data.text)}</p>;
+          if (line.type === "paragraph")
+            return <p key={i}>{ReactHtmlParser(line.data.text)}</p>;
+          if (line.type === "delimiter") return <hr key={i} />;
         })}
       </div>
       <span>{piece.publish_date}</span>

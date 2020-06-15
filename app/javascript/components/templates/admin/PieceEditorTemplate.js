@@ -3,6 +3,7 @@ import axios from "axios";
 import TextareaAutosize from "react-textarea-autosize";
 import EditorJS from "@editorjs/editorjs";
 import Paragraph from "@editorjs/paragraph";
+import Delimiter from "@editorjs/delimiter";
 
 import HeaderAdminOrganism from "../../organisms/HeaderAdminOrganism.jsx";
 import ImagePicker from "../../molecules/misc/ImagePicker.jsx";
@@ -38,6 +39,9 @@ export default function PieceEditorTemplate({
         paragraph: {
           class: Paragraph,
           inlineToolbar: true,
+        },
+        delimiter: {
+          class: Delimiter,
         },
       },
       data: text,

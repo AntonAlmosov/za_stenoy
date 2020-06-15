@@ -43,6 +43,14 @@
           color: blue;
         }
       }
+      hr {
+        width: 100%;
+        margin: 2em 0;
+        position: relative;
+        height: 0.12em;
+        background-color: black;
+        border: 0;
+      }
     }
     span {
       width: calc(50em / 1.25);
@@ -93,6 +101,14 @@
             color: blue;
           }
         }
+      }
+      hr {
+        width: 100%;
+        margin: 2em 0;
+        position: relative;
+        height: 0.1em;
+        background-color: black;
+        border: 0;
       }
     }
     span {

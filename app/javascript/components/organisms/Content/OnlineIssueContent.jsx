@@ -19,11 +19,11 @@ export default ({ pieces, issue }) => {
 
   React.useEffect(() => {
     let authors = {};
-    pieces.forEach(piece => {
+    pieces.forEach((piece) => {
       let authorKey = "";
       let authorName = "";
 
-      piece.authors.forEach(author => {
+      piece.authors.forEach((author) => {
         authorKey += cyrillicToTranslit()
           .transform(author.name)
           .replace(/\s/g, "");
@@ -56,7 +56,7 @@ export default ({ pieces, issue }) => {
             </pre>
           </div>
         )}
-        {pieces.map(piece => {
+        {pieces.map((piece) => {
           return <Piece key={piece.id} piece={piece} />;
         })}
       </div>
@@ -79,14 +79,14 @@ const Contents = ({ authors }) => {
     <div className="contents-wrapper">
       <h3>Содержание</h3>
       <div className="contents">
-        {Object.keys(authors).map(key => {
+        {Object.keys(authors).map((key) => {
           return (
             <div className="authors-row" key={authors[key].name}>
               <div className="name">
                 <pre>{authors[key].name}</pre>
               </div>
               <div className="pieces">
-                {authors[key].pieces.map(piece => {
+                {authors[key].pieces.map((piece) => {
                   return (
                     <a key={piece.id} href={"#piece" + piece.id}>
                       {piece.title}
@@ -111,7 +111,7 @@ const Piece = ({ piece }) => {
         <div className="piece-header">
           <h1>{piece.title}</h1>
           <div className="piece-authors">
-            {piece.authors.map(author => {
+            {piece.authors.map((author) => {
               return (
                 <a href={author.url} key={author.url}>
                   {author.name}
@@ -122,7 +122,9 @@ const Piece = ({ piece }) => {
         </div>
         <div className="piece">
           {text.map((line, i) => {
-            return <p key={i}>{ReactHtmlParser(line.data.text)}</p>;
+            if (line.type === "paragraph")
+              return <p key={i}>{ReactHtmlParser(line.data.text)}</p>;
+            if (line.type === "delimiter") return <hr key={i} />;
           })}
         </div>
       </div>

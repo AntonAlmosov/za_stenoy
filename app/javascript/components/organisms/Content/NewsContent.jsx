@@ -11,7 +11,9 @@ export default function NewsContent({ news, cover }) {
       </div>
       <div className="news">
         {text.map((line, i) => {
-          return <p key={i}>{ReactHtmlParser(line.data.text)}</p>;
+          if (line.type === "paragraph")
+            return <p key={i}>{ReactHtmlParser(line.data.text)}</p>;
+          if (line.type === "delimiter") return <hr key={i} />;
         })}
       </div>
       <span>{news.caption}</span>

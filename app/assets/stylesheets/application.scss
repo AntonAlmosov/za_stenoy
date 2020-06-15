@@ -20,12 +20,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.codex-editor__redactor {
-  padding: 0 !important;
-}
-.ce-toolbar {
-  display: none;
-}
 .ce-block__content {
   margin: 0;
   width: 100% !important;
@@ -33,6 +27,29 @@
   a:visited {
     color: blue;
   }
+}
+.ce-toolbar__content {
+  margin: 0;
+  max-width: 100% !important;
+}
+
+.ce-delimiter {
+  position: relative;
+  padding: 2em 0 !important;
+}
+
+.ce-delimiter:before {
+  display: inline-block;
+  content: "" !important;
+  position: absolute;
+  left: 0;
+  height: 0.09em !important;
+  width: 100%;
+  background-color: black;
+}
+
+.codex-editor__redactor {
+  padding-bottom: 4em !important;
 }
 
 .bg-black {
