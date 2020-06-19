@@ -38,6 +38,10 @@
   padding: 2em 0 !important;
 }
 
+.cdx-settings-button--active {
+  background-color: #f0f0f0;
+}
+
 .ce-delimiter:before {
   display: inline-block;
   content: "" !important;
@@ -54,6 +58,16 @@
 
 .bg-black {
   background-color: #000;
+}
+
+.alignLeft {
+  text-align: left;
+}
+.alignRight {
+  text-align: right;
+}
+.alignCenter {
+  text-align: center;
 }
 
 @media (min-width: 512px) {
