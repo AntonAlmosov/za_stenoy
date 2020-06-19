@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import TextareaAutosize from "react-textarea-autosize";
 import EditorJS from "@editorjs/editorjs";
-import Paragraph from "@editorjs/paragraph";
+import Paragraph from "../../../editor/paragraph/index";
 import Delimiter from "@editorjs/delimiter";
 
 import HeaderAdminOrganism from "../../organisms/HeaderAdminOrganism.jsx";

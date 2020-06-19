@@ -2,6 +2,7 @@ import React from "react";
 import cyrillicToTranslit from "cyrillic-to-translit-js";
 import ReactHtmlParser from "react-html-parser";
 import arrow from "images/arrow.svg";
+import EditorData from "./EditorData";
 
 export default ({ pieces, issue }) => {
   let [current, setCurrent] = React.useState({});
@@ -121,11 +122,7 @@ const Piece = ({ piece }) => {
           </div>
         </div>
         <div className="piece">
-          {text.map((line, i) => {
-            if (line.type === "paragraph")
-              return <p key={i}>{ReactHtmlParser(line.data.text)}</p>;
-            if (line.type === "delimiter") return <hr key={i} />;
-          })}
+          <EditorData text={text} />
         </div>
       </div>
     </>

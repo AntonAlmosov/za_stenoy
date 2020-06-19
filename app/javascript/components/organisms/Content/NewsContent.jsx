@@ -1,5 +1,5 @@
 import React from "react";
-import ReactHtmlParser from "react-html-parser";
+import EditorData from "./EditorData";
 
 export default function NewsContent({ news, cover }) {
   const text = JSON.parse(news.text).blocks;
@@ -10,11 +10,7 @@ export default function NewsContent({ news, cover }) {
         <h1>{news.title}</h1>
       </div>
       <div className="news">
-        {text.map((line, i) => {
-          if (line.type === "paragraph")
-            return <p key={i}>{ReactHtmlParser(line.data.text)}</p>;
-          if (line.type === "delimiter") return <hr key={i} />;
-        })}
+        <EditorData text={text} />
       </div>
       <span>{news.caption}</span>
     </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import ReactHtmlParser from "react-html-parser";
+import EditorData from "./EditorData";
 
 export default function PieceContent({ piece, cover, authors }) {
   const text = JSON.parse(piece.text).blocks;
@@ -20,11 +20,7 @@ export default function PieceContent({ piece, cover, authors }) {
         </div>
       </div>
       <div className="piece">
-        {text.map((line, i) => {
-          if (line.type === "paragraph")
-            return <p key={i}>{ReactHtmlParser(line.data.text)}</p>;
-          if (line.type === "delimiter") return <hr key={i} />;
-        })}
+        <EditorData text={text} />
       </div>
       <span>{piece.publish_date}</span>
     </div>

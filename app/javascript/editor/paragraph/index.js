@@ -86,11 +86,9 @@ class Paragraph {
     };
     this.settings.forEach((tune) => {
       if (this.data[tune.name]) {
-        console.log(tune);
         this.wrapper.classList.add(tune.name);
       }
     });
-    console.log(this.data);
   }
 
   renderSettings() {
@@ -136,7 +134,6 @@ class Paragraph {
     if (textContent === "") {
       this._element.innerHTML = "";
     }
-    console.log(this.data);
   }
 
   /**
