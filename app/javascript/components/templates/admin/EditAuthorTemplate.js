@@ -5,6 +5,7 @@ import TextareaAutosize from "react-textarea-autosize";
 import HeaderAdminOrganism from "../../organisms/HeaderAdminOrganism";
 
 export default function EditAuthorTemplate({
+  id,
   initialName,
   postPath,
   origin,
@@ -12,6 +13,13 @@ export default function EditAuthorTemplate({
 }) {
   const [saveText, setSaveText] = React.useState("Сохранить");
   const [name, setName] = React.useState(initialName);
+  const [pieces, setPieces] = React.useState([]);
+
+  React.useEffect(() => {
+    axios
+      .post("/author/get_author_pieces", { id: id })
+      .then((res) => setPieces(res.data.pieces));
+  }, []);
 
   function handleSubmit() {
     setSaveText("Обработка");
@@ -75,7 +83,47 @@ export default function EditAuthorTemplate({
           onChange={(e) => setName(e.target.value)}
           placeholder={"Имя автора"}
         />
+        <MaterialsTable pieces={pieces} />
       </div>
     </>
+  );
+}
+
+function MaterialsTable(props) {
+  return (
+    <div className="table-wrapper" style={{ marginTop: "3em" }}>
+      <MaterialsTableHeader />
+      {props.pieces.map((piece) => {
+        return <MaterialsTableRow key={piece.id} title={piece.title} />;
+      })}
+      {props.pieces.length === 0 && (
+        <div className="table-row-wrapper">
+          <div
+            className="column"
+            style={{ width: "100%", lineHeight: 1.3, opacity: 0.5 }}
+          >
+            У автора пока нет прикрепленных материалов
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function MaterialsTableHeader() {
+  return (
+    <div className="table-header-wrapper">
+      <h2 style={{ width: "100%" }}>Материалы</h2>
+    </div>
+  );
+}
+
+function MaterialsTableRow(props) {
+  return (
+    <div className="table-row-wrapper">
+      <div className="column" style={{ width: "100%", lineHeight: 1.3 }}>
+        {props.title}
+      </div>
+    </div>
   );
 }

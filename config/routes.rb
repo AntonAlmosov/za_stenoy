@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :author, only: [:create, :show] do
     collection do
       get :get_author
+      post :get_author_pieces
       get :get_authors
     end
   end

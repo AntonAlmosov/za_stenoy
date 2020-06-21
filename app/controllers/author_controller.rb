@@ -11,7 +11,13 @@ class AuthorController < ApplicationController
     render :json => {authors: authors}
   end
 
+  def get_author_pieces
+    author = Author.find(params[:id])
+    render :json => {pieces: author.pieces}
+  end
+
   def edit
+    @id = params[:id]
     @name = Author.find(params[:id]).name
     @post_path = admin_author_path(0, params[:id])
     @origin = 'edit'
