@@ -89,6 +89,10 @@ export default function IndexTable(props) {
             />
           );
         })}
+      <TableRow
+        title={{ name: "Авторы", uri: "/admin/0/author" }}
+        actions={[]}
+      />
     </div>
   );
 }

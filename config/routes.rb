@@ -16,9 +16,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :author, only: [:index, :create, :show] do
+  resources :author, only: [:create, :show] do
     collection do
       get :get_author
+      get :get_authors
     end
   end
 
@@ -71,5 +72,6 @@ Rails.application.routes.draw do
     resources :offline_issue, only: [:new, :edit, :create, :update, :destroy]
     resources :product, only: [:new, :edit, :create, :update, :destroy]
     resources :news, only: [:new, :edit, :create, :update, :destroy]
+    resources :author, only: [:index, :edit, :destroy, :update]
   end
 end

@@ -3,8 +3,26 @@ class AuthorController < ApplicationController
   before_action :authenticate_admin!, :except => [:show]
   
   def index
+    @close_path = admin_index_path
+  end
+
+  def get_authors
     authors = Author.all
     render :json => {authors: authors}
+  end
+
+  def edit
+    @name = Author.find(params[:id]).name
+    @post_path = admin_author_path(0, params[:id])
+    @origin = 'edit'
+    @back_path = admin_author_index_path(0)
+  end
+
+  def update
+    @author = Author.find(params[:id])
+    if @author.update(name: params[:name])
+      render :json => {status: 'ok'}
+    end
   end
 
   def show
@@ -41,6 +59,18 @@ class AuthorController < ApplicationController
 
     if author.save!
       render :json => {author: author}
+    end
+  end
+
+  def destroy
+    author = Author.find(params[:id])
+    author_links = PieceAuthor.where(author_id: params[:id])
+    if author.destroy
+      author_links.each do |link|
+        link.destroy
+      end
+
+      get_authors
     end
   end
 

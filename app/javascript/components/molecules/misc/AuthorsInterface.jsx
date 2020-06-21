@@ -19,7 +19,7 @@ export function Author({ currentAuthors, setAuthors, author }) {
       <span
         onClick={() =>
           setAuthors(
-            currentAuthors.filter(a => {
+            currentAuthors.filter((a) => {
               return author.name !== a.name;
             })
           )
@@ -37,7 +37,7 @@ export function AuthorPicker({ currentAuthors, setCurrentAuthors }) {
   const [search, setSearch] = React.useState("");
 
   function fetchAuthors() {
-    axios.get("/author").then(res => {
+    axios.get("/author/get_authors").then((res) => {
       setAuthors(res.data.authors);
     });
   }
@@ -53,7 +53,7 @@ export function AuthorPicker({ currentAuthors, setCurrentAuthors }) {
         style={{ fontSize: "1em", lineHeight: 1.5, outline: 0, border: 0 }}
         placeholder={"Добавить автора"}
         value={search}
-        onChange={e => {
+        onChange={(e) => {
           setSearch(e.target.value);
         }}
       />
@@ -67,14 +67,14 @@ export function AuthorPicker({ currentAuthors, setCurrentAuthors }) {
           }}
         >
           {authors
-            .filter(author => {
+            .filter((author) => {
               return (
                 RegExp(search, "i").test(author.name) &&
-                !currentAuthors.some(a => a.name == author.name)
+                !currentAuthors.some((a) => a.name == author.name)
               );
             })
             .slice(0, 4)
-            .map(author => {
+            .map((author) => {
               return (
                 <div
                   key={author.name}
@@ -93,7 +93,7 @@ export function AuthorPicker({ currentAuthors, setCurrentAuthors }) {
                 </div>
               );
             })}
-          {authors.filter(author => {
+          {authors.filter((author) => {
             return RegExp(search, "i").test(author.name);
           }).length === 0 && (
             <div
@@ -103,7 +103,7 @@ export function AuthorPicker({ currentAuthors, setCurrentAuthors }) {
                 cursor: "pointer",
               }}
               onClick={() => {
-                axios.post("/author", { name: search }).then(res => {
+                axios.post("/author", { name: search }).then((res) => {
                   setCurrentAuthors([...currentAuthors, res.data.author]);
                   setSearch("");
                   fetchAuthors();
