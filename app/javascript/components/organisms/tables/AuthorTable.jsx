@@ -35,6 +35,7 @@ export default function NewsTable() {
             key={author.id}
             id={author.id}
             title={author.name}
+            count={author.materialsCount}
             actions={[{ name: "Удалить", uri: () => destroyAuthor(author.id) }]}
           />
         );
@@ -46,8 +47,9 @@ export default function NewsTable() {
 function AuthorHeader() {
   return (
     <div className="table-header-wrapper">
-      <h2 style={{ width: "22em" }}>Авторы</h2>
-      <h2 style={{ width: "30em" }}>Быстрые действия</h2>
+      <h2 style={{ width: "25em" }}>Авторы</h2>
+      <h2 style={{ width: "10em" }}>Кол-во материалов</h2>
+      <h2 style={{ width: "22em" }}>Быстрые действия</h2>
     </div>
   );
 }
@@ -55,12 +57,15 @@ function AuthorHeader() {
 function AuthorTableRow(props) {
   return (
     <div className="table-row-wrapper">
-      <div className="column" style={{ width: "22em" }}>
+      <div className="column" style={{ width: "25em" }}>
         <a href={"/admin/0/author/" + props.id + "/edit"}>
           {_.truncate(props.title, 70)}
         </a>
       </div>
-      <div className="column" style={{ width: "30em" }}>
+      <div className="column" style={{ width: "10em" }}>
+        {props.count}
+      </div>
+      <div className="column" style={{ width: "22em" }}>
         {props.actions.map((action) => {
           if (action.name !== "Удалить")
             return (

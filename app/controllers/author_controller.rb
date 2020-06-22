@@ -8,7 +8,12 @@ class AuthorController < ApplicationController
 
   def get_authors
     authors = Author.all
-    render :json => {authors: authors}
+    author_collection = []
+    
+    authors.each do |author|
+      author_collection.push({id: author.id, name: author.name, materialsCount: author.pieces.length})
+    end
+    render :json => {authors: author_collection}
   end
 
   def get_author_pieces
