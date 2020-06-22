@@ -11,7 +11,7 @@ class AuthorController < ApplicationController
     author_collection = []
     
     authors.each do |author|
-      author_collection.push({id: author.id, name: author.name, materialsCount: author.pieces.length})
+      author_collection.push({id: author.id, name: author.name, materialsCount: author.pieces.length + author.offline_issues.length})
     end
     render :json => {authors: author_collection}
   end
