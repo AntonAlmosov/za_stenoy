@@ -23,6 +23,7 @@ export default function NewsEditorTemplate({
   const [published, setPublished] = React.useState(news.published);
   const [featured, setFeatured] = React.useState(news.featured);
   const [editorRef, setEditorRef] = React.useState();
+  const [noteEditorRef, setNoteEditorRef] = React.useState();
 
   async function handleSubmit() {
     setSaveText("Обработка");
@@ -32,6 +33,9 @@ export default function NewsEditorTemplate({
     await editorRef
       .save()
       .then((res) => formData.append("text", JSON.stringify(res)));
+    await noteEditorRef
+      .save()
+      .then((res) => formData.append("note", JSON.stringify(res)));
     formData.append("title", title);
     formData.append("caption", caption);
     formData.append("published", JSON.stringify(!!published));
@@ -129,11 +133,12 @@ export default function NewsEditorTemplate({
             data={JSON.parse(news.text)}
             setRef={setEditorRef}
           />
-          <TextareaAutosize
-            className="news-caption textarea"
-            value={caption || ""}
-            onChange={(e) => setCaption(e.target.value)}
-            placeholder={"Подпись к новости"}
+          <Editor
+            style={{ opacity: 0.5, width: "50em" }}
+            data={JSON.parse(news.note)}
+            setRef={setNoteEditorRef}
+            placeholder={"Примечания"}
+            id={"notes"}
           />
         </div>
       </div>

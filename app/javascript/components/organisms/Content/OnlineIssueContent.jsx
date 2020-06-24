@@ -105,6 +105,7 @@ const Contents = ({ authors }) => {
 
 const Piece = ({ piece }) => {
   const text = JSON.parse(piece.text).blocks;
+  const note = JSON.parse(piece.note).blocks;
   return (
     <>
       <div className="piece-content">
@@ -123,6 +124,9 @@ const Piece = ({ piece }) => {
         </div>
         <div className="piece">
           <EditorData text={text} />
+        </div>
+        <div className="piece-notes">
+          <EditorData text={note} />
         </div>
       </div>
     </>

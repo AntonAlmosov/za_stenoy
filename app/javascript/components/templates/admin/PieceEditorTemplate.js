@@ -22,6 +22,7 @@ export default function PieceEditorTemplate({
 }) {
   const [title, setTitle] = React.useState(piece.title);
   const [editorRef, setEditorRef] = React.useState(null);
+  const [noteEditorRef, setNoteEditorRef] = React.useState(null);
   const [date, setDate] = React.useState(piece.publish_date);
   const [cover, setCover] = React.useState(coverUrl);
   const [coverData, setCoverData] = React.useState({});
@@ -36,6 +37,9 @@ export default function PieceEditorTemplate({
     if (cover !== coverUrl) formData.append("cover", coverData);
     await editorRef.save().then((res) => {
       formData.append("text", JSON.stringify(res));
+    });
+    await noteEditorRef.save().then((res) => {
+      formData.append("note", JSON.stringify(res));
     });
     formData.append("title", title);
     formData.append("publish_date", date);
@@ -136,22 +140,29 @@ export default function PieceEditorTemplate({
             onChange={(e) => setTitle(e.target.value)}
             placeholder={"Название материала"}
           />
-          <input
-            defaultValue={date}
-            onChange={(e) => setDate(e.target.value)}
-            style={{
-              fontSize: "1em",
-              lineHeight: 1,
-              marginTop: "2.5em",
-            }}
-            placeholder={"Дата публикации"}
-            className={"input"}
-          />
         </div>
         <Editor
           style={{ marginTop: "2em" }}
           data={JSON.parse(piece.text)}
           setRef={setEditorRef}
+        />
+        <Editor
+          style={{ opacity: 0.5 }}
+          data={JSON.parse(piece.note)}
+          setRef={setNoteEditorRef}
+          placeholder="Примечания"
+          id={"notes"}
+        />
+        <input
+          defaultValue={date}
+          onChange={(e) => setDate(e.target.value)}
+          style={{
+            fontSize: "1em",
+            lineHeight: 1,
+            marginTop: "2.5em",
+          }}
+          placeholder={"Дата публикации"}
+          className={"input"}
         />
       </div>
     </>

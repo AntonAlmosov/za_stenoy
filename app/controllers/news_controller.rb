@@ -17,6 +17,7 @@ class NewsController < ApplicationController
     news.published = params[:published]
     news.featured = params[:featured]
     news.caption = params[:caption]
+    news.note = params[:note]
     if params.has_key?(:cover) and params[:cover] != 'null'
       news.cover = params[:cover]
     end
@@ -54,6 +55,7 @@ class NewsController < ApplicationController
     news.published = params[:published]
     news.featured = params[:featured]
     news.caption = params[:caption]
+    news.note = params[:note]
     if params.has_key?(:cover) and params[:cover] != 'null'
       news.cover = params[:cover]
     elsif params[:cover] == 'null'

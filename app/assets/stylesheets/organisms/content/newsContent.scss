@@ -29,52 +29,15 @@
       margin-top: 3.5em;
       margin-bottom: 2.75em;
       width: 50em;
-      p {
-        font-size: 1.25em;
-        line-height: 1.33;
-        padding: 0.4em 0 0;
-        b {
-          font-weight: 500;
-        }
-        i {
-          font-style: italic;
-        }
-        u {
-          text-decoration: underline;
-        }
-        del {
-          text-decoration: line-through;
-        }
-        a {
-          color: blue;
-          &:visited {
-            color: blue;
-          }
-        }
+      #note {
+        position: absolute;
+        top: 100px;
+        opacity: 0;
       }
-      h1 {
-        font-size: 3.5em;
-        font-weight: 600;
-        padding: calc(#{$base} * 0.2) 0;
-      }
-      h2 {
-        font-size: 2.5em;
-        font-weight: 500;
-        padding: calc(#{$base} * 0.2) 0;
-      }
-      h3 {
-        font-size: 1.75em;
-        font-weight: 500;
-        padding: calc(#{$base} * 0.2) 0;
-      }
-      hr {
-        width: 100%;
-        margin: 2em 0;
-        position: relative;
-        height: 0.12em;
-        background-color: black;
-        border: 0;
-      }
+    }
+    .news-notes {
+      width: 50em;
+      opacity: 0.5;
     }
     span {
       width: calc(50em / 1.25);
@@ -109,51 +72,15 @@
     .news {
       margin: 2em auto;
       width: 36em;
-      p {
-        font-size: 1.5em;
-        line-height: 1.5;
-        padding: 0.2em 0 0;
-        b {
-          font-weight: 500;
-        }
-        i {
-          font-style: italic;
-        }
-        u {
-          text-decoration: underline;
-        }
-        del {
-          text-decoration: line-through;
-        }
-        a {
-          color: blue;
-          &:visited {
-            color: blue;
-          }
-        }
-      }
-      h1 {
-        font-size: 3.5em;
-        font-weight: 600;
-        padding: calc(#{$baseMobile} * 0.5) 0;
-      }
-      h2 {
-        font-size: 2.5em;
-        font-weight: 500;
-        padding: calc(#{$baseMobile} * 0.5) 0;
-      }
-      h3 {
-        font-size: 1.75em;
-        font-weight: 500;
-        padding: calc(#{$baseMobile} * 0.5) 0;
-      }
-      hr {
-        width: 100%;
-        margin: 2em 0;
-        position: relative;
-        height: 0.1em;
-        background-color: black;
-        border: 0;
+    }
+    .news-notes {
+      margin: 1em auto;
+      width: 36em;
+      opacity: 0.5;
+      #note {
+        position: absolute;
+        top: 100px;
+        opacity: 0;
       }
     }
     span {

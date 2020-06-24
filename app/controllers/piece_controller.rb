@@ -47,6 +47,7 @@ class PieceController < ApplicationController
     if params.has_key?(:cover) and params[:cover] != 'null'
       piece.cover = params[:cover]
     end
+    piece.note = params[:note]
     authors = JSON.parse(params[:authors])
 
     if piece.save!
@@ -93,27 +94,16 @@ class PieceController < ApplicationController
       end
     end
 
-    puts params[:text]
-    puts params[:text]
-    puts params[:text]
-    puts params[:text]
-    puts params[:text]
-    puts params[:text]
-    puts params[:text]
-    puts params[:text]
-    puts params[:text]
-    puts params[:text]
-
     if params.has_key?(:cover)
       if params[:cover] == 'null'
         @piece.cover.purge
       else
-        if @piece.update(title: params[:title], published: params[:published], text: params[:text], publish_date: params[:publish_date], cover: params[:cover] )
+        if @piece.update(title: params[:title], note: params[:note], published: params[:published], text: params[:text], publish_date: params[:publish_date], cover: params[:cover] )
           render :json => {status: 'ok'}
         end
       end
     else
-      if @piece.update(title: params[:title], published: params[:published], text: params[:text], publish_date: params[:publish_date] )
+      if @piece.update(title: params[:title], note: params[:note], published: params[:published], text: params[:text], publish_date: params[:publish_date] )
         render :json => {status: 'ok'}
       end
     end

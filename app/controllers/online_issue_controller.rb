@@ -56,7 +56,7 @@ class OnlineIssueController < ApplicationController
       piece.authors.each do |author|
         authors.push({name: author.name, url: author_path(author.id)})
       end
-      @pieces.push({authors: authors, title: piece.title, text: piece.text, publish_date: piece.publish_date, id: piece.id})
+      @pieces.push({authors: authors, title: piece.title, note: piece.note, text: piece.text, publish_date: piece.publish_date, id: piece.id})
     end
 
   end

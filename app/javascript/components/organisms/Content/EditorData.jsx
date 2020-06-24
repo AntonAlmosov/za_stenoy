@@ -4,7 +4,7 @@ import defineAlligning from "../../misc/defineAlign";
 
 export default ({ text }) => {
   return (
-    <>
+    <div className="editor-parsed">
       {text.map((line, i) => {
         if (line.type === "header") {
           switch (line.data.level) {
@@ -14,6 +14,26 @@ export default ({ text }) => {
               return <h2 key={i}>{ReactHtmlParser(line.data.text)}</h2>;
             case 3:
               return <h3 key={i}>{ReactHtmlParser(line.data.text)}</h3>;
+          }
+        }
+        if (line.type === "list") {
+          switch (line.data.style) {
+            case "unordered":
+              return (
+                <ul key={i}>
+                  {line.data.items.map((item, y) => {
+                    return <li key={i + y}>{ReactHtmlParser(item)}</li>;
+                  })}
+                </ul>
+              );
+            case "ordered":
+              return (
+                <ol key={i}>
+                  {line.data.items.map((item, y) => {
+                    return <li key={i + y}>{ReactHtmlParser(item)}</li>;
+                  })}
+                </ol>
+              );
           }
         }
         if (line.type === "paragraph") {
@@ -26,6 +46,6 @@ export default ({ text }) => {
         }
         if (line.type === "delimiter") return <hr key={i} />;
       })}
-    </>
+    </div>
   );
 };

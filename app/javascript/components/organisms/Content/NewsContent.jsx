@@ -3,6 +3,7 @@ import EditorData from "./EditorData";
 
 export default function NewsContent({ news, cover }) {
   const text = JSON.parse(news.text).blocks;
+  const note = JSON.parse(news.note).blocks;
   return (
     <div className="news-content">
       {cover && <img src={cover} />}
@@ -12,7 +13,10 @@ export default function NewsContent({ news, cover }) {
       <div className="news">
         <EditorData text={text} />
       </div>
-      <span>{news.caption}</span>
+      <div className="news-notes">
+        <div id="note"></div>
+        <EditorData text={note} />
+      </div>
     </div>
   );
 }

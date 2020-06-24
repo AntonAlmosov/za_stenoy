@@ -3,6 +3,7 @@ import EditorData from "./EditorData";
 
 export default function PieceContent({ piece, cover, authors }) {
   const text = JSON.parse(piece.text).blocks;
+  const note = JSON.parse(piece.note).blocks;
   return (
     <div className="piece-content">
       {cover && <img src={cover} />}
@@ -21,6 +22,10 @@ export default function PieceContent({ piece, cover, authors }) {
       </div>
       <div className="piece">
         <EditorData text={text} />
+      </div>
+      <div className="piece-notes">
+        <div id="note"></div>
+        <EditorData text={note} />
       </div>
       <span>{piece.publish_date}</span>
     </div>

@@ -59,7 +59,7 @@ function NewsCompilationCard({ card, mobile }) {
     <div className={mobile ? "compilation-card-wrapper" : "news-card"}>
       <div className="card-info">
         <span>{card ? card.date : ""}</span>
-        <span className="property">{card ? card.caption || "" : ""}</span>
+        <span className="property">{card ? "" : ""}</span>
       </div>
       {card && card.cover && <img src={card ? card.cover : ""} />}
       <h2>{card ? _.truncate(card.title, { length: 60 }) : ""}</h2>
