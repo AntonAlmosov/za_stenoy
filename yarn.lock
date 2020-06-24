@@ -828,6 +828,11 @@
     codex-notifier "^1.1.2"
     codex-tooltip "^1.0.0"
 
+"@editorjs/header@^2.5.0":
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/@editorjs/header/-/header-2.5.0.tgz#f6266d5b7e639fc38289291160f9c41ab12d9da5"
+  integrity sha512-7j8g5/pjb7WtzjpANai/BoUK4QnZdNLt6Q4YRWL8xfLfUtN2M6zEfV11TuEh/l6eZlO0f/5vkXDFXDsbfeJfDA==
+
 "@editorjs/image@^2.3.4":
   version "2.3.4"
   resolved "https://registry.yarnpkg.com/@editorjs/image/-/image-2.3.4.tgz#0b6fc9247ecc7750e5157aae5ea954c75196b3e6"
