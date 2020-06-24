@@ -6,6 +6,7 @@ import Underline from "@editorjs/underline";
 import Header from "../../../editor/heading/index";
 import Paragraph from "../../../editor/paragraph/index";
 import LineThrough from "../../../editor/overline/index";
+import Sup from "../../../editor/sup/index";
 import List from "../../../editor/list/index";
 
 const tools = {
@@ -15,6 +16,7 @@ const tools = {
   delimiter: { class: Delimiter },
   underline: { class: Underline, shortcut: "CMD+U" },
   linethrough: { class: LineThrough, shortcut: "CMD+L" },
+  sup: { class: Sup, shortcut: "CMD+Y" },
 };
 
 export const Editor = ({ data, setRef, style, placeholder, id }) => {

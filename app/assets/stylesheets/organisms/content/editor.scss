@@ -59,6 +59,10 @@
       background-color: black;
       border: 0;
     }
+    sup {
+      vertical-align: super;
+      font-size: 0.8em;
+    }
   }
 }
 @media (max-width: 511px) {
@@ -120,5 +124,9 @@
     height: 0.1em;
     background-color: black;
     border: 0;
+  }
+  sup {
+    vertical-align: super;
+    font-size: 0.8em;
   }
 }
