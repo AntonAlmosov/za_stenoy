@@ -2,8 +2,8 @@ import React from "react";
 import EditorData from "./EditorData";
 
 export default function PieceContent({ piece, cover, authors }) {
-  const text = JSON.parse(piece.text).blocks;
-  const note = JSON.parse(piece.note).blocks;
+  const text = JSON.parse(piece.text || "{}").blocks;
+  const note = JSON.parse(piece.note || "{}").blocks;
   return (
     <div className="piece-content">
       {cover && <img src={cover} />}

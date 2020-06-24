@@ -104,8 +104,8 @@ const Contents = ({ authors }) => {
 };
 
 const Piece = ({ piece }) => {
-  const text = JSON.parse(piece.text).blocks;
-  const note = JSON.parse(piece.note).blocks;
+  const text = JSON.parse(news.text || "{}").blocks;
+  const note = JSON.parse(news.note || "{}").blocks;
   return (
     <>
       <div className="piece-content">

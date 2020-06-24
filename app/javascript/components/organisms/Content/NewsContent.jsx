@@ -2,8 +2,8 @@ import React from "react";
 import EditorData from "./EditorData";
 
 export default function NewsContent({ news, cover }) {
-  const text = JSON.parse(news.text).blocks;
-  const note = JSON.parse(news.note).blocks;
+  const text = JSON.parse(news.text || "{}").blocks;
+  const note = JSON.parse(news.note || "{}").blocks;
   return (
     <div className="news-content">
       {cover && <img src={cover} />}
