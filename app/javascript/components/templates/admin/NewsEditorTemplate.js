@@ -1,13 +1,11 @@
 import React from "react";
 import axios from "axios";
 import TextareaAutosize from "react-textarea-autosize";
-import EditorJS from "@editorjs/editorjs";
-import Paragraph from "../../../editor/paragraph/index";
-import Delimiter from "@editorjs/delimiter";
 
 import HeaderAdminOrganism from "../../organisms/HeaderAdminOrganism.jsx";
 import ImagePicker from "../../molecules/misc/ImagePicker.jsx";
 import DefaultButton from "../../molecules/buttons/DefaultButton.jsx";
+import { Editor } from "../../organisms/editor/Editor";
 
 export default function NewsEditorTemplate({
   news,
@@ -18,46 +16,23 @@ export default function NewsEditorTemplate({
   backPath,
 }) {
   const [title, setTitle] = React.useState(news.title);
-  const [text, setText] = React.useState(JSON.parse(news.text));
   const [cover, setCover] = React.useState(coverUrl);
   const [coverData, setCoverData] = React.useState({});
   const [caption, setCaption] = React.useState(news.caption || "");
   const [saveText, setSaveText] = React.useState("Сохранить");
   const [published, setPublished] = React.useState(news.published);
   const [featured, setFeatured] = React.useState(news.featured);
+  const [editorRef, setEditorRef] = React.useState();
 
-  React.useEffect(() => {
-    const editor = new EditorJS({
-      holderId: "piece",
-      placeholder: "Пишите! Например:\n Килограмм салата рыбного",
-      tools: {
-        paragraph: {
-          class: Paragraph,
-          inlineToolbar: true,
-        },
-        delimiter: {
-          class: Delimiter,
-        },
-      },
-      data: text,
-      onChange: (api) => {
-        api.saver.save().then((res) => {
-          setText(res);
-        });
-      },
-      sanitizer: {
-        p: true,
-      },
-    });
-  }, []);
-
-  function handleSubmit() {
+  async function handleSubmit() {
     setSaveText("Обработка");
 
     const formData = new FormData();
     if (cover !== coverUrl) formData.append("cover", coverData);
+    await editorRef
+      .save()
+      .then((res) => formData.append("text", JSON.stringify(res)));
     formData.append("title", title);
-    formData.append("text", JSON.stringify(text));
     formData.append("caption", caption);
     formData.append("published", JSON.stringify(!!published));
     formData.append("featured", JSON.stringify(!!featured));
@@ -106,7 +81,7 @@ export default function NewsEditorTemplate({
         backShown={backPath}
         closeShown={closePath || false}
         onDoneClick={handleSubmit}
-        doneActive={title && text}
+        doneActive={title}
         doneText={saveText}
       />
       <div
@@ -149,7 +124,11 @@ export default function NewsEditorTemplate({
             onChange={(e) => setTitle(e.target.value)}
             placeholder={"Заголовок новости"}
           />
-          <div style={{ marginTop: "3.5em", width: "50em" }} id="piece"></div>
+          <Editor
+            style={{ marginTop: "3.5em", width: "50em" }}
+            data={JSON.parse(news.text)}
+            setRef={setEditorRef}
+          />
           <TextareaAutosize
             className="news-caption textarea"
             value={caption || ""}

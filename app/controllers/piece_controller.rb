@@ -93,6 +93,17 @@ class PieceController < ApplicationController
       end
     end
 
+    puts params[:text]
+    puts params[:text]
+    puts params[:text]
+    puts params[:text]
+    puts params[:text]
+    puts params[:text]
+    puts params[:text]
+    puts params[:text]
+    puts params[:text]
+    puts params[:text]
+
     if params.has_key?(:cover)
       if params[:cover] == 'null'
         @piece.cover.purge

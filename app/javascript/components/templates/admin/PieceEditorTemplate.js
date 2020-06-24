@@ -1,9 +1,6 @@
 import React from "react";
 import axios from "axios";
 import TextareaAutosize from "react-textarea-autosize";
-import EditorJS from "@editorjs/editorjs";
-import Paragraph from "../../../editor/paragraph/index";
-import Delimiter from "@editorjs/delimiter";
 
 import HeaderAdminOrganism from "../../organisms/HeaderAdminOrganism.jsx";
 import ImagePicker from "../../molecules/misc/ImagePicker.jsx";
@@ -12,6 +9,7 @@ import {
   Author,
 } from "../../molecules/misc/AuthorsInterface.jsx";
 import DefaultButton from "../../molecules/buttons/DefaultButton.jsx";
+import { Editor } from "../../organisms/editor/Editor.jsx";
 
 export default function PieceEditorTemplate({
   piece,
@@ -23,7 +21,7 @@ export default function PieceEditorTemplate({
   backPath,
 }) {
   const [title, setTitle] = React.useState(piece.title);
-  const [text, setText] = React.useState(JSON.parse(piece.text));
+  const [editorRef, setEditorRef] = React.useState(null);
   const [date, setDate] = React.useState(piece.publish_date);
   const [cover, setCover] = React.useState(coverUrl);
   const [coverData, setCoverData] = React.useState({});
@@ -31,38 +29,15 @@ export default function PieceEditorTemplate({
   const [saveText, setSaveText] = React.useState("Сохранить");
   const [published, setPublished] = React.useState(piece.published);
 
-  React.useEffect(() => {
-    const editor = new EditorJS({
-      holderId: "piece",
-      placeholder: "Пишите! Например:\n Килограмм салата рыбного",
-      tools: {
-        paragraph: {
-          class: Paragraph,
-          inlineToolbar: true,
-        },
-        delimiter: {
-          class: Delimiter,
-        },
-      },
-      data: text,
-      onChange: (api) => {
-        api.saver.save().then((res) => {
-          setText(res);
-        });
-      },
-      sanitizer: {
-        p: true,
-      },
-    });
-  }, []);
-
-  function handleSubmit() {
+  async function handleSubmit() {
     setSaveText("Обработка");
 
     const formData = new FormData();
     if (cover !== coverUrl) formData.append("cover", coverData);
+    await editorRef.save().then((res) => {
+      formData.append("text", JSON.stringify(res));
+    });
     formData.append("title", title);
-    formData.append("text", JSON.stringify(text));
     formData.append("publish_date", date);
     formData.append("authors", JSON.stringify(authors));
     formData.append("published", JSON.stringify(published));
@@ -93,7 +68,7 @@ export default function PieceEditorTemplate({
           setSaveText("Ошибка");
           setInterval(() => setSaveText("Сохранить"), 1000);
         })
-        .then((res) => {
+        .then(() => {
           setSaveText("Готово!");
           setInterval(() => setSaveText("Сохранить"), 1000);
         });
@@ -111,7 +86,7 @@ export default function PieceEditorTemplate({
         backShown={backPath}
         closeShown={closePath || false}
         onDoneClick={handleSubmit}
-        doneActive={title && text && authors.length}
+        doneActive={title && authors.length}
         doneText={saveText}
       />
       <div
@@ -173,7 +148,11 @@ export default function PieceEditorTemplate({
             className={"input"}
           />
         </div>
-        <div style={{ marginTop: "2em" }} id="piece"></div>
+        <Editor
+          style={{ marginTop: "2em" }}
+          data={JSON.parse(piece.text)}
+          setRef={setEditorRef}
+        />
       </div>
     </>
   );

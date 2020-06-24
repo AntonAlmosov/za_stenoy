@@ -39,8 +39,17 @@
         i {
           font-style: italic;
         }
-        a:visited {
+        u {
+          text-decoration: underline;
+        }
+        del {
+          text-decoration: line-through;
+        }
+        a {
           color: blue;
+          &:visited {
+            color: blue;
+          }
         }
       }
       hr {
@@ -94,6 +103,12 @@
         }
         i {
           font-style: italic;
+        }
+        u {
+          text-decoration: underline;
+        }
+        del {
+          text-decoration: line-through;
         }
         a {
           color: blue;

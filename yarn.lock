@@ -838,6 +838,11 @@
   resolved "https://registry.yarnpkg.com/@editorjs/paragraph/-/paragraph-2.6.1.tgz#efd21da9912686024abd96eedd0c2258193f7d31"
   integrity sha512-YaV8nVQVS3iMKig/XwmX0+Bq4NxHymWdUPdwpaAyyhOoo6z0ht5uhEzDG9QOOTVKsimcmR49bJLEtl3dlBoqxA==
 
+"@editorjs/underline@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@editorjs/underline/-/underline-1.0.0.tgz#47e5e5fde7a3dd071bc9f4faed90b4f518b7e3db"
+  integrity sha512-2qbmr6/Y5ZIsfmJeAxLujCndc5wpIEQ2uxoPIdR3uHIUQhA6Q28U5HdoGpEZwsP1d7e/A/vBhN18Ugro0iA0MQ==
+
 "@rails/actioncable@^6.0.0":
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/@rails/actioncable/-/actioncable-6.0.2.tgz#bcba9bcd6ee09a47c6628336e07399a68ca87814"
@@ -6377,6 +6382,11 @@ react-dom@^16.13.0:
     object-assign "^4.1.1"
     prop-types "^15.6.2"
     scheduler "^0.19.0"
+
+react-editor-js@^1.6.2:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/react-editor-js/-/react-editor-js-1.6.2.tgz#25fb4a3451d314c510a6c26b2b95af27a4affbb7"
+  integrity sha512-bwPJiR0D9LuCpEQZUHNIp0hLmy+l+GSH4XUPcFtMr/PpTPoUhwinMvpAytqLIchXgSIwTu3TGPgv/BlpsVstbQ==
 
 react-feather@^2.0.3:
   version "2.0.3"
