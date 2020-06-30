@@ -137,6 +137,9 @@ h3.ce-header {
       vertical-align: super;
       font-size: 0.8em;
     }
+    small {
+      font-size: 0.7em;
+    }
   }
 }
 @media (max-width: 511px) {
@@ -202,5 +205,8 @@ h3.ce-header {
   sup {
     vertical-align: super;
     font-size: 0.8em;
+  }
+  small {
+    font-size: 0.7em;
   }
 }

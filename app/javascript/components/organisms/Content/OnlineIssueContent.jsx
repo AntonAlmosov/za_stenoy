@@ -1,6 +1,5 @@
 import React from "react";
 import cyrillicToTranslit from "cyrillic-to-translit-js";
-import ReactHtmlParser from "react-html-parser";
 import arrow from "images/arrow.svg";
 import EditorData from "./EditorData";
 

@@ -8,6 +8,7 @@ import Paragraph from "../../../editor/paragraph/index";
 import LineThrough from "../../../editor/overline/index";
 import Sup from "../../../editor/sup/index";
 import List from "../../../editor/list/index";
+import Small from "../../../editor/small/index";
 
 const tools = {
   header: Header,
@@ -17,6 +18,7 @@ const tools = {
   underline: { class: Underline, shortcut: "CMD+U" },
   linethrough: { class: LineThrough, shortcut: "CMD+L" },
   sup: { class: Sup, shortcut: "CMD+Y" },
+  small: { class: Small },
 };
 
 export const Editor = ({ data, setRef, style, placeholder, id }) => {
