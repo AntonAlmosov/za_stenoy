@@ -3,13 +3,31 @@
     width: 34.5em;
     margin-top: 2em;
     user-select: none;
+    .index-card-link {
+      display: inline;
+      text-decoration: none !important;
+      position: relative;
+      &::after {
+        position: absolute;
+        bottom: 0.025em;
+        left: 0;
+        content: "";
+        width: 100%;
+        height: 0.07em;
+        background-color: #000;
+      }
+      &:hover {
+        &::after {
+          content: "";
+          width: 100%;
+          height: 0;
+        }
+      }
+    }
     a {
       color: black;
       font-size: 1em;
       line-height: 1.5;
-      &:hover {
-        text-decoration: none;
-      }
     }
     .compilation-card-wrapper {
       margin-top: 1.5em;

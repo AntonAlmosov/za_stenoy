@@ -3,7 +3,9 @@ import React from "react";
 export default function IndexCard({ name, uri, card }) {
   return (
     <div className="index-card">
-      <a href={uri}>{name}</a>
+      <a href={uri} className={"index-card-link"}>
+        {name}
+      </a>
       <CompilationCard card={card} />
     </div>
   );
