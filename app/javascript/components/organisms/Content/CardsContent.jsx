@@ -10,7 +10,7 @@ export default function CompilationContent({ cards, feature, target }) {
     cards.reverse().slice(3, cards.length - 1)
   );
 
-  const handleFilters = action => {
+  const handleFilters = (action) => {
     if (action == "random") {
       const newArr = _.shuffle(cards);
       setFirst(newArr.slice(0, 3));
@@ -31,19 +31,19 @@ export default function CompilationContent({ cards, feature, target }) {
     <div className="compilation-content">
       <ContentFilter activeFilters={[1]} handleFilter={handleFilters} />
       <div className="compilation-content-cards-wrapper">
-        {firstPortion.map(card => {
+        {feature && (
+          <a href={feature.url} target={target ? target : ""}>
+            <FeatureCard card={feature} />
+          </a>
+        )}
+        {firstPortion.map((card) => {
           return (
             <a href={card.url} key={card.url} target={target ? target : ""}>
               <CompilationCard card={card} />
             </a>
           );
         })}
-        {feature && (
-          <a href={feature.url} target={target ? target : ""}>
-            <FeatureCard card={feature} />
-          </a>
-        )}
-        {secondPortion.map(card => {
+        {secondPortion.map((card) => {
           return (
             <a href={card.url} key={card.url} target={target ? target : ""}>
               <CompilationCard card={card} />

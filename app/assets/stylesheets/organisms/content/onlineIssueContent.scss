@@ -35,7 +35,7 @@
           margin-top: 0.125em;
         }
         a {
-          display: inline-flex;
+          display: block;
           color: white !important;
           &::after {
             background-color: #fff !important;
@@ -46,6 +46,7 @@
         width: 40em !important;
         height: 22.5em !important;
         margin: 0 0 2em !important;
+        object-position: left !important;
       }
       p {
         color: white;
@@ -104,6 +105,7 @@
         width: 36em !important;
         height: 20.5em !important;
         margin: 0 0 1em !important;
+        object-position: left !important;
       }
       h1 {
         color: white;
