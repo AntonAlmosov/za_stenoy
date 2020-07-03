@@ -1,6 +1,6 @@
 @media (min-width: 512px) {
   .online-issue-content-wrapper {
-    width: 56em;
+    width: 40em;
     margin: 10em auto 0;
     .description {
       margin-top: 10em;
@@ -9,7 +9,7 @@
         font-size: 1.25em;
         line-height: 1.2;
         font-weight: 500;
-        width: 40em;
+        text-align: left;
       }
       p {
         font-size: 1em;
@@ -35,9 +35,17 @@
           margin-top: 0.125em;
         }
         a {
-          display: block;
+          display: inline-flex;
           color: white !important;
+          &::after {
+            background-color: #fff !important;
+          }
         }
+      }
+      img {
+        width: 40em !important;
+        height: 22.5em !important;
+        margin: 0 0 2em !important;
       }
       p {
         color: white;
@@ -91,6 +99,11 @@
         top: -7em;
         left: 0em;
         position: absolute;
+      }
+      img {
+        width: 36em !important;
+        height: 20.5em !important;
+        margin: 0 0 1em !important;
       }
       h1 {
         color: white;

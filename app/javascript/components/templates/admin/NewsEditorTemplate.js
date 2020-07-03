@@ -129,12 +129,12 @@ export default function NewsEditorTemplate({
             placeholder={"Заголовок новости"}
           />
           <Editor
-            style={{ marginTop: "3.5em", width: "50em" }}
+            style={{ marginTop: "3.5em", width: "45em" }}
             data={JSON.parse(news.text)}
             setRef={setEditorRef}
           />
           <Editor
-            style={{ opacity: 0.5, width: "50em" }}
+            style={{ opacity: 0.5, width: "45em" }}
             data={JSON.parse(news.note)}
             setRef={setNoteEditorRef}
             placeholder={"Примечания"}

@@ -141,18 +141,20 @@ export default function PieceEditorTemplate({
             placeholder={"Название материала"}
           />
         </div>
-        <Editor
-          style={{ marginTop: "2em" }}
-          data={JSON.parse(piece.text)}
-          setRef={setEditorRef}
-        />
-        <Editor
-          style={{ opacity: 0.5 }}
-          data={JSON.parse(piece.note)}
-          setRef={setNoteEditorRef}
-          placeholder="Примечания"
-          id={"notes"}
-        />
+        <div style={{ width: "40em" }}>
+          <Editor
+            style={{ marginTop: "2em" }}
+            data={JSON.parse(piece.text)}
+            setRef={setEditorRef}
+          />
+          <Editor
+            style={{ opacity: 0.5 }}
+            data={JSON.parse(piece.note)}
+            setRef={setNoteEditorRef}
+            placeholder="Примечания"
+            id={"notes"}
+          />
+        </div>
         <input
           defaultValue={date}
           onChange={(e) => setDate(e.target.value)}

@@ -20,7 +20,6 @@ export default function HeaderTemplate({ logo, inverse, editPath }) {
     axios.get("/menu/get_data").then((res) => {
       setData(res.data);
     });
-    console.log(editPath);
   }, []);
 
   return (
@@ -85,9 +84,9 @@ const AdditionalSearch = ({ data, title }) => {
       <div className="additional-results">
         {data.map((el) => {
           return (
-            <a href={el.url} key={el.url}>
-              {el.title}
-            </a>
+            <div key={el.url}>
+              <a href={el.url}>{el.title}</a>
+            </div>
           );
         })}
       </div>

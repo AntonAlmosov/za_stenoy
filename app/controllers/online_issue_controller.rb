@@ -56,7 +56,11 @@ class OnlineIssueController < ApplicationController
       piece.authors.each do |author|
         authors.push({name: author.name, url: author_path(author.id)})
       end
-      @pieces.push({authors: authors, title: piece.title, note: piece.note, text: piece.text, publish_date: piece.publish_date, id: piece.id})
+      if piece.cover.attached?
+        @pieces.push({authors: authors, cover: polymorphic_url(piece.cover), title: piece.title, note: piece.note, text: piece.text, publish_date: piece.publish_date, id: piece.id})
+      else
+        @pieces.push({authors: authors, title: piece.title, note: piece.note, text: piece.text, publish_date: piece.publish_date, id: piece.id})
+      end
     end
 
   end

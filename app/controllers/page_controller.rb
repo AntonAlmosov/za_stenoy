@@ -52,7 +52,7 @@ class PageController < ApplicationController
       if page.page_type == 'personal_projects'
         comp = page.compilations.find_by(featured: true)
         if comp and comp.cover.attached? 
-          feature = {title: comp.title, cover: polymorphic_url(comp.cover), date: comp.updated_at.to_s(:custom_datetime)}
+          feature = {title: comp.title, cover: polymorphic_url(comp.cover), date: comp.updated_at.to_s(:custom_datetime), uri: page_compilation_path(page.id, comp.id)}
         end
       end
 
@@ -61,25 +61,25 @@ class PageController < ApplicationController
         online = page.online_issues.find_by(featured: true)
 
         if offline and offline.cover.attached?
-          feature = {title: offline.title, cover: polymorphic_url(offline.cover), date: offline.publish_date}
+          feature = {title: offline.title, cover: polymorphic_url(offline.cover), date: offline.publish_date, uri: page_offline_issue_path(page.id, offline.id)}
         elsif online and online.cover.attached?
-          feature = {title: online.title, cover: polymorphic_url(online.cover), date: online.updated_at.to_s(:custom_datetime), caption: 'онлайн выпуск'}
+          feature = {title: online.title, cover: polymorphic_url(online.cover), date: online.updated_at.to_s(:custom_datetime), caption: 'онлайн выпуск', uri: page_online_issue_path(page.id, online.id)}
         end
       end
 
       if page.page_type == 'shop'
         product = page.products.last
         if product and product.cover.attached?
-          feature = {title: product.name, cover: polymorphic_url(product.cover), date: product.updated_at.to_s(:custom_datetime), caption: product.price}
+          feature = {title: product.name, cover: polymorphic_url(product.cover), date: product.updated_at.to_s(:custom_datetime), caption: product.price, uri: page_path(page.id)}
         end
       end
 
       if page.page_type == 'news'
         news = News.last
         if news and news.cover.attached?
-          feature = {title: news.title, cover: polymorphic_url(news.cover), date: news.created_at.to_s(:custom_datetime)}
+          feature = {title: news.title, cover: polymorphic_url(news.cover), date: news.created_at.to_s(:custom_datetime), uri: page_news_path(page.id, news.id)}
         elsif news
-          feature = {title: news.title, date: news.created_at.to_s(:custom_datetime)}
+          feature = {title: news.title, date: news.created_at.to_s(:custom_datetime), uri: page_news_path(page.id, news.id)}
         end
       end
 
@@ -219,18 +219,18 @@ class PageController < ApplicationController
       @feature = {}
       newsCollection.each do |news|
         if news.cover.attached?
-          @content.push({cover: polymorphic_url(news.cover), title: news.title, date: news.created_at.to_s(:custom_datetime), url: page_news_path(@page.id, news.id)})
+          @content.push({cover: polymorphic_url(news.cover), title: news.title, date: news.created_at.to_s(:custom_datetime), url: news_path(news.id)})
         else
-          @content.push({title: news.title, date: news.created_at.to_s(:custom_datetime), url: page_news_path(@page.id, news.id)})
+          @content.push({title: news.title, date: news.created_at.to_s(:custom_datetime), url: news_path(news.id)})
         end
       end
       f = News.find_by(published: true, featured: true)
 
       if f
         if f.cover.attached?
-          @feature = {cover: polymorphic_url(f.cover), title: f.title, date: f.created_at.to_s(:custom_datetime), url: page_news_path(@page.id, f.id)}
+          @feature = {cover: polymorphic_url(f.cover), title: f.title, date: f.created_at.to_s(:custom_datetime), url: news_path(f.id)}
         else
-          @feature = {title: f.title, date: f.created_at.to_s(:custom_datetime), url: page_news_path(@page.id, f.id)}
+          @feature = {title: f.title, date: f.created_at.to_s(:custom_datetime), url: news_path(f.id)}
         end
       else
         @feature = false
