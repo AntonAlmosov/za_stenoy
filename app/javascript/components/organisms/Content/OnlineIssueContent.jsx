@@ -110,7 +110,7 @@ const Piece = ({ piece }) => {
       <div className="piece-content">
         <div className="piece-anchor" id={"piece" + piece.id}></div>
         <div className="piece-header">
-          {piece.cover && <img src={piece.cover} />}
+          {piece.cover && <img src={piece.cover} className="piece-cover" />}
           <h1>{piece.title}</h1>
           <div className="piece-authors">
             {piece.authors.map((author) => {

@@ -16,6 +16,13 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :picture, only: [] do
+    collection do
+      post :upload_image
+      post :upload_url
+    end
+  end
+
   resources :author, only: [:create, :show] do
     collection do
       get :get_author

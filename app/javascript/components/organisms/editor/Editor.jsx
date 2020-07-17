@@ -2,6 +2,7 @@ import React from "react";
 import EditorJs from "react-editor-js";
 import Delimiter from "@editorjs/delimiter";
 import Underline from "@editorjs/underline";
+import Image from "@editorjs/image";
 
 import Header from "../../../editor/heading/index";
 import Paragraph from "../../../editor/paragraph/index";
@@ -16,6 +17,15 @@ const tools = {
   paragraph: { class: Paragraph, inlineToolbar: true, preserveBlank: true },
   delimiter: { class: Delimiter },
   underline: { class: Underline, shortcut: "CMD+U" },
+  image: {
+    class: Image,
+    config: {
+      endpoints: {
+        byFile: "/picture/upload_image",
+        byUrl: "/picture/upload_url",
+      },
+    },
+  },
   linethrough: { class: LineThrough, shortcut: "CMD+L" },
   sup: { class: Sup, shortcut: "CMD+Y" },
   small: { class: Small },
