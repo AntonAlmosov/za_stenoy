@@ -13,10 +13,7 @@ export default function IndexCard({ name, uri, card }) {
 
 function CompilationCard({ card }) {
   return (
-    <a
-      href={card ? card.uri : "/page/shop"}
-      className="compilation-card-wrapper"
-    >
+    <a href={card && card.uri} className="compilation-card-wrapper">
       <div className="card-info">
         <span>{card ? card.date : ""}</span>
         <span className="property">{card ? card.caption || "" : ""}</span>
