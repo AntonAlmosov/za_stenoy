@@ -4,13 +4,13 @@ import ViewSwitch from "../../molecules/misc/ViewSwitch.jsx";
 import PieceCard from "../../molecules/cards/PieceCard.jsx";
 
 export default function UserProfileContent({ pieces }) {
-  const [currentView, setCurrentView] = React.useState(1);
+  const [currentView, setCurrentView] = React.useState(0);
 
   return (
     <div className="user-profile-content-wrapper">
       <ViewSwitch
         activeSwitch={currentView}
-        handleSwitch={n => {
+        handleSwitch={(n) => {
           setCurrentView(n);
         }}
       />
@@ -24,7 +24,7 @@ function ListView({ pieces }) {
   return (
     <div className="list-view-wrapper">
       <h2>Публикации автора:</h2>
-      {pieces.map(piece => {
+      {pieces.map((piece) => {
         return (
           <a href={piece.url} key={piece.url}>
             {piece.title}
@@ -38,7 +38,7 @@ function ListView({ pieces }) {
 function CardView({ pieces }) {
   return (
     <div className="card-view-wrapper">
-      {pieces.map(piece => {
+      {pieces.map((piece) => {
         return (
           <a href={piece.url} key={piece.url}>
             <PieceCard card={piece} />
