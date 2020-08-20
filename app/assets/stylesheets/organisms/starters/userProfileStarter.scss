@@ -42,6 +42,7 @@
       filter: grayscale(100%);
     }
     p {
+      margin-top: calc(#{$baseMobile} * 2);
       width: calc(#{$baseMobile} * 32);
       font-size: 1.5em;
       line-height: 1;
