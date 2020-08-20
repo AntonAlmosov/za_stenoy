@@ -21,7 +21,7 @@ class MenuController < ApplicationController
     end
 
     pieces = []
-    Piece.where(published:true).each do |piece|
+    Piece.where(published:true).sort_by(&:created_at).reverse.each do |piece|
       pieces.push({url: piece_path(piece.id), title: piece.title})
     end
 
