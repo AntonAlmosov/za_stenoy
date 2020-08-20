@@ -121,6 +121,12 @@ class OfflineIssueController < ApplicationController
       authors.each do |author|
         OfflineIssueAuthor.create(author_id: author['id'], offline_issue_id: issue.id)
       end
+      if issue.published
+        authors.each do |author|
+          foundAuthor = Author.find(author['id'])
+          foundAuthor.update(public: true)
+        end
+      end
 
       render :json => {redirectPath: edit_admin_offline_issue_path(params[:admin_id], issue.id), id: issue.id}
     end
@@ -191,10 +197,22 @@ class OfflineIssueController < ApplicationController
 
     if params.has_key?(:cover)
       if issue.update(title: params[:title], description: params[:description], publish_date: params[:publish_date], purchase_link: params[:purchase_link], published: params[:published], featured: params[:featured], description: params[:description], cover: params[:cover] )
+        if issue.published
+          authors.each do |author|
+            foundAuthor = Author.find(author['id'])
+            foundAuthor.update(public: true)
+          end
+        end
         render :json => {status: 'ok', id: issue.id}
       end
     else
       if issue.update(title: params[:title], description: params[:description], publish_date: params[:publish_date], purchase_link: params[:purchase_link], published: params[:published], featured: params[:featured], description: params[:description])
+        if issue.published
+          authors.each do |author|
+            foundAuthor = Author.find(author['id'])
+            foundAuthor.update(public: true)
+          end
+        end
         render :json => {status: 'ok', id: issue.id}
       end
     end

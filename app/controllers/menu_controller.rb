@@ -15,7 +15,9 @@ class MenuController < ApplicationController
   def get_data
     authors = []
     Author.all.each do |author| 
-      authors.push({url: author_path(author.id), title: author.name})
+      if author.public
+        authors.push({url: author_path(author.id), title: author.name})
+      end
     end
 
     pieces = []

@@ -3,10 +3,13 @@ import axios from "axios";
 import TextareaAutosize from "react-textarea-autosize";
 
 import HeaderAdminOrganism from "../../organisms/HeaderAdminOrganism";
+import ImagePicker from "../../molecules/misc/ImagePickerPage.jsx";
 
 export default function EditAuthorTemplate({
   id,
   initialName,
+  initialAvatar,
+  initialDescription,
   postPath,
   origin,
   backPath,
@@ -14,6 +17,9 @@ export default function EditAuthorTemplate({
   const [saveText, setSaveText] = React.useState("Сохранить");
   const [name, setName] = React.useState(initialName);
   const [pieces, setPieces] = React.useState([]);
+  const [image, setImage] = React.useState(initialAvatar);
+  const [imageData, setImageData] = React.useState({});
+  const [description, setDescription] = React.useState(initialDescription);
 
   React.useEffect(() => {
     axios
@@ -26,6 +32,11 @@ export default function EditAuthorTemplate({
 
     const formData = new FormData();
     formData.append("name", name);
+    if (initialAvatar !== image) {
+      formData.append("avatar", imageData);
+    }
+    formData.append("description", description);
+    formData.append("public", true);
 
     if (origin === "new") {
       axios
@@ -60,6 +71,11 @@ export default function EditAuthorTemplate({
     }
   }
 
+  const handleCover = (url, file) => {
+    setImage(url);
+    setImageData(file);
+  };
+
   return (
     <>
       <HeaderAdminOrganism
@@ -83,6 +99,45 @@ export default function EditAuthorTemplate({
           onChange={(e) => setName(e.target.value)}
           placeholder={"Имя автора"}
         />
+        <div
+          style={{
+            width: "52.875em",
+            margin: "2.75em auto 0",
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <ImagePicker
+            width={"23.25em"}
+            height={"22.25em"}
+            cover={image}
+            imageStyle={{
+              objectFit: "cover",
+              objectPosition: "center",
+              filter: "grayscale(100%)",
+            }}
+            setCover={handleCover}
+          />
+          <TextareaAutosize
+            className={"textarea"}
+            style={{
+              fontSize: "1em",
+              lineHeight: 1.5,
+              letterSpacing: "-0.03em",
+              width: "27.625em",
+            }}
+            value={description || ""}
+            onChange={(e) => {
+              if (e.target.value.length > 800) {
+                return;
+              }
+              setDescription(e.target.value);
+            }}
+            placeholder={
+              "Дми́трий Алекса́ндрович При́гов (5 ноября 1940, Москва, СССР—16 июля 2007, там же, Россия) — русский поэт, художник-график, скульптор. Один из основоположников московского концептуализма в искусстве и литературном жанре (поэзия и проза)."
+            }
+          />
+        </div>
         <MaterialsTable pieces={pieces} />
       </div>
     </>

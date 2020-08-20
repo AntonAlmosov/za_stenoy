@@ -54,6 +54,12 @@ class PieceController < ApplicationController
       authors.each do |author|
         PieceAuthor.create(author_id: author['id'], piece_id: piece.id)
       end
+      if piece.published
+        authors.each do |author|
+          foundAuthor = Author.find(author['id'])
+          foundAuthor.update(public: true)
+        end
+      end
       render :json => {redirectPath: edit_piece_path(piece.id), id: piece.id}
     end
   end
@@ -99,11 +105,23 @@ class PieceController < ApplicationController
         @piece.cover.purge
       else
         if @piece.update(title: params[:title], note: params[:note], published: params[:published], text: params[:text], publish_date: params[:publish_date], cover: params[:cover] )
+          if params[:published] == true
+            authors.each do |author|
+              foundAuthor = Author.find(author['id'])
+              foundAuthor.update(public: true)
+            end
+          end
           render :json => {status: 'ok'}
         end
       end
     else
       if @piece.update(title: params[:title], note: params[:note], published: params[:published], text: params[:text], publish_date: params[:publish_date] )
+        if params[:published] == true
+          authors.each do |author|
+            foundAuthor = Author.find(author['id'])
+            foundAuthor.update(public: true)
+          end
+        end
         render :json => {status: 'ok'}
       end
     end

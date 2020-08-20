@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_24_141205) do
+ActiveRecord::Schema.define(version: 2020_08_19_151936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(version: 2020_06_24_141205) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
+    t.string "description"
+    t.boolean "public"
     t.index ["slug"], name: "index_authors_on_slug", unique: true
   end
 
@@ -165,6 +167,12 @@ ActiveRecord::Schema.define(version: 2020_06_24_141205) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
     t.index ["slug"], name: "index_pages_on_slug", unique: true
+  end
+
+  create_table "pictures", force: :cascade do |t|
+    t.string "url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "piece_authors", force: :cascade do |t|

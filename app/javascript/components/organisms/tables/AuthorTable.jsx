@@ -26,6 +26,12 @@ export default function NewsTable() {
     });
   };
 
+  const updateStatus = (data) => {
+    axios.patch("/author/update_status", data).then((res) => {
+      setAuthors(res.data.authors);
+    });
+  };
+
   return (
     <div className="table-wrapper" style={{ marginTop: "3em" }}>
       <AuthorHeader />
@@ -36,7 +42,15 @@ export default function NewsTable() {
             id={author.id}
             title={author.name}
             count={author.materialsCount}
-            actions={[{ name: "Удалить", uri: () => destroyAuthor(author.id) }]}
+            actions={[
+              {
+                name: ["Cкрыть >", "Сделать публичным >"],
+                uri: () =>
+                  updateStatus({ id: author.id, public: !author.public }),
+                state: author.public,
+              },
+              { name: "Удалить", uri: () => destroyAuthor(author.id) },
+            ]}
           />
         );
       })}

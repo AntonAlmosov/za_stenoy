@@ -12,3 +12,12 @@ default_pages.each do |page|
     Page.create(page)
   end
 end
+
+Author.all.each do |author|
+  if author.public == nil
+    author.update(public: true)
+  end
+  if author.description == nil
+    author.update(description: '')
+  end
+end

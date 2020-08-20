@@ -57,12 +57,12 @@ export default ({
           type="file"
           id={id ? id : "cover"}
           accept="image/*"
-          onChange={e => {
+          onChange={(e) => {
             if (e.target.files && e.target.files[0]) {
               setFile(e.target.files[0]);
               let reader = new FileReader();
 
-              reader.onload = function(el) {
+              reader.onload = function (el) {
                 setUri(el.target.result);
               };
 
@@ -86,7 +86,7 @@ export default ({
               cursor: "pointer",
             }}
           >
-            <div style={{ color: "#b3b3b3" }}>Добавить обложку ></div>
+            <div style={{ color: "#b3b3b3" }}>{"Добавить обложку >"}</div>
           </label>
         )}
         {cover && (
@@ -104,7 +104,7 @@ export default ({
             }}
             className="show-on-hover"
           >
-            <div style={{ color: "#b3b3b3" }}>Изменить обложку ></div>
+            <div style={{ color: "#b3b3b3" }}>{"Изменить обложку >"}</div>
           </label>
         )}
       </div>

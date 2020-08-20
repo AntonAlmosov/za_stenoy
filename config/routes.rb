@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     collection do
       get :get_author
       post :get_author_pieces
+      patch :update_status
       get :get_authors
     end
   end

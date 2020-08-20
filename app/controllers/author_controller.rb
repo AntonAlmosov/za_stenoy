@@ -7,11 +7,11 @@ class AuthorController < ApplicationController
   end
 
   def get_authors
-    authors = Author.all
+    authors = Author.all.sort_by(&:created_at)
     author_collection = []
     
     authors.each do |author|
-      author_collection.push({id: author.id, name: author.name, materialsCount: author.pieces.length + author.offline_issues.length})
+      author_collection.push({id: author.id, name: author.name, materialsCount: author.pieces.length + author.offline_issues.length, public: author.public})
     end
     render :json => {authors: author_collection}
   end
@@ -23,7 +23,13 @@ class AuthorController < ApplicationController
 
   def edit
     @id = params[:id]
-    @name = Author.find(params[:id]).name
+    author = Author.find(params[:id])
+    @name = author.name
+    @avatar = ''
+    @description = author.description
+    if author.avatar.attached?
+      @avatar = polymorphic_url(author.avatar)
+    end
     @post_path = admin_author_path(0, params[:id])
     @origin = 'edit'
     @back_path = admin_author_index_path(0)
@@ -31,17 +37,33 @@ class AuthorController < ApplicationController
 
   def update
     @author = Author.find(params[:id])
-    if @author.update(name: params[:name])
-      render :json => {status: 'ok'}
+    if params.has_key?(:avatar)
+      if @author.update(name: params[:name], avatar: params[:avatar], description: params[:description], public: params[:public])
+        render :json => {status: 'ok'}
+      end
+    else
+      if @author.update(name: params[:name], description: params[:description], public: params[:public])
+        render :json => {status: 'ok'}
+      end
     end
   end
 
-  def show
+  def update_status
     @author = Author.find(params[:id])
+    @author.update(public: params[:public])
+    get_authors
+  end
+
+  def show
+    author = Author.find(params[:id])
+    @author = author.as_json
+    if author.avatar.attached?
+      @author.merge!(avatar: polymorphic_url(author.avatar))
+    end
     
     @pieces = []
 
-    @author.pieces.each do |piece|
+    author.pieces.each do |piece|
       if piece.published
         if piece.cover.attached?
           @pieces.push({url: piece_path(piece.id), text: piece.text, title: piece.title, date: piece.publish_date, cover: polymorphic_url(piece.cover)})
@@ -51,7 +73,7 @@ class AuthorController < ApplicationController
       end
     end
 
-    @author.offline_issues.each do |issue|
+    author.offline_issues.each do |issue|
       if issue.published
         if issue.cover.attached?
           @pieces.push({url: page_offline_issue_path(issue.page_id, issue.id), title: issue.title, date: issue.publish_date, cover: polymorphic_url(issue.cover)})
@@ -66,7 +88,10 @@ class AuthorController < ApplicationController
   end
 
   def create
-    author = Author.new(author_params)
+    author = Author.new()
+    author.name = params[:name]
+    author.description = ''
+    author.public = false
 
     if author.save!
       render :json => {author: author}

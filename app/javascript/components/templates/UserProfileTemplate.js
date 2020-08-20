@@ -13,7 +13,11 @@ export default function UserProfileTemplate({ pieces, author }) {
   return (
     <>
       <HeaderTemplate logo={true} inverse={true} />
-      <UserProfileStarter title={author.name} />
+      <UserProfileStarter
+        title={author.name}
+        image={author.avatar}
+        description={author.description}
+      />
       <ListCardContent pieces={pieces} />
     </>
   );

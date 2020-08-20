@@ -3,11 +3,51 @@
     width: 70em;
     margin: 7em auto 0;
   }
+  .user-profile-description {
+    width: 52.875em;
+    display: flex;
+    justify-content: space-around;
+    margin: 2.75em auto 4.5em;
+    img {
+      width: 23.25em;
+      height: 22.25em;
+      object-fit: cover;
+      object-position: center;
+      filter: grayscale(100%);
+    }
+    p {
+      width: 27.625em;
+      font-size: 1em;
+      line-height: 1.5;
+      letter-spacing: -0.03em;
+      color: "#fff";
+      white-space: pre-wrap;
+    }
+  }
 }
 
 @media (max-width: 511px) {
   .user-profile-starter-wrapper {
     width: 36em;
     margin: 8em auto 0;
+  }
+  .user-profile-description {
+    width: 32em;
+    margin: 2em auto 4.5em;
+    img {
+      width: 32em;
+      height: 30.75em;
+      object-fit: cover;
+      object-position: center;
+      filter: grayscale(100%);
+    }
+    p {
+      width: calc(#{$baseMobile} * 32);
+      font-size: 1.5em;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: "#fff";
+      white-space: pre-wrap;
+    }
   }
 }
