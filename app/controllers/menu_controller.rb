@@ -14,7 +14,7 @@ class MenuController < ApplicationController
 
   def get_data
     authors = []
-    Author.all.each do |author| 
+    Author.all.sort_by(&:name).each do |author| 
       if author.public
         authors.push({url: author_path(author.id), title: author.name})
       end
