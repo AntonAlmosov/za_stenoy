@@ -7,7 +7,7 @@ class AuthorController < ApplicationController
   end
 
   def get_authors
-    authors = Author.all.sort_by(&:created_at)
+    authors = Author.all.sort_by(&:name)
     author_collection = []
     
     authors.each do |author|
