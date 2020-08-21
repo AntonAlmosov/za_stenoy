@@ -188,7 +188,19 @@ function SearchOrganism({ data }) {
         <div className="additional-search-wrapper">
           {!mobile && (
             <>
-              <AdditionalSearch data={authors} title={"Авторы"} />
+              <AdditionalSearch
+                data={authors
+                  .map((v) => {
+                    const res = v.split(" ");
+                    return res[1] + " " + res[0];
+                  })
+                  .sort()
+                  .map((v) => {
+                    const res = v.split(" ");
+                    return res[1] + " " + res[0];
+                  })}
+                title={"Авторы"}
+              />
               <AdditionalSearch data={projects} title={"Проекты"} />
               <AdditionalSearch data={pieces} title={"Название произведения"} />
             </>
