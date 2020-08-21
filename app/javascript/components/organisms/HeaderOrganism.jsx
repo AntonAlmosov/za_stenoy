@@ -178,19 +178,19 @@ function SearchOrganism({ data }) {
     };
     return authors
       .map((v) => {
-        return { ...v, name: reverseName(v.name) };
+        return { ...v, title: reverseName(v.title) };
       })
       .sort((a, b) => {
-        if (a.name < b.name) {
+        if (a.title < b.title) {
           return -1;
         }
-        if (a.name > b.name) {
+        if (a.title > b.title) {
           return 1;
         }
         return 0;
       })
       .map((v) => {
-        return { ...v, name: reverseName(v.name) };
+        return { ...v, title: reverseName(v.title) };
       });
   };
 
