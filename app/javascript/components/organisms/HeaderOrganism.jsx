@@ -171,6 +171,29 @@ function SearchOrganism({ data }) {
 
   const mobile = window.innerWidth <= 512;
 
+  const sortAuthors = (authors) => {
+    const reverseName = (v) => {
+      const splittedName = v.split(" ");
+      return splittedName[1] + " " + splittedName[0];
+    };
+    return authors
+      .map((v) => {
+        return { ...v, name: reverseName(v.name) };
+      })
+      .sort((a, b) => {
+        if (a.name < b.name) {
+          return -1;
+        }
+        if (a.name > b.name) {
+          return 1;
+        }
+        return 0;
+      })
+      .map((v) => {
+        return { ...v, name: reverseName(v.name) };
+      });
+  };
+
   return (
     <div className="header-menu-wrapper">
       <div className="search-wrapper">
@@ -188,19 +211,7 @@ function SearchOrganism({ data }) {
         <div className="additional-search-wrapper">
           {!mobile && (
             <>
-              <AdditionalSearch
-                data={authors
-                  .map((v) => {
-                    const res = v.split(" ");
-                    return res[1] + " " + res[0];
-                  })
-                  .sort()
-                  .map((v) => {
-                    const res = v.split(" ");
-                    return res[1] + " " + res[0];
-                  })}
-                title={"Авторы"}
-              />
+              <AdditionalSearch data={sortAuthors(authors)} title={"Авторы"} />
               <AdditionalSearch data={projects} title={"Проекты"} />
               <AdditionalSearch data={pieces} title={"Название произведения"} />
             </>
