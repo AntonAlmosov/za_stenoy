@@ -32,10 +32,33 @@ export default function NewsTable() {
     });
   };
 
+  const sortAuthors = (authors) => {
+    const reverseName = (v) => {
+      const splittedName = v.split(" ");
+      return splittedName[1] + " " + splittedName[0];
+    };
+    return authors
+      .map((v) => {
+        return { ...v, name: reverseName(v.name) };
+      })
+      .sort((a, b) => {
+        if (a.name < b.name) {
+          return -1;
+        }
+        if (a.name > b.name) {
+          return 1;
+        }
+        return 0;
+      })
+      .map((v) => {
+        return { ...v, name: reverseName(v.name) };
+      });
+  };
+
   return (
     <div className="table-wrapper" style={{ marginTop: "3em" }}>
       <AuthorHeader />
-      {authors.map((author) => {
+      {sortAuthors.map((author) => {
         return (
           <AuthorTableRow
             key={author.id}
