@@ -58,7 +58,7 @@ export default function NewsTable() {
   return (
     <div className="table-wrapper" style={{ marginTop: "3em" }}>
       <AuthorHeader />
-      {sortAuthors.map((author) => {
+      {sortAuthors(authors).map((author) => {
         return (
           <AuthorTableRow
             key={author.id}
