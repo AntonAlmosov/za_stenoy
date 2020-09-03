@@ -23,7 +23,7 @@ export default function CompilationContent({ initialCards, feature, target }) {
 
   return (
     <div className="compilation-content">
-      <ContentFilter activeFilters={[1]} handleFilter={handleFilters} />
+      <ContentFilter activeFilters={[2]} handleFilter={handleFilters} />
       <div className="compilation-content-cards-wrapper">
         {feature && (
           <a href={feature.url} target={target ? target : ""}>
