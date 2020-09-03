@@ -176,9 +176,11 @@ function SearchOrganism({ data }) {
 
   React.useEffect(() => {
     setAuthors(
-      data.authors.filter((el) => {
-        return RegExp(search, "i").test(el.title);
-      })
+      sortAuthors(
+        data.authors.filter((el) => {
+          return RegExp(search, "i").test(el.title);
+        })
+      )
     );
     setPieces(
       data.pieces.filter((el) => {
