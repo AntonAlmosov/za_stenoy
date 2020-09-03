@@ -145,8 +145,31 @@ const AdditionalSearchMobile = ({ data, title }) => {
   );
 };
 
+const sortAuthors = (authors) => {
+  const reverseName = (v) => {
+    const splittedName = v.split(" ");
+    return splittedName[1] + " " + splittedName[0];
+  };
+  return authors
+    .map((v) => {
+      return { ...v, title: reverseName(v.title) };
+    })
+    .sort((a, b) => {
+      if (a.title < b.title) {
+        return -1;
+      }
+      if (a.title > b.title) {
+        return 1;
+      }
+      return 0;
+    })
+    .map((v) => {
+      return { ...v, title: reverseName(v.title) };
+    });
+};
+
 function SearchOrganism({ data }) {
-  const [authors, setAuthors] = React.useState(data.authors || []);
+  const [authors, setAuthors] = React.useState(sortAuthors(data.authors) || []);
   const [pieces, setPieces] = React.useState(data.pieces || []);
   const [projects, setProjects] = React.useState(data.projects || []);
   const [search, setSearch] = React.useState("");
@@ -171,29 +194,6 @@ function SearchOrganism({ data }) {
 
   const mobile = window.innerWidth <= 512;
 
-  const sortAuthors = (authors) => {
-    const reverseName = (v) => {
-      const splittedName = v.split(" ");
-      return splittedName[1] + " " + splittedName[0];
-    };
-    return authors
-      .map((v) => {
-        return { ...v, title: reverseName(v.title) };
-      })
-      .sort((a, b) => {
-        if (a.title < b.title) {
-          return -1;
-        }
-        if (a.title > b.title) {
-          return 1;
-        }
-        return 0;
-      })
-      .map((v) => {
-        return { ...v, title: reverseName(v.title) };
-      });
-  };
-
   return (
     <div className="header-menu-wrapper">
       <div className="search-wrapper">
@@ -211,7 +211,7 @@ function SearchOrganism({ data }) {
         <div className="additional-search-wrapper">
           {!mobile && (
             <>
-              <AdditionalSearch data={sortAuthors(authors)} title={"Авторы"} />
+              <AdditionalSearch data={authors} title={"Авторы"} />
               <AdditionalSearch data={projects} title={"Проекты"} />
               <AdditionalSearch data={pieces} title={"Название произведения"} />
             </>
