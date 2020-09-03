@@ -2,28 +2,22 @@ import React from "react";
 import ContentFilter from "../../molecules/misc/ContentFilter.jsx";
 import CompilationCard from "../../molecules/cards/CompilationCard.jsx";
 import FeatureCard from "../../molecules/cards/FeatureCard.jsx";
-import _ from "lodash";
+import _, { initial } from "lodash";
 
-export default function CompilationContent({ cards, feature, target }) {
-  const [firstPortion, setFirst] = React.useState(cards.reverse().slice(0, 3));
-  const [secondPortion, setSecond] = React.useState(
-    cards.reverse().slice(3, cards.length - 1)
-  );
+export default function CompilationContent({ initialCards, feature, target }) {
+  const [cards, setCards] = React.useState(initialCards);
 
   const handleFilters = (action) => {
     if (action == "random") {
-      const newArr = _.shuffle(cards);
-      setFirst(newArr.slice(0, 3));
-      setSecond(newArr.slice(3, newArr.length - 1));
+      const newArr = _.shuffle(initialCards);
+      setCards(newArr);
     }
     if (action == "descending") {
-      setFirst(cards.slice(0, 3));
-      setSecond(cards.slice(3, cards.length - 1));
+      setCards(initialCards);
     }
     if (action == "ascending") {
-      const newArr = cards.reverse();
-      setFirst(newArr.slice(0, 3));
-      setSecond(newArr.slice(3, newArr.length - 1));
+      const newArr = initialCards.reverse();
+      setCards(newArr);
     }
   };
 
@@ -36,14 +30,7 @@ export default function CompilationContent({ cards, feature, target }) {
             <FeatureCard card={feature} />
           </a>
         )}
-        {firstPortion.map((card) => {
-          return (
-            <a href={card.url} key={card.url} target={target ? target : ""}>
-              <CompilationCard card={card} />
-            </a>
-          );
-        })}
-        {secondPortion.map((card) => {
+        {cards.map((card) => {
           return (
             <a href={card.url} key={card.url} target={target ? target : ""}>
               <CompilationCard card={card} />

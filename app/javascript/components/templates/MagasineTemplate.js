@@ -20,7 +20,7 @@ export default function CompilationTemplate({
     <>
       <HeaderTemplate inverse={inversed} logo editPath={editPath} />
       <MagasineStarter page={page} />
-      <CardsContent cards={content || []} feature={feature} />
+      <CardsContent initialCards={content || []} feature={feature} />
       <FooterOrganism />
     </>
   );

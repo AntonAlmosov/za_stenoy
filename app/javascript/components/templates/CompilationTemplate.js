@@ -17,7 +17,10 @@ export default function CompilationTemplate(props) {
         editPath={props.editPath}
       />
       <CompilationStarter title={props.page.title} />
-      <CompilationContent cards={props.content} feature={props.feature} />
+      <CompilationContent
+        initialCards={props.content}
+        feature={props.feature}
+      />
       <FooterOrganism />
     </>
   );
