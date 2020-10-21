@@ -5,7 +5,9 @@ import FeatureCard from "../../molecules/cards/FeatureCard.jsx";
 import _, { initial } from "lodash";
 
 export default function CompilationContent({ initialCards, feature, target }) {
-  const [cards, setCards] = React.useState(initialCards.reverse());
+  const [cards, setCards] = React.useState(
+    initialCards ? initialCards.reverse() : []
+  );
 
   const handleFilters = (action) => {
     if (action == "random") {
