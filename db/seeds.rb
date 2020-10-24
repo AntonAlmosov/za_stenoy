@@ -21,3 +21,22 @@ Author.all.each do |author|
     author.update(description: '')
   end
 end
+
+##Generating order
+Piece.all.each do |piece|
+  i = 0
+  piece.authors.each do |author|
+    if PieceAuthor.find_by(author_id: author.id, piece_id: piece.id).update!(order: i)
+      i = i + 1
+    end
+  end
+end
+
+OfflineIssue.all.each do |issue|
+  i = 0
+  issue.authors.each do |author|
+    if OfflineIssueAuthor.find_by(author_id: author.id, offline_issue_id: issue.id).update!(order: i)
+      i = i + 1
+    end
+  end
+end

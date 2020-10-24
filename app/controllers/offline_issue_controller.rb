@@ -72,7 +72,7 @@ class OfflineIssueController < ApplicationController
       @pages.push(polymorphic_url(page.page))
     end
 
-    @issue.authors.each do |author|
+    @issue.authors.order(:order).each do |author|
       @authors.push({url: author_path(author.id), name: author.name})
     end 
   end
@@ -118,8 +118,11 @@ class OfflineIssueController < ApplicationController
     end
 
     if issue.save!
+      i = 0
       authors.each do |author|
-        OfflineIssueAuthor.create(author_id: author['id'], offline_issue_id: issue.id)
+        if OfflineIssueAuthor.create!(author_id: author['id'], offline_issue_id: issue.id)
+          i = i + 1
+        end
       end
       if issue.published
         authors.each do |author|
@@ -143,7 +146,7 @@ class OfflineIssueController < ApplicationController
     @close_path = page_offline_issue_path(@issue.page_id, @issue.id)
     @back_path = admin_path(@issue.page_id)
 
-    @issue.authors.each do |author|
+    @issue.authors.order(:order).each do |author|
       @initialAuthors.push(author.to_json)
     end
 
@@ -181,6 +184,13 @@ class OfflineIssueController < ApplicationController
       end
       if !present
         OfflineIssueAuthor.find_by(author_id: author['id'], offline_issue_id: issue.id).destroy
+      end
+    end
+
+    authors.each do |author|
+      i = 0
+      if OfflineIssueAuthor.find_by(author_id: author['id'], offline_issue_id: issue.id).update!(order: i)
+        i = i + 1
       end
     end
 

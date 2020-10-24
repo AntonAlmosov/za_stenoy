@@ -16,7 +16,7 @@ class PieceController < ApplicationController
     @piece = Piece.find(params[:id])
 
     @authors = []
-    @piece.authors.each do |author|
+    @piece.authors.order(:order).each do |author|
       @authors.push({url: author_path(author.id), name: author.name})
     end
 
@@ -51,8 +51,11 @@ class PieceController < ApplicationController
     authors = JSON.parse(params[:authors])
 
     if piece.save!
+      i = 0
       authors.each do |author|
-        PieceAuthor.create(author_id: author['id'], piece_id: piece.id)
+        if PieceAuthor.create(author_id: author['id'], piece_id: piece.id, order: i)
+          i = i + 1
+        end
       end
       if piece.published
         authors.each do |author|
@@ -67,7 +70,7 @@ class PieceController < ApplicationController
   def edit
     @piece = Piece.find(params[:id])
     @post_path = piece_path(params[:id])
-    @authors = @piece.authors
+    @authors = @piece.authors.order(:order)
     @cover = ''
     if @piece.cover.attached?
       @cover =  polymorphic_url(@piece.cover)
@@ -97,6 +100,13 @@ class PieceController < ApplicationController
       end
       if !present
         PieceAuthor.find_by(author_id: author['id'], piece_id: @piece.id).destroy
+      end
+    end
+
+    authors.each do |author|
+      i = 0
+      if PieceAuthor.find_by(author_id: author['id'], piece_id: @piece.id).update!(order: i)
+        i = i + 1
       end
     end
 
