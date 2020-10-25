@@ -34,7 +34,7 @@ export default function EditAuthorTemplate({
 
     const formData = new FormData();
     formData.append("name", name);
-    if(middlename === initialMiddlename && middlename !== null)
+    if(middlename !== initialMiddlename && middlename !== null)
     formData.append("middlename", middlename);
     if (initialAvatar !== image) {
       formData.append("avatar", imageData);
