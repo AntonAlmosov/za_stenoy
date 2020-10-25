@@ -247,18 +247,6 @@ export default ({
               }}
             />
             <div style={{ marginTop: "1.5em" }}>
-              <div style={{ marginBottom: "0.5em" }}>
-                {authors.map((author) => {
-                  return (
-                    <Author
-                      key={author.name + author.id}
-                      currentAuthors={authors}
-                      setAuthors={setAuthors}
-                      author={author}
-                    />
-                  );
-                })}
-              </div>
               <AuthorPicker
                 currentAuthors={authors}
                 setCurrentAuthors={setAuthors}

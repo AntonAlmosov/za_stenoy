@@ -44,6 +44,7 @@ export default function PieceEditorTemplate({
     formData.append("title", title);
     formData.append("publish_date", date);
     formData.append("authors", JSON.stringify(authors));
+    console.log(authors);
     formData.append("published", JSON.stringify(published));
 
     if (origin === "new") {
@@ -116,18 +117,6 @@ export default function PieceEditorTemplate({
                 onClick={() => setPublished(!published)}
                 style={{ margin: "2em 0em" }}
               />
-              <div style={{ marginBottom: "0.5em" }}>
-                {authors.map((author) => {
-                  return (
-                    <Author
-                      key={author.name}
-                      currentAuthors={authors}
-                      setAuthors={setAuthors}
-                      author={author}
-                    />
-                  );
-                })}
-              </div>
               <AuthorPicker
                 currentAuthors={authors}
                 setCurrentAuthors={setAuthors}

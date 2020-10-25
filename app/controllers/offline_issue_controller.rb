@@ -187,8 +187,8 @@ class OfflineIssueController < ApplicationController
       end
     end
 
+    i = 0
     authors.each do |author|
-      i = 0
       if OfflineIssueAuthor.find_by(author_id: author['id'], offline_issue_id: issue.id).update!(order: i)
         i = i + 1
       end

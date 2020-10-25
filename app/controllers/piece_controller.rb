@@ -103,8 +103,8 @@ class PieceController < ApplicationController
       end
     end
 
+    i = 0
     authors.each do |author|
-      i = 0
       if PieceAuthor.find_by(author_id: author['id'], piece_id: @piece.id).update!(order: i)
         i = i + 1
       end
