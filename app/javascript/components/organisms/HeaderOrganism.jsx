@@ -3,6 +3,7 @@ import logoImage from "images/logo-large.svg";
 import logoInversed from "images/logo-inverse.svg";
 import flgasImage from "images/flags.svg";
 import axios from "axios";
+import { addMiddlename } from "../misc/addMiddlename";
 
 export default function HeaderTemplate({ logo, inverse, editPath }) {
   const [searchOpened, setSearchOpened] = React.useState(false);
@@ -213,7 +214,15 @@ function SearchOrganism({ data }) {
         <div className="additional-search-wrapper">
           {!mobile && (
             <>
-              <AdditionalSearch data={authors} title={"Авторы"} />
+              <AdditionalSearch
+                data={authors.map((author) => {
+                  return {
+                    ...author,
+                    title: addMiddlename(author, true),
+                  };
+                })}
+                title={"Авторы"}
+              />
               <AdditionalSearch data={projects} title={"Проекты"} />
               <AdditionalSearch data={pieces} title={"Название произведения"} />
             </>

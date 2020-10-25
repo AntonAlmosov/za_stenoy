@@ -6,6 +6,7 @@ import {
   ToggleButton,
   DeleteButton,
 } from "../../molecules/buttons/TableButtons.jsx";
+import { addMiddlename } from "../../misc/addMiddlename.js";
 
 export default function MagasineTable(props) {
   const [activeTab, setActiveTab] = React.useState("online-issues");
@@ -32,7 +33,7 @@ export default function MagasineTable(props) {
       .post("/online_issue/get_online_issues", {
         id: props.id,
       })
-      .then(res => {
+      .then((res) => {
         setOnlineIssues(res.data.issues);
       });
   };
@@ -42,7 +43,7 @@ export default function MagasineTable(props) {
       .post("/offline_issue/get_offline_issues", {
         id: props.id,
       })
-      .then(res => {
+      .then((res) => {
         setOfflineIssues(res.data.issues);
       });
   };
@@ -52,13 +53,13 @@ export default function MagasineTable(props) {
   }, []);
 
   function fetchPieces() {
-    axios.get("/piece").then(res => {
+    axios.get("/piece").then((res) => {
       setPieces(res.data.pieces);
     });
   }
 
   function destroyPiece(id) {
-    axios.delete("/piece/" + id).then(res => {
+    axios.delete("/piece/" + id).then((res) => {
       setPieces(res.data.pieces);
     });
   }
@@ -86,17 +87,20 @@ export default function MagasineTable(props) {
         />
       )}
       {activeTab === "materials" && (
-        <MaterialsTable pieces={pieces} destroyPiece={id => destroyPiece(id)} />
+        <MaterialsTable
+          pieces={pieces}
+          destroyPiece={(id) => destroyPiece(id)}
+        />
       )}
     </div>
   );
 }
 
 function IssueTable(props) {
-  const destroyIssue = id => {
+  const destroyIssue = (id) => {
     axios
       .delete("/admin/" + props.slug + "/" + props.route + "/" + id)
-      .then(res => {
+      .then((res) => {
         props.refetch();
       });
   };
@@ -109,7 +113,7 @@ function IssueTable(props) {
         value: published,
         admin_id: props.slug,
       })
-      .then(res => {
+      .then((res) => {
         props.refetch();
       });
   };
@@ -117,7 +121,7 @@ function IssueTable(props) {
   return (
     <div className="table-wrapper" style={{ marginTop: "3em" }}>
       <IssueTableHeader />
-      {props.issues.map(issue => {
+      {props.issues.map((issue) => {
         return (
           <IssueTableRow
             key={issue.id}
@@ -168,7 +172,7 @@ function IssueTableRow(props) {
         <a href={props.title.uri}>{props.title.name}</a>
       </div>
       <div className="column" style={{ width: "38em" }}>
-        {props.actions.map(action => {
+        {props.actions.map((action) => {
           if (action.name !== "Удалить")
             return (
               <ToggleButton
@@ -199,13 +203,13 @@ function MaterialsTable(props) {
         onAuthorChange={setAuthor}
       />
       {props.pieces
-        .filter(piece => {
+        .filter((piece) => {
           return (
             RegExp(title, "i").test(piece.title) &&
-            piece.authors?.some(a => RegExp(author, "i").test(a.name))
+            piece.authors?.some((a) => RegExp(author, "i").test(a.name))
           );
         })
-        .map(piece => {
+        .map((piece) => {
           return (
             <MaterialsTableRow
               key={piece.id}
@@ -235,12 +239,12 @@ function MaterialsTableHeader({ onNameChange, onAuthorChange }) {
     <div className="table-header-wrapper">
       <HeaderInput
         width="16em"
-        onChange={text => onNameChange(text)}
+        onChange={(text) => onNameChange(text)}
         placeholder="Поиск по названию материалов"
       />
       <HeaderInput
         width="16em"
-        onChange={text => onAuthorChange(text)}
+        onChange={(text) => onAuthorChange(text)}
         placeholder="Поиск по авторам"
       />
       <h2 style={{ width: "26em" }}>Быстрые действия</h2>
@@ -255,17 +259,17 @@ function MaterialsTableRow(props) {
         {props.title}
       </div>
       <div className="column" style={{ width: "16em", lineHeight: 1.3 }}>
-        {props.authors.map(author => {
+        {props.authors.map((author) => {
           return (
             <span key={author.name + props.title}>
-              {author.name}
+              {addMiddlename(author)}
               <br />
             </span>
           );
         })}
       </div>
       <div className="column" style={{ width: "26em" }}>
-        {props.actions.map(action => {
+        {props.actions.map((action) => {
           if (action.name !== "Удалить")
             return (
               <a
@@ -291,7 +295,7 @@ function HeaderInput({ width, onChange, placeholder }) {
       <input
         placeholder={placeholder}
         autoComplete="false"
-        onChange={e => onChange(e.target.value)}
+        onChange={(e) => onChange(e.target.value)}
         style={{
           fontSize: "1em",
           lineHeight: 1,

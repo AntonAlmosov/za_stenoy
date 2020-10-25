@@ -8,6 +8,7 @@ import ImagePicker from "../../molecules/misc/ImagePickerPage.jsx";
 export default function EditAuthorTemplate({
   id,
   initialName,
+  initialMiddlename,
   initialAvatar,
   initialDescription,
   postPath,
@@ -16,6 +17,7 @@ export default function EditAuthorTemplate({
 }) {
   const [saveText, setSaveText] = React.useState("Сохранить");
   const [name, setName] = React.useState(initialName);
+  const [middlename, setMiddlename] = React.useState(initialMiddlename);
   const [pieces, setPieces] = React.useState([]);
   const [image, setImage] = React.useState(initialAvatar);
   const [imageData, setImageData] = React.useState({});
@@ -32,6 +34,8 @@ export default function EditAuthorTemplate({
 
     const formData = new FormData();
     formData.append("name", name);
+    if(middlename === initialMiddlename && middlename !== null)
+    formData.append("middlename", middlename);
     if (initialAvatar !== image) {
       formData.append("avatar", imageData);
     }
@@ -98,6 +102,12 @@ export default function EditAuthorTemplate({
           value={name || ""}
           onChange={(e) => setName(e.target.value)}
           placeholder={"Имя автора"}
+        />
+        <TextareaAutosize
+          className="starters-heading-small textarea"
+          value={middlename || ""}
+          onChange={(e) => setMiddlename(e.target.value)}
+          placeholder={"Среднее имя автора"}
         />
         <div
           style={{

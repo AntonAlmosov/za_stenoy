@@ -11,7 +11,7 @@ class AuthorController < ApplicationController
     author_collection = []
     
     authors.each do |author|
-      author_collection.push({id: author.id, name: author.name, materialsCount: author.pieces.length + author.offline_issues.length, public: author.public})
+      author_collection.push({id: author.id, name: author.name, middlename: author.middlename, materialsCount: author.pieces.length + author.offline_issues.length, public: author.public})
     end
     render :json => {authors: author_collection}
   end
@@ -25,6 +25,7 @@ class AuthorController < ApplicationController
     @id = params[:id]
     author = Author.find(params[:id])
     @name = author.name
+    @middlename = author.middlename
     @avatar = ''
     @description = author.description
     if author.avatar.attached?
@@ -38,11 +39,11 @@ class AuthorController < ApplicationController
   def update
     @author = Author.find(params[:id])
     if params.has_key?(:avatar)
-      if @author.update(name: params[:name], avatar: params[:avatar], description: params[:description], public: params[:public])
+      if @author.update(name: params[:name], middlename: params[:middlename], avatar: params[:avatar], description: params[:description], public: params[:public])
         render :json => {status: 'ok'}
       end
     else
-      if @author.update(name: params[:name], description: params[:description], public: params[:public])
+      if @author.update(name: params[:name], middlename: params[:middlename], description: params[:description], public: params[:public])
         render :json => {status: 'ok'}
       end
     end

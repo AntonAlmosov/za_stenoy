@@ -1,4 +1,5 @@
 import React from "react";
+import { addMiddlename } from "../../misc/addMiddlename";
 import EditorData from "./EditorData";
 
 export default function PieceContent({ piece, cover, authors }) {
@@ -13,7 +14,7 @@ export default function PieceContent({ piece, cover, authors }) {
           {authors.map((author) => {
             return (
               <span key={author.url}>
-                <a href={author.url}>{author.name}</a>
+                <a href={author.url}>{addMiddlename(author)}</a>
                 <br />
               </span>
             );

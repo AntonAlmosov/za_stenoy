@@ -2,6 +2,7 @@ import React from "react";
 import cyrillicToTranslit from "cyrillic-to-translit-js";
 import arrow from "images/arrow.svg";
 import EditorData from "./EditorData";
+import { addMiddlename } from "../../misc/addMiddlename";
 
 export default ({ pieces, issue }) => {
   let [current, setCurrent] = React.useState({});
@@ -27,7 +28,9 @@ export default ({ pieces, issue }) => {
         authorKey += cyrillicToTranslit()
           .transform(author.name)
           .replace(/\s/g, "");
-        authorName += authorName ? ", \n" + author.name : author.name;
+        authorName += authorName
+          ? ", \n" + addMiddlename(author)
+          : addMiddlename(author);
       });
 
       if (authorKey in authors) {

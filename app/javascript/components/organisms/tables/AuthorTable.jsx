@@ -6,6 +6,7 @@ import {
   DeleteButton,
   ToggleButton,
 } from "../../molecules/buttons/TableButtons.jsx";
+import { addMiddlename } from "../../misc/addMiddlename.js";
 
 export default function NewsTable() {
   const [authors, setAuthors] = React.useState([]);
@@ -63,7 +64,7 @@ export default function NewsTable() {
           <AuthorTableRow
             key={author.id}
             id={author.id}
-            title={author.name}
+            title={addMiddlename(author)}
             count={author.materialsCount}
             actions={[
               {

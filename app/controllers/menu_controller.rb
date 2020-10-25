@@ -16,7 +16,7 @@ class MenuController < ApplicationController
     authors = []
     Author.all.sort_by(&:name).each do |author| 
       if author.public
-        authors.push({url: author_path(author.id), title: author.name})
+        authors.push({url: author_path(author.id), title: author.name, middlename: author.middlename})
       end
     end
 

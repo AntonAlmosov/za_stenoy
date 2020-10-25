@@ -73,7 +73,7 @@ class OfflineIssueController < ApplicationController
     end
 
     @issue.authors.order(:order).each do |author|
-      @authors.push({url: author_path(author.id), name: author.name})
+      @authors.push({url: author_path(author.id), name: author.name, middlename: author.middlename})
     end 
   end
 

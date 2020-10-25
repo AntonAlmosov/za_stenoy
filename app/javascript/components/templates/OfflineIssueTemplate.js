@@ -3,6 +3,7 @@ import { v4 } from "uuid";
 
 import HeaderTemplate from "../organisms/HeaderOrganism";
 import { isWebUri } from "valid-url";
+import { addMiddlename } from "../misc/addMiddlename";
 
 export default ({ issue, pages, authors, inversed, editPath }) => {
   const [page, setPage] = React.useState(0);
@@ -66,7 +67,7 @@ export default ({ issue, pages, authors, inversed, editPath }) => {
                   return (
                     <span key={v4()}>
                       <a href={author.url} target="_blank">
-                        {author.name}
+                        {addMiddlename(author)}
                       </a>
                       <br />
                     </span>

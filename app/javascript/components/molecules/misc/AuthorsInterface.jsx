@@ -7,6 +7,7 @@ import {
   resetServerContext,
 } from "react-beautiful-dnd";
 import icon from "./drag_indicator-24px.svg";
+import { addMiddlename } from "../../misc/addMiddlename";
 
 export function Author({ currentAuthors, setAuthors, author, index }) {
   return (
@@ -29,7 +30,7 @@ export function Author({ currentAuthors, setAuthors, author, index }) {
             }}
           />
           <span style={{ width: "80%", height: "100%", textAlign: "left" }}>
-            {author.name}
+            {addMiddlename(author)}
           </span>
           <span
             onClick={(e) => {
@@ -119,7 +120,7 @@ export function AuthorPicker({ currentAuthors, setCurrentAuthors }) {
             {authors
               .filter((author) => {
                 return (
-                  RegExp(search, "i").test(author.name) &&
+                  RegExp(search, "i").test(addMiddlename(author)) &&
                   !currentAuthors.some((a) => a.name == author.name)
                 );
               })
@@ -139,7 +140,7 @@ export function AuthorPicker({ currentAuthors, setCurrentAuthors }) {
                       setSearch("");
                     }}
                   >
-                    {author.name}
+                    {addMiddlename(author)}
                   </div>
                 );
               })}

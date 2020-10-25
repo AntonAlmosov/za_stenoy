@@ -5,6 +5,7 @@ import TextareaAutosize from "react-textarea-autosize";
 import HeaderAdminOrganism from "../../organisms/HeaderAdminOrganism.jsx";
 import ImagePicker from "../../molecules/misc/ImagePicker.jsx";
 import DefaultButton from "../../molecules/buttons/DefaultButton.jsx";
+import { addMiddlename } from "../../misc/addMiddlename.js";
 
 export default ({
   issue,
@@ -283,7 +284,7 @@ function MaterialsTableRow(props) {
         {props.piece.authors.map((author) => {
           return (
             <span key={author.name + props.title}>
-              {author.name}
+              {addMiddlename(author)}
               <br />
             </span>
           );
