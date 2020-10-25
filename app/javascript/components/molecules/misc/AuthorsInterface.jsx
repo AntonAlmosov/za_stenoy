@@ -6,6 +6,7 @@ import {
   Droppable,
   resetServerContext,
 } from "react-beautiful-dnd";
+import icon from "./drag_indicator-24px.svg";
 
 export function Author({ currentAuthors, setAuthors, author, index }) {
   return (
@@ -18,7 +19,18 @@ export function Author({ currentAuthors, setAuthors, author, index }) {
           className={"dragable-author"}
           key={author.name}
         >
-          {author.name}
+          <img
+            src={icon}
+            style={{
+              width: "10%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center",
+            }}
+          />
+          <span style={{ width: "80%", height: "100%", textAlign: "left" }}>
+            {author.name}
+          </span>
           <span
             onClick={(e) => {
               setAuthors(
@@ -38,6 +50,7 @@ export function Author({ currentAuthors, setAuthors, author, index }) {
 }
 
 export function AuthorPicker({ currentAuthors, setCurrentAuthors }) {
+  const [authors, setAuthors] = React.useState([]);
   const [search, setSearch] = React.useState("");
   resetServerContext();
 
