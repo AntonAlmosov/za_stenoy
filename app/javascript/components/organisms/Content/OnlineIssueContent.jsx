@@ -48,19 +48,21 @@ export default ({ pieces, issue }) => {
   return (
     <>
       <div className="online-issue-content-wrapper">
-        <Contents authors={current} />
+        <Contents authors={current} issue={issue} />
         {issue.description && (
           <div className="description">
-            <h2>
+            <h2 className={!issue.dark_mode ? "make_black" : ""}>
               {issue.description_heading ? issue.description_heading : "ЭПИЛОГ"}
             </h2>
             <pre>
-              <p>{issue.description}</p>
+              <p className={!issue.dark_mode ? "make_black" : ""}>
+                {issue.description}
+              </p>
             </pre>
           </div>
         )}
         {pieces.map((piece) => {
-          return <Piece key={piece.id} piece={piece} />;
+          return <Piece key={piece.id} piece={piece} issue={issue} />;
         })}
       </div>
       {scrollY > 1000 && (
@@ -77,21 +79,27 @@ export default ({ pieces, issue }) => {
   );
 };
 
-const Contents = ({ authors }) => {
+const Contents = ({ authors, issue }) => {
   return (
     <div className="contents-wrapper">
-      <h3>Содержание</h3>
+      <h3 className={!issue.dark_mode ? "make_black" : ""}>Содержание</h3>
       <div className="contents">
         {Object.keys(authors).map((key) => {
           return (
             <div className="authors-row" key={authors[key].name}>
               <div className="name">
-                <pre>{authors[key].name}</pre>
+                <pre className={!issue.dark_mode ? "make_black" : ""}>
+                  {authors[key].name}
+                </pre>
               </div>
               <div className="pieces">
                 {authors[key].pieces.map((piece) => {
                   return (
-                    <a key={piece.id} href={"#piece" + piece.id}>
+                    <a
+                      key={piece.id}
+                      href={"#piece" + piece.id}
+                      className={!issue.dark_mode ? "make_black" : ""}
+                    >
                       {piece.title}
                     </a>
                   );
@@ -105,7 +113,7 @@ const Contents = ({ authors }) => {
   );
 };
 
-const Piece = ({ piece }) => {
+const Piece = ({ piece, issue }) => {
   const text = JSON.parse(piece.text || "{blocks: []}").blocks;
   const note = JSON.parse(piece.note || "{blocks: []}").blocks;
   return (
@@ -114,21 +122,31 @@ const Piece = ({ piece }) => {
         <div className="piece-anchor" id={"piece" + piece.id}></div>
         <div className="piece-header">
           {piece.cover && <img src={piece.cover} className="piece-cover" />}
-          <h1>{piece.title}</h1>
+          <h1 className={!issue.dark_mode ? "make_black" : ""}>
+            {piece.title}
+          </h1>
           <div className="piece-authors">
             {piece.authors.map((author) => {
               return (
-                <a href={author.url} key={author.url}>
+                <a
+                  href={author.url}
+                  key={author.url}
+                  className={!issue.dark_mode ? "make_black" : ""}
+                >
                   {author.name}
                 </a>
               );
             })}
           </div>
         </div>
-        <div className="piece">
+        <div className={!issue.dark_mode ? "make_black piece" : "piece"}>
           <EditorData text={text} />
         </div>
-        <div className="piece-notes">
+        <div
+          className={
+            !issue.dark_mode ? "make_black piece-notes" : "piece-notes"
+          }
+        >
           <EditorData text={note} />
         </div>
       </div>

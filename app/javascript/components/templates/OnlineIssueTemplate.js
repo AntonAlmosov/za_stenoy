@@ -9,17 +9,16 @@ export default function CompilationTemplate({
   issue,
   cover,
   pieces,
-  inversed,
   editPath,
 }) {
   React.useEffect(() => {
-    if (inversed) document.body.classList.add("bg-black");
+    if (issue.dark_mode) document.body.classList.add("bg-black");
     document.title = issue.title + " — Культурный проект «ФЛАГИ»";
   }, []);
 
   return (
     <>
-      <HeaderTemplate inverse={inversed} logo editPath={editPath} />
+      <HeaderTemplate inverse={issue.dark_mode} logo editPath={editPath} />
       <OnlineIssueStarter title={issue.title} cover={cover} />
       <OnlineIssueContent pieces={pieces} issue={issue} />
       <FooterOrganism />

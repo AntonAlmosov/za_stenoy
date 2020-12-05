@@ -77,6 +77,7 @@ class OnlineIssueController < ApplicationController
   def create
     issue = OnlineIssue.new()
     issue.title = params[:title]
+    issue.dark_mode = params[:dark_mode]
     issue.published = params[:published]
     issue.featured = params[:featured]
     issue.description = params[:description]
@@ -182,11 +183,11 @@ class OnlineIssueController < ApplicationController
     end
 
     if params.has_key?(:cover)
-      if issue.update(title: params[:title], published: params[:published], featured: params[:featured], description: params[:description], description_heading: params[:description_heading], cover: params[:cover] )
+      if issue.update(title: params[:title], dark_mode: params[:dark_mode], published: params[:published], featured: params[:featured], description: params[:description], description_heading: params[:description_heading], cover: params[:cover] )
         render :json => {status: 'ok'}
       end
     else
-      if issue.update(title: params[:title], published: params[:published], featured: params[:featured], description: params[:description], description_heading: params[:description_heading])
+      if issue.update(title: params[:title], dark_mode: params[:dark_mode], published: params[:published], featured: params[:featured], description: params[:description], description_heading: params[:description_heading])
         render :json => {status: 'ok'}
       end
     end
