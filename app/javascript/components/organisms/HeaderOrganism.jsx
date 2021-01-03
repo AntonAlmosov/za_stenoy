@@ -224,17 +224,14 @@ function SearchOrganism({ data }) {
                 title={"Авторы"}
               />
               <AdditionalSearch data={projects} title={"Проекты"} />
-              <AdditionalSearch data={pieces} title={"Название произведения"} />
+              <AdditionalSearch data={pieces} title={"Произведения"} />
             </>
           )}
           {mobile && (
             <>
               <AdditionalSearchMobile data={authors} title={"Авторы"} />
               <AdditionalSearchMobile data={projects} title={"Проекты"} />
-              <AdditionalSearchMobile
-                data={pieces}
-                title={"Название произведения"}
-              />
+              <AdditionalSearchMobile data={pieces} title={"Произведения"} />
             </>
           )}
         </div>
