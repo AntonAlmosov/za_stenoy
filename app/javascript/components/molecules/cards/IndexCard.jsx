@@ -1,7 +1,7 @@
 import React from "react";
 
-export default function IndexCard({ name, uri, card }) {
-  return (
+export default function IndexCard({ name, uri, card, hidden }) {
+  return hidden ? null : (
     <div className="index-card">
       <a href={uri} className={"index-card-link"}>
         {name}

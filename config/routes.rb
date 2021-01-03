@@ -73,7 +73,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :feature, only: [:index, :create]
+  resources :feature, only: [:index, :create] do 
+    collection do 
+      post :toggle_hidden
+    end
+  end
 
   resources :admin, only: [:index, :show, :edit, :update] do
     resources :compilation, only: [:new, :edit, :create, :update, :destroy]

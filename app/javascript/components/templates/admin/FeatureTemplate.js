@@ -8,7 +8,8 @@ import {
   DeleteButton,
 } from "../../molecules/buttons/TableButtons.jsx";
 
-export default function FeatureTemplate({ initialFeature, content }) {
+export default function FeatureTemplate({ initialFeature, content, initialPages }) {
+  const [pages, setPages] = React.useState(initialPages || {});
   const [feature, setFeature] = React.useState(
     initialFeature || { feature_type: "", origin_id: null }
   );
@@ -22,16 +23,94 @@ export default function FeatureTemplate({ initialFeature, content }) {
     });
   };
 
+  const handle_hidden = id => {
+    axios.post("/feature/toggle_hidden", {id: id} ).then(({data}) => {
+      const pagesCopy = Array.from(pages);
+      if(data.success){
+        let index = null;
+        pages.forEach((el, i) => {
+          if(el.id === id){
+            index = i;
+          }
+        })
+        pagesCopy[index].hidden = !pagesCopy[index].hidden;
+        if(index !== null){
+          setPages(pagesCopy);
+        }
+      }
+    })
+  }
+
   return (
     <>
       <HeaderAdminOrganism closeShown={"/"} backShown="js" />
-      <AdminStarter title={"Фичер главной"} />
+      <AdminStarter title={"Настройки главной"} />
+      <HiddenTable pages={pages} handleHidden={handle_hidden} />
       <IssueTable
         feature={feature}
         handleFeature={handle_feature}
         initialContent={content}
       />
     </>
+  );
+}
+
+function HiddenTable({ pages, handleHidden }) {
+  return (
+    <div className="table-wrapper" style={{ marginTop: "3em" }}>
+      <HiddenTableHeader/>
+      {pages.map(page => {
+        return (
+          <HiddenTableRow
+            key={page.id}
+            title={page.title}
+            actions={[
+              {
+                name: ["Скрыть раздел >", "Показать раздел >"],
+                uri: () => handleHidden(page.id),
+                state: !page.hidden
+              },
+            ]}
+          />
+        );
+      })}
+    </div>
+  );
+}
+
+function HiddenTableHeader() {
+  return (
+    <div className="table-header-wrapper">
+      <h2 style={{ width: "22em" }}>Название страницы</h2>
+      <h2 style={{ width: "30em" }}>Быстрые действия</h2>
+    </div>
+  );
+}
+
+function HiddenTableRow(props) {
+  return (
+    <div className="table-row-wrapper">
+      <div className="column" style={{ width: "22em" }}>
+        {props.title}
+      </div>
+      <div className="column" style={{ width: "30em" }}>
+        {props.actions.map(action => {
+          if (action.name !== "Удалить")
+            return (
+              <ToggleButton
+                key={action.name[0]}
+                onClick={action.uri}
+                defaultState={action.state}
+                activeText={action.name[0]}
+                disabledText={action.name[1]}
+              />
+            );
+          else {
+            return <DeleteButton key={action.name} uri={action.uri} />;
+          }
+        })}
+      </div>
+    </div>
   );
 }
 
@@ -47,7 +126,7 @@ function IssueTable({ feature, handleFeature, initialContent }) {
   };
 
   return (
-    <div className="table-wrapper" style={{ marginTop: "3em" }}>
+    <div className="table-wrapper" style={{ marginTop: "8em" }}>
       <IssueTableHeader handleSearch={handle_search} />
       {content.map(issue => {
         return (
