@@ -83,12 +83,15 @@ class PageController < ApplicationController
         end
       end
 
-      @pages.push({id: page.id, slug: page.slug, title: page.title, page_type: page.page_type, feature: feature})
+      @pages.push({id: page.id, slug: page.slug, title: page.title, page_type: page.page_type, feature: feature, hidden: page.hidden})
     end
   end
 
   def show
     @page = Page.friendly.find(params[:id])
+    if @page.hidden
+      redirect_to root_path
+    end
     @content = []
     @feature = {}
     @cover = ''

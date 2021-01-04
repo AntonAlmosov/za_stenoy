@@ -3,6 +3,20 @@ class OnlineIssueController < ApplicationController
   require 'json'
   before_action :authenticate_admin!, :except => [:show, :index]
 
+  def get_highest_order
+    records = []
+    Compilation.all.each do |comp|
+      records.push(comp.order)
+    end
+    OfflineIssue.all.each do |comp|
+      records.push(comp.order)
+    end
+    OnlineIssue.all.each do |comp|
+      records.push(comp.order)
+    end
+    return records.sort.reverse[0]
+  end
+
   def get_online_issues
     @issues = OnlineIssue.where(page_id: params[:id]).sort_by(&:created_at)
     issues = []
@@ -77,10 +91,12 @@ class OnlineIssueController < ApplicationController
   def create
     issue = OnlineIssue.new()
     issue.title = params[:title]
+    issue.dark_mode = params[:dark_mode]
     issue.published = params[:published]
     issue.featured = params[:featured]
     issue.description = params[:description]
     issue.description_heading = params[:description_heading]
+    issue.order = get_highest_order() + 1
 
     page = Page.friendly.find(params[:admin_id])
 
@@ -182,11 +198,11 @@ class OnlineIssueController < ApplicationController
     end
 
     if params.has_key?(:cover)
-      if issue.update(title: params[:title], published: params[:published], featured: params[:featured], description: params[:description], description_heading: params[:description_heading], cover: params[:cover] )
+      if issue.update(title: params[:title], dark_mode: params[:dark_mode], published: params[:published], featured: params[:featured], description: params[:description], description_heading: params[:description_heading], cover: params[:cover] )
         render :json => {status: 'ok'}
       end
     else
-      if issue.update(title: params[:title], published: params[:published], featured: params[:featured], description: params[:description], description_heading: params[:description_heading])
+      if issue.update(title: params[:title], dark_mode: params[:dark_mode], published: params[:published], featured: params[:featured], description: params[:description], description_heading: params[:description_heading])
         render :json => {status: 'ok'}
       end
     end

@@ -172,7 +172,9 @@ const sortAuthors = (authors) => {
 function SearchOrganism({ data }) {
   const [authors, setAuthors] = React.useState(sortAuthors(data.authors) || []);
   const [pieces, setPieces] = React.useState(data.pieces || []);
-  const [projects, setProjects] = React.useState(data.projects || []);
+  const [projects, setProjects] = React.useState(
+    data.projects.sort((a, b) => a.order - b.order) || []
+  );
   const [search, setSearch] = React.useState("");
 
   React.useEffect(() => {
@@ -189,9 +191,11 @@ function SearchOrganism({ data }) {
       })
     );
     setProjects(
-      data.projects.filter((el) => {
-        return RegExp(search, "i").test(el.title);
-      })
+      data.projects
+        .filter((el) => {
+          return RegExp(search, "i").test(el.title);
+        })
+        .sort((a, b) => a.order - b.order)
     );
   }, [search]);
 
@@ -224,17 +228,14 @@ function SearchOrganism({ data }) {
                 title={"Авторы"}
               />
               <AdditionalSearch data={projects} title={"Проекты"} />
-              <AdditionalSearch data={pieces} title={"Название произведения"} />
+              <AdditionalSearch data={pieces} title={"Произведения"} />
             </>
           )}
           {mobile && (
             <>
               <AdditionalSearchMobile data={authors} title={"Авторы"} />
               <AdditionalSearchMobile data={projects} title={"Проекты"} />
-              <AdditionalSearchMobile
-                data={pieces}
-                title={"Название произведения"}
-              />
+              <AdditionalSearchMobile data={pieces} title={"Произведения"} />
             </>
           )}
         </div>
@@ -252,42 +253,54 @@ function MenuOrganism({ pages }) {
         </a>
         <div className="menu-info-wrapper">
           <div className="menu-links-wrapper">
-            <a href={"/page/" + pages[0].slug} key={pages[0].slug}>
-              {pages[0].page_type == "magasine" ||
-              pages[0].page_type == "magasine_inversed"
-                ? "Журнал " + pages[0].title
-                : pages[0].title}
-            </a>
-            <a href={"/page/" + pages[1].slug} key={pages[1].slug}>
-              {pages[1].page_type == "magasine" ||
-              pages[1].page_type == "magasine_inversed"
-                ? "Журнал " + pages[1].title
-                : pages[1].title}
-            </a>
-            <a href={"/page/" + pages[2].slug} key={pages[2].slug}>
-              {pages[2].page_type == "magasine" ||
-              pages[2].page_type == "magasine_inversed"
-                ? "Журнал " + pages[2].title
-                : pages[2].title}
-            </a>
-            <a href={"/page/" + pages[5].slug} key={pages[5].slug}>
-              {pages[5].page_type == "magasine" ||
-              pages[5].page_type == "magasine_inversed"
-                ? "Журнал " + pages[5].title
-                : pages[5].title}
-            </a>
-            <a href={"/page/" + pages[3].slug} key={pages[3].slug}>
-              {pages[3].page_type == "magasine" ||
-              pages[3].page_type == "magasine_inversed"
-                ? "Журнал " + pages[3].title
-                : pages[3].title}
-            </a>
-            <a href={"/page/" + pages[4].slug} key={pages[4].slug}>
-              {pages[4].page_type == "magasine" ||
-              pages[4].page_type == "magasine_inversed"
-                ? "Журнал " + pages[4].title
-                : pages[4].title}
-            </a>
+            {!pages[0].hidden && (
+              <a href={"/page/" + pages[0].slug} key={pages[0].slug}>
+                {pages[0].page_type == "magasine" ||
+                pages[0].page_type == "magasine_inversed"
+                  ? "Журнал " + pages[0].title
+                  : pages[0].title}
+              </a>
+            )}
+            {!pages[1].hidden && (
+              <a href={"/page/" + pages[1].slug} key={pages[1].slug}>
+                {pages[1].page_type == "magasine" ||
+                pages[1].page_type == "magasine_inversed"
+                  ? "Журнал " + pages[1].title
+                  : pages[1].title}
+              </a>
+            )}
+            {!pages[2].hidden && (
+              <a href={"/page/" + pages[2].slug} key={pages[2].slug}>
+                {pages[2].page_type == "magasine" ||
+                pages[2].page_type == "magasine_inversed"
+                  ? "Журнал " + pages[2].title
+                  : pages[2].title}
+              </a>
+            )}
+            {!pages[5].hidden && (
+              <a href={"/page/" + pages[5].slug} key={pages[5].slug}>
+                {pages[5].page_type == "magasine" ||
+                pages[5].page_type == "magasine_inversed"
+                  ? "Журнал " + pages[5].title
+                  : pages[5].title}
+              </a>
+            )}
+            {!pages[3].hidden && (
+              <a href={"/page/" + pages[3].slug} key={pages[3].slug}>
+                {pages[3].page_type == "magasine" ||
+                pages[3].page_type == "magasine_inversed"
+                  ? "Журнал " + pages[3].title
+                  : pages[3].title}
+              </a>
+            )}
+            {!pages[4].hidden && (
+              <a href={"/page/" + pages[4].slug} key={pages[4].slug}>
+                {pages[4].page_type == "magasine" ||
+                pages[4].page_type == "magasine_inversed"
+                  ? "Журнал " + pages[4].title
+                  : pages[4].title}
+              </a>
+            )}
           </div>
           <div className="menu-adress">
             <a href="tel: 8-(952)-517-37-91">8(952) 517 37 91</a>

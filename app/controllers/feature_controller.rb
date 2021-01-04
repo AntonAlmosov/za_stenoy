@@ -6,6 +6,7 @@ class FeatureController < ApplicationController
   def index
     @feature = Feature.first
     @content = []
+    @pages = Page.all.where.not(title: 'О нас').order(created_at: :asc)
 
     OfflineIssue.where(published: true).each do |feature|
       @content.push(feature_type: 'offline_issue', origin_id: feature.id, title: feature.title, created_at: feature.created_at)
@@ -50,4 +51,14 @@ class FeatureController < ApplicationController
     end
 
   end
+
+  def toggle_hidden
+    page = Page.find(params[:id])
+    if page.update(hidden: !page.hidden)
+      render :json => {success: true}
+    else
+      render :json => {success: false}
+    end
+  end
+
 end

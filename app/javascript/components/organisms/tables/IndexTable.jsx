@@ -5,7 +5,7 @@ export default function IndexTable(props) {
     <div className="table-wrapper" style={{ marginBottom: "6em" }}>
       <TableHeader />
       <TableRow
-        title={{ name: "Фичер главной", uri: "/feature/" }}
+        title={{ name: "Настройки главной", uri: "/feature/" }}
         actions={[]}
       />
       {props.pages &&
@@ -91,6 +91,10 @@ export default function IndexTable(props) {
         })}
       <TableRow
         title={{ name: "Авторы", uri: "/admin/0/author" }}
+        actions={[]}
+      />
+      <TableRow
+        title={{ name: "Настройки меню", uri: "/admin/0/order" }}
         actions={[]}
       />
     </div>

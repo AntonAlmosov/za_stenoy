@@ -1,4 +1,5 @@
 class MenuController < ApplicationController
+
   def index
     pages = Page.all.sort_by(&:created_at)
     render :json => pages
@@ -27,13 +28,13 @@ class MenuController < ApplicationController
 
     projects = []
     Compilation.where(published: true).each do |comp|
-      projects.push({url: page_compilation_path(comp.page_id, comp.id), title: comp.title})
+      projects.push({url: page_compilation_path(comp.page_id, comp.id), title: comp.title, order: comp.order})
     end
     OnlineIssue.where(published: true).each do |issue|
-      projects.push({url: page_online_issue_path(issue.page_id, issue.id), title: issue.title})
+      projects.push({url: page_online_issue_path(issue.page_id, issue.id), title: issue.title, order: issue.order})
     end
     OfflineIssue.where(published: true).each do |issue|
-      projects.push({url: page_offline_issue_path(issue.page_id, issue.id), title: issue.title})
+      projects.push({url: page_offline_issue_path(issue.page_id, issue.id), title: issue.title, order: issue.order})
     end
 
     render :json => {authors: authors, pieces: pieces, projects: projects}

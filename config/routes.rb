@@ -73,7 +73,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :feature, only: [:index, :create]
+  resources :feature, only: [:index, :create] do 
+    collection do 
+      post :toggle_hidden
+    end
+  end
 
   resources :admin, only: [:index, :show, :edit, :update] do
     resources :compilation, only: [:new, :edit, :create, :update, :destroy]
@@ -82,5 +86,7 @@ Rails.application.routes.draw do
     resources :product, only: [:new, :edit, :create, :update, :destroy]
     resources :news, only: [:new, :edit, :create, :update, :destroy]
     resources :author, only: [:index, :edit, :destroy, :update]
+    resources :order, only: [:index]
+    post 'handle_reorder', :to => 'order#handle_reorder'
   end
 end

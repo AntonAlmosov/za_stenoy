@@ -19,6 +19,7 @@ export default ({
   const [saveText, setSaveText] = React.useState("Сохранить");
   const [title, setTitle] = React.useState(issue.title);
   const [cover, setCover] = React.useState(coverUrl);
+  const [darkMode, setDarkMode] = React.useState(issue.dark_mode === undefined ? false : issue.dark_mode);
   const [published, setPublished] = React.useState(issue.published);
   const [featured, setFeatured] = React.useState(issue.featured);
   const [issuePieces, setIssuePieces] = React.useState(initialPieces);
@@ -48,6 +49,7 @@ export default ({
     formData.append("pieces", JSON.stringify(issuePieces));
     formData.append("description_heading", descriptionHeading);
     formData.append("description", description);
+    formData.append("dark_mode", darkMode);
 
     if (origin === "new") {
       axios
@@ -168,6 +170,12 @@ export default ({
             margin: "3em auto 0",
           }}
         >
+          <DefaultButton
+            text={["Темный фон >", "Белый фон >"]}
+            state={darkMode}
+            onClick={() => setDarkMode(!darkMode)}
+            style={{ margin: "0 1em" }}
+          />
           <DefaultButton
             text={["Убрать фичер >", "Сделать фичером >"]}
             state={featured}
@@ -325,6 +333,7 @@ function MaterialsTableRow(props) {
                   cursor: "pointer",
                 }}
                 onClick={action.uri}
+                target='_blank'
               >
                 {action.name}
               </a>

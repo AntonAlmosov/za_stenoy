@@ -44,7 +44,6 @@ export default function PieceEditorTemplate({
     formData.append("title", title);
     formData.append("publish_date", date);
     formData.append("authors", JSON.stringify(authors));
-    console.log(authors);
     formData.append("published", JSON.stringify(published));
 
     if (origin === "new") {

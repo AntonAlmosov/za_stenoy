@@ -10,6 +10,9 @@
         line-height: 1.2;
         font-weight: 500;
         text-align: left;
+        &.black {
+          color: black;
+        }
       }
       p {
         font-size: 1em;
@@ -17,6 +20,9 @@
         margin-top: 3em;
         width: 40em;
         white-space: pre-wrap;
+        &.black {
+          color: black;
+        }
       }
     }
     .piece-content {
@@ -29,16 +35,25 @@
       }
       h1 {
         color: white;
+        &.black {
+          color: black;
+        }
       }
       .piece-authors {
         span {
           margin-top: 0.125em;
         }
+        font-size: 1em;
+        line-height: 1.25;
+        margin-bottom: 0.125em;
         a {
           display: block;
           color: white !important;
           &::after {
             background-color: #fff !important;
+          }
+          &.make_black {
+            color: black !important;
           }
         }
       }
