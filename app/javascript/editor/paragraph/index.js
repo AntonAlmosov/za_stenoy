@@ -69,6 +69,18 @@ class Paragraph {
         name: "alignJustify",
         icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2 10C2 9.44772 2.55965 9 3.25 9H20.75C21.4404 9 22 9.44772 22 10C22 10.5523 21.4404 11 20.75 11H3.25C2.55965 11 2 10.5523 2 10Z" fill="black"/><path fill-rule="evenodd" clip-rule="evenodd" d="M2 6C2 5.44772 2.44772 5 3 5H21C21.5523 5 22 5.44772 22 6C22 6.55228 21.5523 7 21 7H3C2.44772 7 2 6.55228 2 6Z" fill="black"/><path fill-rule="evenodd" clip-rule="evenodd" d="M2 14C2 13.4477 2.44772 13 3 13H21C21.5523 13 22 13.4477 22 14C22 14.5523 21.5523 15 21 15H3C2.44772 15 2 14.5523 2 14Z" fill="black"/><path fill-rule="evenodd" clip-rule="evenodd" d="M2 18C2 17.4477 2.55965 17 3.25 17H20.75C21.4404 17 22 17.4477 22 18C22 18.5523 21.4404 19 20.75 19H3.25C2.55965 19 2 18.5523 2 18Z" fill="black"/></svg>`,
       },
+      {
+        name: "textIdent",
+        icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M24 6.98901H8.07031V8.57143H24V6.98901Z" fill="black"/>
+        <path d="M24 2.76929H0V4.3517H24V2.76929Z" fill="black"/>
+        <path d="M24 19.6484H0V21.2309H24V19.6484Z" fill="black"/>
+        <path d="M24 15.4287H8.07031V17.0111H24V15.4287Z" fill="black"/>
+        <path d="M24 11.2087H8.07031V12.7912H24V11.2087Z" fill="black"/>
+        <path d="M0.263794 15.2948L3.55855 12.0001L0.263794 8.70532V15.2948Z" fill="black"/>
+        </svg>        
+     `,
+      },
     ];
 
     /**
@@ -88,6 +100,7 @@ class Paragraph {
       alignCenter: data.alignCenter !== undefined ? data.alignCenter : false,
       alignRight: data.alignRight !== undefined ? data.alignRight : false,
       alignJustify: data.alignJustify !== undefined ? data.alignJustify : false,
+      textIdent: data.textIdent !== undefined ? data.textIdent : false,
     };
     this.settings.forEach((tune) => {
       if (this.data[tune.name]) {
@@ -180,7 +193,8 @@ class Paragraph {
       alignLeft: this.data.alignLeft,
       alignCenter: this.data.alignCenter,
       alignRight: this.data.alignRight,
-      alignJustify: this.data.alignJustify
+      alignJustify: this.data.alignJustify, 
+      textIdent: this.data.textIdent,
     };
 
     this.data = newData;
@@ -228,6 +242,7 @@ class Paragraph {
     this.data["alignCenter"] = false;
     this.data["alignRight"] = false;
     this.data["alignJustify"] = false;
+    this.data["textIdent"] = false;
     this.data[tune] = true;
     this._acceptTuneView();
   }
