@@ -86,5 +86,7 @@ Rails.application.routes.draw do
     resources :product, only: [:new, :edit, :create, :update, :destroy]
     resources :news, only: [:new, :edit, :create, :update, :destroy]
     resources :author, only: [:index, :edit, :destroy, :update]
+    resources :order, only: [:index]
+    post 'handle_reorder', :to => 'order#handle_reorder'
   end
 end

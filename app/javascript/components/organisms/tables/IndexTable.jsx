@@ -93,6 +93,10 @@ export default function IndexTable(props) {
         title={{ name: "Авторы", uri: "/admin/0/author" }}
         actions={[]}
       />
+      <TableRow
+        title={{ name: "Настройки меню", uri: "/admin/0/order" }}
+        actions={[]}
+      />
     </div>
   );
 }

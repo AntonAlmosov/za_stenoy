@@ -172,7 +172,9 @@ const sortAuthors = (authors) => {
 function SearchOrganism({ data }) {
   const [authors, setAuthors] = React.useState(sortAuthors(data.authors) || []);
   const [pieces, setPieces] = React.useState(data.pieces || []);
-  const [projects, setProjects] = React.useState(data.projects || []);
+  const [projects, setProjects] = React.useState(
+    data.projects.sort((a, b) => a.order - b.order) || []
+  );
   const [search, setSearch] = React.useState("");
 
   React.useEffect(() => {
@@ -189,9 +191,11 @@ function SearchOrganism({ data }) {
       })
     );
     setProjects(
-      data.projects.filter((el) => {
-        return RegExp(search, "i").test(el.title);
-      })
+      data.projects
+        .filter((el) => {
+          return RegExp(search, "i").test(el.title);
+        })
+        .sort((a, b) => a.order - b.order)
     );
   }, [search]);
 

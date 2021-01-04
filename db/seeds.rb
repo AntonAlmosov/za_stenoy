@@ -40,3 +40,40 @@ OfflineIssue.all.each do |issue|
     end
   end
 end
+
+issues = []
+
+OnlineIssue.all.each do |issue|
+  issues.push({order: issue.order, id: issue.id, type: 'online'})
+end
+
+OfflineIssue.all.each do |issue|
+  issues.push({order: issue.order, id: issue.id, type: 'offline'})
+end
+
+Compilation.all.each do |issue|
+  issues.push({order: issue.order, id: issue.id, type: 'compilation'})
+end
+
+isNil = false
+issues.each do |issue|
+  if issue[:order] == nil
+    isNil = true
+  end
+end
+
+if isNil
+  index = 0
+  issues.each do |issue|
+    found = nil
+    if issue[:type] == 'online'
+      found = OnlineIssue.find_by(id: issue[:id])
+    elsif issue[:type] == 'offline'
+      found = OfflineIssue.find_by(id: issue[:id])
+    elsif issue[:type] == 'compilation'
+      found = Compilation.find_by(id: issue[:id])
+    end
+    found.update(order: index)
+    index = index + 1
+  end
+end

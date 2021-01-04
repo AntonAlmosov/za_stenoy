@@ -3,6 +3,20 @@ class CompilationController < ApplicationController
   require 'json'
   before_action :authenticate_admin!, :except => [:show, :index]
 
+  def get_highest_order
+    records = []
+    Compilation.all.each do |comp|
+      records.push(comp.order)
+    end
+    OfflineIssue.all.each do |comp|
+      records.push(comp.order)
+    end
+    OnlineIssue.all.each do |comp|
+      records.push(comp.order)
+    end
+    return records.sort.reverse[0]
+  end
+
   def get_compilations
     @compilations = Compilation.all.sort_by(&:created_at)
     compilations = []
@@ -64,6 +78,7 @@ class CompilationController < ApplicationController
     compilation.caption = params[:caption]
     compilation.published = params[:published]
     compilation.featured = params[:featured]
+    compilation.order = get_highest_order() + 1
 
     page = Page.friendly.find(params[:admin_id])
 

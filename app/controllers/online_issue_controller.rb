@@ -3,6 +3,20 @@ class OnlineIssueController < ApplicationController
   require 'json'
   before_action :authenticate_admin!, :except => [:show, :index]
 
+  def get_highest_order
+    records = []
+    Compilation.all.each do |comp|
+      records.push(comp.order)
+    end
+    OfflineIssue.all.each do |comp|
+      records.push(comp.order)
+    end
+    OnlineIssue.all.each do |comp|
+      records.push(comp.order)
+    end
+    return records.sort.reverse[0]
+  end
+
   def get_online_issues
     @issues = OnlineIssue.where(page_id: params[:id]).sort_by(&:created_at)
     issues = []
@@ -82,6 +96,7 @@ class OnlineIssueController < ApplicationController
     issue.featured = params[:featured]
     issue.description = params[:description]
     issue.description_heading = params[:description_heading]
+    issue.order = get_highest_order() + 1
 
     page = Page.friendly.find(params[:admin_id])
 
