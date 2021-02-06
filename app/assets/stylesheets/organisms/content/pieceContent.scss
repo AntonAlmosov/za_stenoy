@@ -86,7 +86,7 @@
           font-size: calc(#{$baseMobile} * 1.5);
           line-height: 1.33;
           margin-bottom: 0.375em;
-          color: black;
+          color: black !important;
           &:hover {
             text-decoration: none;
           }
