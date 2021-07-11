@@ -20,6 +20,19 @@ class PieceController < ApplicationController
       @authors.push({url: author_path(author.id), name: author.name, middlename: author.middlename})
     end
 
+    @refernces = []
+
+    PieceOnlineIssue.where(piece_id: @piece.id).each do |online|
+      issue = OnlineIssue.find(online.online_issue_id)
+      @refernces.push({title: issue.title, url: "/page/0/online_issue/"+issue.id.to_s})
+    end
+
+    PieceCompilation.where(piece_id: @piece.id).each do |compilation|
+      issue = Compilation.find(compilation.compilation_id)
+      @refernces.push({title: issue.title, url: "/page/0/compilation/"+issue.id.to_s})
+    end
+
+
     @edit_path = false
     if admin_signed_in?
       @edit_path = edit_piece_path(@piece.id)
@@ -115,23 +128,11 @@ class PieceController < ApplicationController
         @piece.cover.purge
       else
         if @piece.update(title: params[:title], note: params[:note], published: params[:published], text: params[:text], publish_date: params[:publish_date], cover: params[:cover] )
-          if params[:published] == true
-            authors.each do |author|
-              foundAuthor = Author.find(author['id'])
-              foundAuthor.update(public: true)
-            end
-          end
           render :json => {status: 'ok'}
         end
       end
     else
       if @piece.update(title: params[:title], note: params[:note], published: params[:published], text: params[:text], publish_date: params[:publish_date] )
-        if params[:published] == true
-          authors.each do |author|
-            foundAuthor = Author.find(author['id'])
-            foundAuthor.update(public: true)
-          end
-        end
         render :json => {status: 'ok'}
       end
     end

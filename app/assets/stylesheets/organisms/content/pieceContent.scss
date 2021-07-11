@@ -53,6 +53,18 @@
       margin-top: 2.5em;
     }
   }
+  .piece-references {
+    margin-top: 6em;
+    h4 {
+      font-size: 1.25em;
+      font-weight: 500;
+      margin-bottom: calc(#{$base} * 1.25);
+    }
+    a {
+      color: black;
+      margin-bottom: 0.5em;
+    }
+  }
 }
 
 @media (max-width: 511px) {
@@ -108,6 +120,19 @@
     span {
       font-size: 1.5em;
       margin-top: calc(#{$baseMobile} * 2.5);
+    }
+  }
+  .piece-references {
+    margin-top: 4em;
+    h4 {
+      font-size: 2em;
+      font-weight: 500;
+      margin-bottom: calc(#{$base} * 2);
+    }
+    a {
+      font-size: 1.5em;
+      color: black;
+      margin-bottom: 0.5em;
     }
   }
 }

@@ -39,11 +39,11 @@ class AuthorController < ApplicationController
   def update
     @author = Author.find(params[:id])
     if params.has_key?(:avatar)
-      if @author.update(name: params[:name], middlename: params[:middlename], avatar: params[:avatar], description: params[:description], public: params[:public])
+      if @author.update(name: params[:name], middlename: params[:middlename], avatar: params[:avatar], description: params[:description])
         render :json => {status: 'ok'}
       end
     else
-      if @author.update(name: params[:name], middlename: params[:middlename], description: params[:description], public: params[:public])
+      if @author.update(name: params[:name], middlename: params[:middlename], description: params[:description])
         render :json => {status: 'ok'}
       end
     end
@@ -64,7 +64,7 @@ class AuthorController < ApplicationController
     
     @pieces = []
 
-    author.pieces.each do |piece|
+    author.pieces.sort_by(&:created_at).reverse.each do |piece|
       if piece.published
         if piece.cover.attached?
           @pieces.push({url: piece_path(piece.id), text: piece.text, title: piece.title, date: piece.publish_date, cover: polymorphic_url(piece.cover)})

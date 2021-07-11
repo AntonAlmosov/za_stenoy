@@ -2,7 +2,7 @@ import React from "react";
 import { addMiddlename } from "../../misc/addMiddlename";
 import EditorData from "./EditorData";
 
-export default function PieceContent({ piece, cover, authors }) {
+export default function PieceContent({ piece, cover, authors, references }) {
   const text = JSON.parse(piece.text || "{blocks: []}").blocks;
   const note = JSON.parse(piece.note || "{blocks: []}").blocks;
   return (
@@ -29,6 +29,14 @@ export default function PieceContent({ piece, cover, authors }) {
         <EditorData text={note} />
       </div>
       <span>{piece.publish_date}</span>
+      <div className="piece-references">
+        <h4>Связанные сборники</h4>
+        {references.map((ref, key) => (
+          <a href={ref.url} key={key}>
+            {ref.title}
+          </a>
+        ))}
+      </div>
     </div>
   );
 }
