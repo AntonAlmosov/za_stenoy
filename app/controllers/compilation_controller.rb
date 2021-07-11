@@ -54,7 +54,7 @@ class CompilationController < ApplicationController
       @edit_path = edit_admin_compilation_path(@compilation.page_id, @compilation.id)
     end
 
-    @compilation.pieces.each do |piece|
+    @compilation.pieces.sort_by(&:created_at).reverse.each do |piece|
       if piece.cover.attached?
         @pieces.push({url: piece_path(piece.id), title: piece.title, date: piece.publish_date, cover: polymorphic_url(piece.cover), text: piece.text})
       else
