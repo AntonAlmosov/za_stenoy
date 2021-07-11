@@ -30,7 +30,6 @@ export default function PieceContent({ piece, cover, authors, references }) {
       </div>
       <span>{piece.publish_date}</span>
       <div className="piece-references">
-        <h4>Связанные сборники</h4>
         {references.map((ref, key) => (
           <a href={ref.url} key={key}>
             {ref.title}
