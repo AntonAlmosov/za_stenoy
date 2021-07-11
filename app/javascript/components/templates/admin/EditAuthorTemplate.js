@@ -34,8 +34,8 @@ export default function EditAuthorTemplate({
 
     const formData = new FormData();
     formData.append("name", name);
-    if(middlename !== initialMiddlename && middlename !== null)
-    formData.append("middlename", middlename);
+    if (middlename !== initialMiddlename && middlename !== null)
+      formData.append("middlename", middlename);
     if (initialAvatar !== image) {
       formData.append("avatar", imageData);
     }
@@ -138,9 +138,6 @@ export default function EditAuthorTemplate({
             }}
             value={description || ""}
             onChange={(e) => {
-              if (e.target.value.length > 800) {
-                return;
-              }
               setDescription(e.target.value);
             }}
             placeholder={
