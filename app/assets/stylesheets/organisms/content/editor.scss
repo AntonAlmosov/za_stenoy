@@ -155,7 +155,8 @@ h3.ce-header {
       font-size: 0.7em;
     }
     .image-block {
-      width: 100%;
+      width: 60em;
+      transform: translateX(-10em);
       img {
         width: 100% !important;
         height: auto !important;
