@@ -48,7 +48,7 @@ class NewsController < ApplicationController
 
   def update
     news = News.find(params[:id])
-    page = Page.friendly.find(0)
+    page = Page.find(1)
     news.title = params[:title]
     news.page_id = page.id
     news.text = params[:text]

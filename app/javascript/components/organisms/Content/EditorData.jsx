@@ -46,13 +46,19 @@ export default ({ text }) => {
             );
           }
           if (line.type === "delimiter") return <hr key={i} />;
-          if (line.type === "image")
+          if (line.type === "image") {
             return (
-              <div className="image-block" key={i}>
+              <div
+                className={`image-block ${
+                  line.data.stretched ? "stretched" : ""
+                }`}
+                key={i}
+              >
                 <img src={line.data.file.url} />
                 <span>{line.data.caption}</span>
               </div>
             );
+          }
         })}
       </div>
     );
